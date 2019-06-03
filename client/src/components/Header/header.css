@@ -1,0 +1,18 @@
+header{
+  width: 100%;
+  margin-bottom: 1em;
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  padding: 10px 50px;
+  background-color: steelblue;
+  color: white;
+}
+
+.headerLinks a{
+  color: white;
+}
+
+.headerLinks a:nth-child(1){
+  margin-right: 20px;
+}
