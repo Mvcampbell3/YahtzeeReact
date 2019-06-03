@@ -1,0 +1,28 @@
+.die{
+  height: 70px;
+  width: 70px;
+  display: block;
+  border: 1px black solid;
+}
+
+.diceBox, .holdsBox{
+  width: 520px;
+  margin: auto;
+  padding: 10px;
+  background-color: forestgreen;
+  display: flex;
+  justify-content: space-between;
+}
+
+.hold, .unhold{
+  width: 70px;
+  border: 1px black solid;
+}
+
+.unhold{
+  background-color: red;
+}
+
+.diceBox{
+  user-select: none;
+}
