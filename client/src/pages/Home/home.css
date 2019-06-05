@@ -35,3 +35,8 @@
 .totalScore{
   background-color: red;
 }
+
+.container{
+  width: 800px;
+  margin: auto;
+}
