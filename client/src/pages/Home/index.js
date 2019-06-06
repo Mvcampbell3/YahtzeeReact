@@ -14,28 +14,28 @@ class Home extends Component {
     dicePics: [blank, dice1, dice2, dice3, dice4, dice5, dice6],
     diceValue: [0, 0, 0, 0, 0],
     diceHold: [false, false, false, false, false],
-    rollCount: 103,
+    rollCount: 3,
     showSave: false,
     scoring: [
-      { score: 0, saved: false, place: 0, click: true, value: 1, name: "Ones", scoreSystem: "number" },
-      { score: 0, saved: false, place: 1, click: true, value: 2, name: "Twos", scoreSystem: "number" },
-      { score: 0, saved: false, place: 2, click: true, value: 3, name: "Threes", scoreSystem: "number" },
-      { score: 0, saved: false, place: 3, click: true, value: 4, name: "Fours", scoreSystem: "number" },
-      { score: 0, saved: false, place: 4, click: true, value: 5, name: "Fives", scoreSystem: "number" },
-      { score: 0, saved: false, place: 5, click: true, value: 6, name: "Sixes", scoreSystem: "number" },
-      { score: 0, saved: false, place: 6, click: false, value: "upperSubTotal", name: "Upper Sub Total", scoreSystem: "totalPart" },
-      { score: 0, saved: false, place: 7, click: false, value: "upperBonus", name: "Bonus", scoreSystem: "35" },
-      { score: 0, saved: false, place: 8, click: false, value: "upperTotal", name: "Upper Total", scoreSystem: "totalPart" },
-      { score: 0, saved: false, place: 9, click: true, value: "threeKind", name: "Three of a kind", scoreSystem: "kind" },
-      { score: 0, saved: false, place: 10, click: true, value: "fourKind", name: "Four of a kind", scoreSystem: "kind" },
-      { score: 0, saved: false, place: 11, click: true, value: "fullHouse", name: "Full House", scoreSystem: "fullHouse" },
-      { score: 0, saved: false, place: 12, click: true, value: 30, name: "Small Straight", scoreSystem: "straight" },
-      { score: 0, saved: false, place: 13, click: true, value: 40, name: "Large Straight", scoreSystem: "straight" },
-      { score: 0, saved: false, place: 14, click: true, value: 50, name: "Yahtzee", scoreSystem: "yahtzee" },
-      { score: 0, saved: false, place: 15, click: true, value: "chance", name: "Chance", scoreSystem: "total" },
-      { score: 0, saved: false, place: 16, click: true, value: "bonusYahtzee", name: "Bonus Yahtzee", scoreSystem: "bonusYahtzee" },
-      { score: 0, saved: false, place: 17, click: false, value: "lowerTotal", name: "Lower Total", scoreSystem: "totalPart" },
-      { score: 0, saved: false, place: 18, click: false, value: "total", name: "Total Score", scoreSystem: "totalAll" }
+      { type: "upper", score: 0, saved: false, place: 0, click: true, value: 1, name: "Ones", scoreSystem: "number" },
+      { type: "upper", score: 0, saved: false, place: 1, click: true, value: 2, name: "Twos", scoreSystem: "number" },
+      { type: "upper", score: 0, saved: false, place: 2, click: true, value: 3, name: "Threes", scoreSystem: "number" },
+      { type: "upper", score: 0, saved: false, place: 3, click: true, value: 4, name: "Fours", scoreSystem: "number" },
+      { type: "upper", score: 0, saved: false, place: 4, click: true, value: 5, name: "Fives", scoreSystem: "number" },
+      { type: "upper", score: 0, saved: false, place: 5, click: true, value: 6, name: "Sixes", scoreSystem: "number" },
+      { type: "total", score: 0, saved: false, place: 6, click: false, value: "upperSubTotal", name: "Upper Sub Total", scoreSystem: "totalPart" },
+      { type: "upper", score: 0, saved: false, place: 7, click: false, value: "upperBonus", name: "Bonus", scoreSystem: "35" },
+      { type: "total", score: 0, saved: false, place: 8, click: false, value: "upperTotal", name: "Upper Total", scoreSystem: "totalPart" },
+      { type: "lower", score: 0, saved: false, place: 9, click: true, value: "threeKind", name: "Three of a kind", scoreSystem: "kind" },
+      { type: "lower", score: 0, saved: false, place: 10, click: true, value: "fourKind", name: "Four of a kind", scoreSystem: "kind" },
+      { type: "lower", score: 0, saved: false, place: 11, click: true, value: "fullHouse", name: "Full House", scoreSystem: "fullHouse" },
+      { type: "lower", score: 0, saved: false, place: 12, click: true, value: 30, name: "Small Straight", scoreSystem: "straight" },
+      { type: "lower", score: 0, saved: false, place: 13, click: true, value: 40, name: "Large Straight", scoreSystem: "straight" },
+      { type: "lower", score: 0, saved: false, place: 14, click: true, value: 50, name: "Yahtzee", scoreSystem: "yahtzee" },
+      { type: "lower", score: 0, saved: false, place: 15, click: true, value: "chance", name: "Chance", scoreSystem: "total" },
+      { type: "lower", score: 0, saved: false, place: 16, click: true, value: "bonusYahtzee", name: "Bonus Yahtzee", scoreSystem: "bonusYahtzee" },
+      { type: "total", score: 0, saved: false, place: 17, click: false, value: "lowerTotal", name: "Lower Total", scoreSystem: "totalPart" },
+      { type: "total", score: 0, saved: false, place: 18, click: false, value: "total", name: "Total Score", scoreSystem: "totalAll" }
     ],
     bonusYahtzee: false,
     firstYahtzee: false,
@@ -77,7 +77,7 @@ class Home extends Component {
   }
 
   resetRound = () => {
-    this.setState({ rollCount: 103, diceHold: [false, false, false, false, false], diceValue: [0, 0, 0, 0, 0] })
+    this.setState({ rollCount: 3, diceHold: [false, false, false, false, false], diceValue: [0, 0, 0, 0, 0] })
   }
 
   holdButtonHandle = e => {
@@ -89,6 +89,24 @@ class Home extends Component {
     this.setState({ diceHold: holds })
   }
 
+  saveScore = () => {
+    const where = this.state.previousPlace;
+    this.setState((prevState) => {
+      if (where !== 16) {
+        prevState.scoring[where].saved = true;
+      }
+      prevState.bonusYahtzee = false;
+      prevState.showSave = false;
+      prevState.rollCount = 3;
+      prevState.diceHold = [false, false, false, false, false];
+      prevState.diceValue = [0, 0, 0, 0, 0];
+      if (prevState.firstYahtzee && !prevState.savedYahtzee) {
+        prevState.savedYahtzee = true;
+      }
+      return prevState;
+    })
+  }
+
   testScore = (value, name, scoringSystem, place, saved) => {
     console.log(value, name, scoringSystem, place, saved)
     this.clearUnsavedScores();
@@ -98,6 +116,11 @@ class Home extends Component {
 
     if (saved) {
       console.log("can't do that")
+      return;
+    }
+
+    if (this.state.diceValue[0] === 0) {
+      console.log("roll the dice first")
       return;
     }
 
@@ -199,7 +222,7 @@ class Home extends Component {
         console.log("this is the yahtzee");
         const checkYahtzee = dice.filter(each => each === dice[0]);
         console.log(checkYahtzee.length)
-        if (checkYahtzee.length === 5) {
+        if (checkYahtzee.length === 5 && dice[0] !== 0) {
           console.log("it's a yahtzee");
           saveNum = 50;
           scoredYahtzee = true;
@@ -243,43 +266,31 @@ class Home extends Component {
         console.log("Scoring System Switch not working as expected");
 
     }
-
     // Secret Sauce Number 1 !!
-    // This will probably be in a serpate funciton that adds all of the scores together on save
-    this.setState((prevState => {
-      if (value !== "bonusYahtzee") {
-        prevState.scoring[place].score = saveNum;
-      }
-      prevState.showSave = true;
-      prevState.previousPlace = place;
-      if (scoredYahtzee && this.state.savedYahtzee === false) {
-        prevState.firstYahtzee = true
-      } else if (!scoredYahtzee && this.state.savedYahtzee === false) {
-        prevState.firstYahtzee = false
-      } else if (bonusYahtzee) {
-        prevState.bonusYahtzee = true
-        prevState.scoring[place].score += 100;
-      }
-      return prevState;
-    }))
-  }
+    const promise2 = [
+      this.setState((prevState => {
+        if (value !== "bonusYahtzee") {
+          prevState.scoring[place].score = saveNum;
+        }
+        prevState.showSave = true;
+        prevState.previousPlace = place;
+        if (scoredYahtzee && this.state.savedYahtzee === false) {
+          prevState.firstYahtzee = true
+        } else if (!scoredYahtzee && this.state.savedYahtzee === false) {
+          prevState.firstYahtzee = false
+        } else if (bonusYahtzee) {
+          prevState.bonusYahtzee = true
+          prevState.scoring[place].score += 100;
+        }
+        return prevState;
+      }))
+    ]
 
-  saveScore = () => {
-    const where = this.state.previousPlace;
-    this.setState((prevState) => {
-      if (where !== 16) {
-        prevState.scoring[where].saved = true;
-      }
-      prevState.bonusYahtzee = false;
-      prevState.showSave = false;
-      prevState.rollCount =  103;
-      prevState.diceHold =  [false, false, false, false, false]; 
-      prevState.diceValue =  [0, 0, 0, 0, 0];
-      if (prevState.firstYahtzee && !prevState.savedYahtzee) {
-        prevState.savedYahtzee = true;
-      }
-      return prevState;
-    })
+    Promise.all(promise2)
+      .then(result => {
+        this.updateScores(scoring)
+      })
+      .catch(err => console.log(err))
   }
 
   // The rules for bonus Yahtzee
@@ -298,10 +309,11 @@ class Home extends Component {
     // If bonus gets here, the value that is the YZ is already saved
     // Will not need to check it
     // console.log(value, name, scoringSystem, place, saved)
-    console.log("This is inside of bonusYahtzeeScoring")
+    console.log("This is inside of bonusYahtzeeScoring");
+    this.clearUnsavedScores();
     const dice = this.state.diceValue;
     const totalSum = dice.reduce((amt, tot) => amt + tot)
-    const scoring = this.state.scoring;
+    // const scoring = this.state.scoring;
     let saveNum = 0;
     if (saved) {
       console.log("Already a value there bonusYZ");
@@ -330,13 +342,42 @@ class Home extends Component {
       default:
         console.log("scoringSystem switch in bonusYZ not working as expected");
     }
-    this.setState((prevState => {
-      if (value !== "bonusYahtzee") {
-        prevState.previousPlace = place;
-        prevState.scoring[place].score = saveNum;
-      }
+    const promise3 = [
+      this.setState((prevState => {
+        if (value !== "bonusYahtzee") {
+          prevState.previousPlace = place;
+          prevState.scoring[place].score = saveNum;
+        }
+        return prevState;
+      }))
+    ];
+
+    Promise.all(promise3)
+      .then(result => {
+        this.updateScores(this.state.scoring)
+      })
+      .catch(err => console.log(err))
+
+  }
+
+  updateScores = (scoring) => {
+    let bonus = 0;
+    const upperScoreSub = scoring.filter(each => each.type === "upper").map(one => one.score).reduce((amt, tot) => amt + tot);
+    if (upperScoreSub >= 63) {
+      bonus = 35;
+    }
+    const upperScoreTotal = upperScoreSub + bonus;
+    const lowerScoreSub = scoring.filter(each => each.type === "lower").map(one => one.score).reduce((amt, tot) => amt + tot);
+    const total = upperScoreTotal + lowerScoreSub;
+    console.log(upperScoreSub, lowerScoreSub)
+    this.setState((prevState) => {
+      prevState.scoring[6].score = upperScoreSub;
+      prevState.scoring[7].score = bonus;
+      prevState.scoring[8].score = upperScoreTotal;
+      prevState.scoring[17].score = lowerScoreSub;
+      prevState.scoring[18].score = total;
       return prevState;
-    }))
+    })
   }
 
 
@@ -359,7 +400,7 @@ class Home extends Component {
           <button value={4} className={this.state.diceHold[4] ? "unhold" : "hold"} onClick={e => this.holdButtonHandle(e)}>{this.state.diceHold[4] ? "Unhold" : "Hold"}</button>
         </div>
         <button onClick={this.rollDice}>Roll</button>
-        {this.state.showSave ? <button onClick={this.saveScore}>Save</button>: null}
+        {this.state.showSave ? <button onClick={this.saveScore}>Save</button> : null}
         <div className="scoringGrid">
           {this.state.scoring.map(score =>
             <div key={score.name} className={score.name === "total" ? "totalScore" : "score"}>
