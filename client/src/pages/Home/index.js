@@ -17,31 +17,36 @@ class Home extends Component {
     rollCount: 3,
     showSave: false,
     scoring: [
-      { type: "upper", score: 0, saved: false, place: 0, click: true, value: 1, name: "Ones", scoreSystem: "number" },
-      { type: "upper", score: 0, saved: false, place: 1, click: true, value: 2, name: "Twos", scoreSystem: "number" },
-      { type: "upper", score: 0, saved: false, place: 2, click: true, value: 3, name: "Threes", scoreSystem: "number" },
-      { type: "upper", score: 0, saved: false, place: 3, click: true, value: 4, name: "Fours", scoreSystem: "number" },
-      { type: "upper", score: 0, saved: false, place: 4, click: true, value: 5, name: "Fives", scoreSystem: "number" },
-      { type: "upper", score: 0, saved: false, place: 5, click: true, value: 6, name: "Sixes", scoreSystem: "number" },
-      { type: "total", score: 0, saved: false, place: 6, click: false, value: "upperSubTotal", name: "Upper Sub Total", scoreSystem: "totalPart" },
-      { type: "upper", score: 0, saved: false, place: 7, click: false, value: "upperBonus", name: "Bonus", scoreSystem: "35" },
-      { type: "total", score: 0, saved: false, place: 8, click: false, value: "upperTotal", name: "Upper Total", scoreSystem: "totalPart" },
-      { type: "lower", score: 0, saved: false, place: 9, click: true, value: "threeKind", name: "Three of a kind", scoreSystem: "kind" },
-      { type: "lower", score: 0, saved: false, place: 10, click: true, value: "fourKind", name: "Four of a kind", scoreSystem: "kind" },
-      { type: "lower", score: 0, saved: false, place: 11, click: true, value: "fullHouse", name: "Full House", scoreSystem: "fullHouse" },
-      { type: "lower", score: 0, saved: false, place: 12, click: true, value: 30, name: "Small Straight", scoreSystem: "straight" },
-      { type: "lower", score: 0, saved: false, place: 13, click: true, value: 40, name: "Large Straight", scoreSystem: "straight" },
-      { type: "lower", score: 0, saved: false, place: 14, click: true, value: 50, name: "Yahtzee", scoreSystem: "yahtzee" },
-      { type: "lower", score: 0, saved: false, place: 15, click: true, value: "chance", name: "Chance", scoreSystem: "total" },
-      { type: "lower", score: 0, saved: false, place: 16, click: true, value: "bonusYahtzee", name: "Bonus Yahtzee", scoreSystem: "bonusYahtzee" },
-      { type: "total", score: 0, saved: false, place: 17, click: false, value: "lowerTotal", name: "Lower Total", scoreSystem: "totalPart" },
-      { type: "total", score: 0, saved: false, place: 18, click: false, value: "total", name: "Total Score", scoreSystem: "totalAll" }
+      { order: 0, type: "upper", score: 0, saved: false, place: 0, click: true, value: 1, name: "Ones", scoreSystem: "number" },
+      { order: 2, type: "upper", score: 0, saved: false, place: 1, click: true, value: 2, name: "Twos", scoreSystem: "number" },
+      { order: 4, type: "upper", score: 0, saved: false, place: 2, click: true, value: 3, name: "Threes", scoreSystem: "number" },
+      { order: 6, type: "upper", score: 0, saved: false, place: 3, click: true, value: 4, name: "Fours", scoreSystem: "number" },
+      { order: 8, type: "upper", score: 0, saved: false, place: 4, click: true, value: 5, name: "Fives", scoreSystem: "number" },
+      { order: 10, type: "upper", score: 0, saved: false, place: 5, click: true, value: 6, name: "Sixes", scoreSystem: "number" },
+      { order: 12, type: "total", score: 0, saved: false, place: 6, click: false, value: "upperSubTotal", name: "Upper Sub Total", scoreSystem: "totalPart" },
+      { order: 14, type: "upper", score: 0, saved: false, place: 7, click: false, value: "upperBonus", name: "Bonus", scoreSystem: "35" },
+      { order: 16, type: "total", score: 0, saved: false, place: 8, click: false, value: "upperTotal", name: "Upper Total", scoreSystem: "totalPart" },
+      { order: 1, type: "lower", score: 0, saved: false, place: 9, click: true, value: "threeKind", name: "Three of a kind", scoreSystem: "kind" },
+      { order: 3, type: "lower", score: 0, saved: false, place: 10, click: true, value: "fourKind", name: "Four of a kind", scoreSystem: "kind" },
+      { order: 5, type: "lower", score: 0, saved: false, place: 11, click: true, value: "fullHouse", name: "Full House", scoreSystem: "fullHouse" },
+      { order: 7, type: "lower", score: 0, saved: false, place: 12, click: true, value: 30, name: "Small Straight", scoreSystem: "straight" },
+      { order: 9, type: "lower", score: 0, saved: false, place: 13, click: true, value: 40, name: "Large Straight", scoreSystem: "straight" },
+      { order: 11, type: "lower", score: 0, saved: false, place: 14, click: true, value: 50, name: "Yahtzee", scoreSystem: "yahtzee" },
+      { order: 13, type: "lower", score: 0, saved: false, place: 15, click: true, value: "chance", name: "Chance", scoreSystem: "total" },
+      { order: 15, type: "lower", score: 0, saved: false, place: 16, click: true, value: "bonusYahtzee", name: "Bonus Yahtzee", scoreSystem: "bonusYahtzee" },
+      { order: 17, type: "total", score: 0, saved: false, place: 17, click: false, value: "lowerTotal", name: "Lower Total", scoreSystem: "totalPart" },
+      { order: 18, type: "total", score: 0, saved: false, place: 18, click: false, value: "total", name: "Total Score", scoreSystem: "totalAll" }
     ],
     bonusYahtzee: false,
     firstYahtzee: false,
     savedYahtzee: false,
-    previousPlace: null
+    previousPlace: null,
+    ordered: []
 
+  }
+
+  componentWillMount() {
+    this.testGrid();
   }
 
   clearUnsavedScores = () => {
@@ -63,7 +68,7 @@ class Home extends Component {
       const newDice = []
       for (let i = 0; i < dice.length; i++) {
         if (holds[i] !== true) {
-          const rdmNum = Math.floor((Math.random() * 1) + 1);
+          const rdmNum = Math.floor((Math.random() * 6) + 1);
           console.log(rdmNum);
           newDice.push(rdmNum);
         } else {
@@ -380,9 +385,22 @@ class Home extends Component {
     })
   }
 
+  testGrid = () => {
+    const scoring = this.state.scoring;
+    const order = [];
+    for (let i = 0; i < scoring.length; i++) {
+      order.push(scoring.find(each => each.order === i))
+    }
+    console.log(order)
+    this.setState({ order: order })
+  }
 
   render() {
-
+    const scoring = this.state.scoring;
+    const order = [];
+    for (let i = 0; i < scoring.length; i++) {
+      order.push(scoring.filter(each => each.order === i))
+    }
     return (
       <div className="container">
         <div className="diceBox">
@@ -402,15 +420,16 @@ class Home extends Component {
         <button onClick={this.rollDice}>Roll</button>
         {this.state.showSave ? <button onClick={this.saveScore}>Save</button> : null}
         <div className="scoringGrid">
-          {this.state.scoring.map(score =>
-            <div key={score.name} className={score.name === "total" ? "totalScore" : "score"}>
-              <p>{score.name}</p>
+          {this.state.order.map(score =>
+            <div key={score.name} className={score.click ? "score" : "totalScore"}>
               {score.click ?
                 <button
                   onClick={this.state.bonusYahtzee ? () => this.bonusYahtzeeScoring(score.value, score.name, score.scoreSystem, score.place, score.saved) : () => this.testScore(score.value, score.name, score.scoreSystem, score.place, score.saved)}
                 >Score</button>
                 : null}
+              <p>{score.name}</p>
               <p>{score.score}</p>
+
             </div>)}
         </div>
       </div>
