@@ -9,6 +9,8 @@ import dice5 from "../../images/5.jpg"
 import dice6 from "../../images/6.jpg"
 import blank from "../../images/Blankdie.jpg"
 
+import ScoreBox from "../../components/ScoreBox"
+
 class Home extends Component {
   state = {
     dicePics: [blank, dice1, dice2, dice3, dice4, dice5, dice6],
@@ -421,16 +423,14 @@ class Home extends Component {
         {this.state.showSave ? <button onClick={this.saveScore}>Save</button> : null}
         <div className="scoringGrid">
           {this.state.order.map(score =>
-            <div key={score.name} className={score.click ? "score" : "totalScore"}>
-              {score.click ?
-                <button
-                  onClick={this.state.bonusYahtzee ? () => this.bonusYahtzeeScoring(score.value, score.name, score.scoreSystem, score.place, score.saved) : () => this.testScore(score.value, score.name, score.scoreSystem, score.place, score.saved)}
-                >Score</button>
-                : null}
-              <p>{score.name}</p>
-              <p>{score.score}</p>
-
-            </div>)}
+            <ScoreBox
+              score={score}
+              key={score.name}
+              bonusYahtzee={this.state.bonusYahtzee}
+              testScore={this.testScore}
+              bonusYahtzeeScoring={this.bonusYahtzeeScoring}
+            />
+          )}
         </div>
       </div>
     );
