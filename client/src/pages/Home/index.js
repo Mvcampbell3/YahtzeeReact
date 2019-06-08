@@ -19,25 +19,25 @@ class Home extends Component {
     rollCount: 3,
     showSave: false,
     scoring: [
-      { order: 0, type: "upper", score: 0, saved: false, place: 0, click: true, value: 1, name: "Ones", scoreSystem: "number" },
-      { order: 2, type: "upper", score: 0, saved: false, place: 1, click: true, value: 2, name: "Twos", scoreSystem: "number" },
-      { order: 4, type: "upper", score: 0, saved: false, place: 2, click: true, value: 3, name: "Threes", scoreSystem: "number" },
-      { order: 6, type: "upper", score: 0, saved: false, place: 3, click: true, value: 4, name: "Fours", scoreSystem: "number" },
-      { order: 8, type: "upper", score: 0, saved: false, place: 4, click: true, value: 5, name: "Fives", scoreSystem: "number" },
-      { order: 10, type: "upper", score: 0, saved: false, place: 5, click: true, value: 6, name: "Sixes", scoreSystem: "number" },
-      { order: 12, type: "total", score: 0, saved: false, place: 6, click: false, value: "upperSubTotal", name: "Upper Sub Total", scoreSystem: "totalPart" },
-      { order: 14, type: "upper", score: 0, saved: false, place: 7, click: false, value: "upperBonus", name: "Bonus", scoreSystem: "35" },
-      { order: 16, type: "total", score: 0, saved: false, place: 8, click: false, value: "upperTotal", name: "Upper Total", scoreSystem: "totalPart" },
-      { order: 1, type: "lower", score: 0, saved: false, place: 9, click: true, value: "threeKind", name: "Three of a kind", scoreSystem: "kind" },
-      { order: 3, type: "lower", score: 0, saved: false, place: 10, click: true, value: "fourKind", name: "Four of a kind", scoreSystem: "kind" },
-      { order: 5, type: "lower", score: 0, saved: false, place: 11, click: true, value: "fullHouse", name: "Full House", scoreSystem: "fullHouse" },
-      { order: 7, type: "lower", score: 0, saved: false, place: 12, click: true, value: 30, name: "Small Straight", scoreSystem: "straight" },
-      { order: 9, type: "lower", score: 0, saved: false, place: 13, click: true, value: 40, name: "Large Straight", scoreSystem: "straight" },
-      { order: 11, type: "lower", score: 0, saved: false, place: 14, click: true, value: 50, name: "Yahtzee", scoreSystem: "yahtzee" },
-      { order: 13, type: "lower", score: 0, saved: false, place: 15, click: true, value: "chance", name: "Chance", scoreSystem: "total" },
-      { order: 15, type: "lower", score: 0, saved: false, place: 16, click: true, value: "bonusYahtzee", name: "Bonus Yahtzee", scoreSystem: "bonusYahtzee" },
-      { order: 17, type: "total", score: 0, saved: false, place: 17, click: false, value: "lowerTotal", name: "Lower Total", scoreSystem: "totalPart" },
-      { order: 18, type: "total", score: 0, saved: false, place: 18, click: false, value: "total", name: "Total Score", scoreSystem: "totalAll" }
+      { x: 0, order: 0, type: "upper", score: 0, saved: false, place: 0, click: true, value: 1, name: "Ones", scoreSystem: "number" },
+      { x: 0, order: 2, type: "upper", score: 0, saved: false, place: 1, click: true, value: 2, name: "Twos", scoreSystem: "number" },
+      { x: 0, order: 4, type: "upper", score: 0, saved: false, place: 2, click: true, value: 3, name: "Threes", scoreSystem: "number" },
+      { x: 0, order: 6, type: "upper", score: 0, saved: false, place: 3, click: true, value: 4, name: "Fours", scoreSystem: "number" },
+      { x: 0, order: 8, type: "upper", score: 0, saved: false, place: 4, click: true, value: 5, name: "Fives", scoreSystem: "number" },
+      { x: 0, order: 10, type: "upper", score: 0, saved: false, place: 5, click: true, value: 6, name: "Sixes", scoreSystem: "number" },
+      { x: 0, order: 12, type: "total", score: 0, saved: false, place: 6, click: false, value: "upperSubTotal", name: "Upper Sub Total", scoreSystem: "totalPart" },
+      { x: 0, order: 14, type: "upper", score: 0, saved: false, place: 7, click: false, value: "upperBonus", name: "Bonus", scoreSystem: "35" },
+      { x: 0, order: 16, type: "total", score: 0, saved: false, place: 8, click: false, value: "upperTotal", name: "Upper Total", scoreSystem: "totalPart" },
+      { x: 0, order: 1, type: "lower", score: 0, saved: false, place: 9, click: true, value: "threeKind", name: "Three of a kind", scoreSystem: "kind" },
+      { x: 0, order: 3, type: "lower", score: 0, saved: false, place: 10, click: true, value: "fourKind", name: "Four of a kind", scoreSystem: "kind" },
+      { x: 0, order: 5, type: "lower", score: 0, saved: false, place: 11, click: true, value: "fullHouse", name: "Full House", scoreSystem: "fullHouse" },
+      { x: 0, order: 7, type: "lower", score: 0, saved: false, place: 12, click: true, value: 30, name: "Small Straight", scoreSystem: "straight" },
+      { x: 0, order: 9, type: "lower", score: 0, saved: false, place: 13, click: true, value: 40, name: "Large Straight", scoreSystem: "straight" },
+      { x: 0, order: 11, type: "lower", score: 0, saved: false, place: 14, click: true, value: 50, name: "Yahtzee", scoreSystem: "yahtzee" },
+      { x: 0, order: 13, type: "lower", score: 0, saved: false, place: 15, click: true, value: "chance", name: "Chance", scoreSystem: "total" },
+      { x: 0, order: 15, type: "lower", score: 0, saved: false, place: 16, click: true, value: "bonusYahtzee", name: "Bonus Yahtzee", scoreSystem: "bonusYahtzee" },
+      { x: 0, order: 17, type: "total", score: 0, saved: false, place: 17, click: false, value: "lowerTotal", name: "Lower Total", scoreSystem: "totalPart" },
+      { x: 0, order: 18, type: "total", score: 0, saved: false, place: 18, click: false, value: "total", name: "Total Score", scoreSystem: "totalAll" }
     ],
     bonusYahtzee: false,
     firstYahtzee: false,
@@ -102,6 +102,8 @@ class Home extends Component {
       if (where !== 16) {
         prevState.scoring[where].saved = true;
       }
+      prevState.scoring[where].x = 0;
+      prevState.scoring[16].x = 0;
       prevState.bonusYahtzee = false;
       prevState.showSave = false;
       prevState.rollCount = 3;
@@ -274,10 +276,15 @@ class Home extends Component {
 
     }
     // Secret Sauce Number 1 !!
+    const oldPlace = this.state.previousPlace;
     const promise2 = [
       this.setState((prevState => {
         if (value !== "bonusYahtzee") {
           prevState.scoring[place].score = saveNum;
+        }
+        prevState.scoring[place].x = 1;
+        if (oldPlace !== null) {
+          prevState.scoring[oldPlace].x = 0;
         }
         prevState.showSave = true;
         prevState.previousPlace = place;
@@ -393,31 +400,21 @@ class Home extends Component {
     for (let i = 0; i < scoring.length; i++) {
       order.push(scoring.find(each => each.order === i))
     }
-    console.log(order)
     this.setState({ order: order })
   }
 
   render() {
-    const scoring = this.state.scoring;
-    const order = [];
-    for (let i = 0; i < scoring.length; i++) {
-      order.push(scoring.filter(each => each.order === i))
-    }
     return (
       <div className="container">
         <div className="diceBox">
-          <img src={this.state.dicePics[this.state.diceValue[0]]} className="die" alt="die1" />
-          <img src={this.state.dicePics[this.state.diceValue[1]]} className="die" alt="die2" />
-          <img src={this.state.dicePics[this.state.diceValue[2]]} className="die" alt="die3" />
-          <img src={this.state.dicePics[this.state.diceValue[3]]} className="die" alt="die4" />
-          <img src={this.state.dicePics[this.state.diceValue[4]]} className="die" alt="die5" />
+          {this.state.diceValue.map((dice, i) =>
+            <img key={i} alt="dicePics" className="die" src={this.state.dicePics[dice]} />
+          )}
         </div>
         <div className="holdsBox">
-          <button value={0} className={this.state.diceHold[0] ? "unhold" : "hold"} onClick={e => this.holdButtonHandle(e)}>{this.state.diceHold[0] ? "Unhold" : "Hold"}</button>
-          <button value={1} className={this.state.diceHold[1] ? "unhold" : "hold"} onClick={e => this.holdButtonHandle(e)}>{this.state.diceHold[1] ? "Unhold" : "Hold"}</button>
-          <button value={2} className={this.state.diceHold[2] ? "unhold" : "hold"} onClick={e => this.holdButtonHandle(e)}>{this.state.diceHold[2] ? "Unhold" : "Hold"}</button>
-          <button value={3} className={this.state.diceHold[3] ? "unhold" : "hold"} onClick={e => this.holdButtonHandle(e)}>{this.state.diceHold[3] ? "Unhold" : "Hold"}</button>
-          <button value={4} className={this.state.diceHold[4] ? "unhold" : "hold"} onClick={e => this.holdButtonHandle(e)}>{this.state.diceHold[4] ? "Unhold" : "Hold"}</button>
+          {this.state.diceHold.map((hold, i) =>
+            <button value={i} key={i} className={this.state.diceHold[i] ? "unhold" : "hold"} onClick={e => this.holdButtonHandle(e)}>{this.state.diceHold[i] ? "Unhold" : "Hold"}</button>
+          )}
         </div>
         <button onClick={this.rollDice}>Roll</button>
         {this.state.showSave ? <button onClick={this.saveScore}>Save</button> : null}
