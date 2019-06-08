@@ -35,6 +35,7 @@
   border: .5px darkred solid;
   grid-gap: 5px;
   padding: 5px 10px;
+  /* Looks pretty good with this for responsiveness */
   /* width: 355px; */
   /* margin: auto; */
 }
