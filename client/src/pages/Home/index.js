@@ -420,8 +420,12 @@ class Home extends Component {
           </div>
         </div>
         <div className="gameBtns">
-          <button className="gameBtn" onClick={this.rollDice}>Roll</button>
-          {this.state.showSave ? <button className="gameBtn" onClick={this.saveScore}>Save</button> : null}
+          <h4 className="rollCounter">Rolls: {this.state.rollCount}</h4>
+          
+          {this.state.rollCount > 0 ? <button className="gameBtn" onClick={this.rollDice}>Roll</button> : 
+          <button className="gameBtn offBtn" >Roll</button>}
+          {this.state.showSave ? <button className="gameBtn" onClick={this.saveScore}>Save</button> : 
+          <button className="gameBtn offBtn" >Save</button>}
         </div>
         <div className="scoringGrid">
           {this.state.order.map(score =>
