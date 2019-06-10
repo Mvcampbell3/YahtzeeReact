@@ -1,19 +1,11 @@
 import React, { Component } from 'react';
 import "./home.css";
 
-import dice1 from "../../images/1.jpg"
-import dice2 from "../../images/2.jpg"
-import dice3 from "../../images/3.jpg"
-import dice4 from "../../images/4.jpg"
-import dice5 from "../../images/5.jpg"
-import dice6 from "../../images/6.jpg"
-import blank from "../../images/Blankdie.jpg"
-
 import ScoreBox from "../../components/ScoreBox"
+import Die from "../../components/Die"
 
 class Home extends Component {
   state = {
-    dicePics: [blank, dice1, dice2, dice3, dice4, dice5, dice6],
     diceValue: [0, 0, 0, 0, 0],
     diceHold: [false, false, false, false, false],
     rollCount: 3,
@@ -43,7 +35,16 @@ class Home extends Component {
     firstYahtzee: false,
     savedYahtzee: false,
     previousPlace: null,
-    ordered: []
+    ordered: [],
+    classes: [
+      "dice show-blank",
+      "dice show-front",
+      "dice show-back",
+      "dice show-top",
+      "dice show-bottom",
+      "dice show-left",
+      "dice show-right"
+    ]
 
   }
 
@@ -406,18 +407,22 @@ class Home extends Component {
   render() {
     return (
       <div className="container">
-        <div className="diceBox">
-          {this.state.diceValue.map((dice, i) =>
-            <img key={i} alt="dicePics" className="die" src={this.state.dicePics[dice]} />
-          )}
+        <div className="gameBox">
+          <div className="diceBox">
+            {this.state.diceValue.map((dice, i) =>
+              <Die class={this.state.classes[dice]} key={i} />
+            )}
+          </div>
+          <div className="holdsBox">
+            {this.state.diceHold.map((hold, i) =>
+              <button value={i} key={i} className={this.state.diceHold[i] ? "unhold" : "hold"} onClick={e => this.holdButtonHandle(e)}>{this.state.diceHold[i] ? "Unhold" : "Hold"}</button>
+            )}
+          </div>
         </div>
-        <div className="holdsBox">
-          {this.state.diceHold.map((hold, i) =>
-            <button value={i} key={i} className={this.state.diceHold[i] ? "unhold" : "hold"} onClick={e => this.holdButtonHandle(e)}>{this.state.diceHold[i] ? "Unhold" : "Hold"}</button>
-          )}
+        <div className="gameBtns">
+          <button className="gameBtn" onClick={this.rollDice}>Roll</button>
+          {this.state.showSave ? <button className="gameBtn" onClick={this.saveScore}>Save</button> : null}
         </div>
-        <button onClick={this.rollDice}>Roll</button>
-        {this.state.showSave ? <button onClick={this.saveScore}>Save</button> : null}
         <div className="scoringGrid">
           {this.state.order.map(score =>
             <ScoreBox
