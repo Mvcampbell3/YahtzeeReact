@@ -8,6 +8,7 @@ const Header = (props) => {
       <h1>Yahtzee</h1>
       <div className="headerLinks">
         <Link to="/">Home</Link>
+        <Link to="/game">Game</Link>
         <Link to="/score">Scores</Link>
       </div>
     </header>

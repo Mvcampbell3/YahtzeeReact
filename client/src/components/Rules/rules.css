@@ -1,0 +1,57 @@
+.showMe{
+  width: 80%;
+  min-width: 320px;
+  line-height: 1.5;
+  font-family: Arial, Helvetica, sans-serif;
+  background-color: steelblue;
+  padding: 5px;
+  color: white;
+  margin: auto;
+  border: 3px black solid;
+  border-radius: 5px;
+  transform: scale(0);
+  animation-name:pop;
+  animation-duration: .5s;
+  animation-fill-mode: forwards;
+  animation-timing-function: linear;
+}
+
+@keyframes pop{
+  0% {transform:scale(0)}
+  100% {transform: scale(1)}
+}
+
+.center{
+  text-align: center;
+}
+
+.scoringList{
+  list-style: none;
+  padding: 10px;
+}
+
+.scoringListRules{
+  width: 95%;
+  margin: auto;
+}
+
+.scoringList h5{
+  display: inline;
+  font-weight: 600;
+}
+
+.showMe p {
+  padding: 10px;
+  font-size: 14px;
+}
+
+.showMe label{
+  font-weight: bolder;
+  display: block;
+  margin: .5em 0 0 0;
+  text-align: center;
+  text-decoration: underline;
+}
+
+
+

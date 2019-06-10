@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
-import "./home.css";
+import "./game.css";
 
 import ScoreBox from "../../components/ScoreBox"
 import Die from "../../components/Die"
+import Rules from "../../components/Rules"
 
-class Home extends Component {
+class Game extends Component {
   state = {
     diceValue: [0, 0, 0, 0, 0],
     diceHold: [false, false, false, false, false],
@@ -44,7 +45,8 @@ class Home extends Component {
       "dice show-bottom",
       "dice show-left",
       "dice show-right"
-    ]
+    ],
+    rules: false
 
   }
 
@@ -240,14 +242,13 @@ class Home extends Component {
         break;
 
       case "bonusYahtzee":
-
-        if (!this.state.bonusYahtzee && this.state.savedYahtzee && dice.filter(each => each === dice[0].length === 5)) {
+        console.log(dice);
+        console.log(dice.filter(each => each === dice[0]))
+        if (!this.state.bonusYahtzee && this.state.savedYahtzee && dice.filter(each => each === dice[0]).length === 5) {
           console.log("this is the bonus yahtzee")
-          // bonusYahtzee = true;
           const valueCheck = scoring.filter(each => each.value === dice[0]);
           console.log(valueCheck)
           if (valueCheck[0].saved) {
-            // saveNum = 100;
             bonusYahtzee = true;
             console.log("saved");
           } else {
@@ -269,6 +270,9 @@ class Home extends Component {
               })
               .catch(err => console.log(err))
           }
+        } else {
+          console.log("This is not a bonus yahtzee");
+          return
         }
 
         break;
@@ -404,43 +408,51 @@ class Home extends Component {
     this.setState({ order: order })
   }
 
+  showRules = () => {
+    this.setState({ rules: !this.state.rules })
+  }
+
   render() {
     return (
-      <div className="container">
-        <div className="gameBox">
-          <div className="diceBox">
-            {this.state.diceValue.map((dice, i) =>
-              <Die class={this.state.classes[dice]} key={i} />
+      <div>
+        <button className="rulesBtn" onClick={this.showRules}>{this.state.rules ? "Close Rules":"Show Rules"}</button>
+        {this.state.rules ? <Rules /> : null}
+        <div className="container">
+          <div className="gameBox">
+            <div className="diceBox">
+              {this.state.diceValue.map((dice, i) =>
+                <Die class={this.state.classes[dice]} key={i} />
+              )}
+            </div>
+            <div className="holdsBox">
+              {this.state.diceHold.map((hold, i) =>
+                <button value={i} key={i} className={this.state.diceHold[i] ? "unhold" : "hold"} onClick={e => this.holdButtonHandle(e)}>{this.state.diceHold[i] ? "Unhold" : "Hold"}</button>
+              )}
+            </div>
+          </div>
+          <div className="gameBtns">
+            <h4 className="rollCounter">Rolls: {this.state.rollCount}</h4>
+
+            {this.state.rollCount > 0 ? <button className="gameBtn" onClick={this.rollDice}>Roll</button> :
+              <button className="gameBtn offBtn" >Roll</button>}
+            {this.state.showSave ? <button className="gameBtn" onClick={this.saveScore}>Save</button> :
+              <button className="gameBtn offBtn" >Save</button>}
+          </div>
+          <div className="scoringGrid">
+            {this.state.order.map(score =>
+              <ScoreBox
+                score={score}
+                key={score.name}
+                bonusYahtzee={this.state.bonusYahtzee}
+                testScore={this.testScore}
+                bonusYahtzeeScoring={this.bonusYahtzeeScoring}
+              />
             )}
           </div>
-          <div className="holdsBox">
-            {this.state.diceHold.map((hold, i) =>
-              <button value={i} key={i} className={this.state.diceHold[i] ? "unhold" : "hold"} onClick={e => this.holdButtonHandle(e)}>{this.state.diceHold[i] ? "Unhold" : "Hold"}</button>
-            )}
-          </div>
-        </div>
-        <div className="gameBtns">
-          <h4 className="rollCounter">Rolls: {this.state.rollCount}</h4>
-          
-          {this.state.rollCount > 0 ? <button className="gameBtn" onClick={this.rollDice}>Roll</button> : 
-          <button className="gameBtn offBtn" >Roll</button>}
-          {this.state.showSave ? <button className="gameBtn" onClick={this.saveScore}>Save</button> : 
-          <button className="gameBtn offBtn" >Save</button>}
-        </div>
-        <div className="scoringGrid">
-          {this.state.order.map(score =>
-            <ScoreBox
-              score={score}
-              key={score.name}
-              bonusYahtzee={this.state.bonusYahtzee}
-              testScore={this.testScore}
-              bonusYahtzeeScoring={this.bonusYahtzeeScoring}
-            />
-          )}
         </div>
       </div>
     );
   }
 }
 
-export default Home;
+export default Game;

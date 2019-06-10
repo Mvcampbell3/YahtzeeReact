@@ -62,9 +62,21 @@
   padding: 5px 10px;
 }
 
+.rulesBtn{
+  padding: 6px 12px;
+  margin: .5em auto;
+  display: block;
+  border-radius: 5px;
+  background-color: steelblue;
+  color: white;
+  font-size: 18px;
+  border: 1px black solid;
+}
+
 @media (max-width:600px) {
   .container {
-    width: 100%;
+    width: 96%;
+    margin: auto;
   }
   .diceBox, .holdsBox {
     width: 100%;
@@ -74,5 +86,6 @@
 @media (max-width: 500px) {
   .hold, .unhold {
     width: 50px;
+    font-size: 11px;
   }
 }
