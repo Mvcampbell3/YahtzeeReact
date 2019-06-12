@@ -17,7 +17,7 @@ class App extends Component {
         <Switch>
           <Route path="/" exact render={props => <HomePage {...props} />} />
           <Route path="/game" exact render={props => <Game {...props} />} />
-          <Route path="/score" exact render={props => <Scores {...props} />} />
+          <Route path="/scores" exact render={props => <Scores {...props} />} />
           <Route component={Lost} />
         </Switch>
       </Router>

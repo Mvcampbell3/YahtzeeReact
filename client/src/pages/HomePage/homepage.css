@@ -1,0 +1,115 @@
+.homePage {
+  height: calc(100vh - 56.8px);
+}
+
+.landingImage {
+  width: 350px;
+  height: auto;
+  border: 3px black solid;
+  border-radius: 50%;
+  display: inline-block;
+  margin: 1em auto;
+  position: relative;
+  left: calc(50vw - 175px)
+}
+
+.mainCards {
+  display: grid;
+  width: fit-content;
+  margin: auto;
+  grid-template-columns: repeat(3, 200px);
+  grid-gap: 20px;
+}
+
+.card {
+  width: 200px;
+  height: 200px;
+}
+
+.card:hover .cardContent {
+  transform: rotateY(180deg)
+}
+
+.cardContent {
+  text-align: center;
+  position: relative;
+  height: 200px;
+  width: 200px;
+  transition: transform 2s;
+  backface-visibility: hidden;
+  transform-style: preserve-3d;
+}
+
+.cardFront, .cardBack {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  transform-style: preserve-3d;
+  display: grid;
+  align-content: center;
+}
+
+.cardFront {
+  background-color: lightblue;
+}
+
+.cardBack {
+  background-color: lightcoral;
+  transform: rotateY(180deg)
+}
+
+.cardTitle {
+  transform: translateZ(3em);
+  margin-bottom: 1.5em;
+}
+
+.cardInfo {
+  transform: translateZ(2em);
+}
+
+.cardFront::before, .cardBack::before {
+  content: "";
+  box-sizing: border-box;
+  position: absolute;
+  width: 180px;
+  height: 180px;
+  top: 10px;
+  left: 10px;
+  transform: translateZ(1em);
+}
+
+.cardFront::before {
+  border: 3px white solid;
+}
+
+.cardBack::before {
+  border: 3px black solid;
+}
+
+#game {
+  background-image: url("https://images.pexels.com/photos/37534/cube-six-gambling-play-37534.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500");
+  background-size: cover;
+  background-blend-mode: overlay;
+  background-color: rgb(0, 16, 29);
+  color: white;
+}
+
+#gameBack {
+  background-image: url("https://images.pexels.com/photos/37534/cube-six-gambling-play-37534.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500");
+  background-size: cover;
+  background-blend-mode: overlay;
+  background-color: rgb(218, 234, 248);
+  color: black;
+}
+
+#game a {
+  /* position: relative; */
+  z-index: 3;
+}
+
+#clickBtn {
+  position: relative;
+  z-index: 13;
+}
