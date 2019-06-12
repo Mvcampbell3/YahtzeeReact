@@ -104,12 +104,13 @@
   color: black;
 }
 
-#game a {
-  /* position: relative; */
-  z-index: 3;
-}
-
 #clickBtn {
   position: relative;
   z-index: 13;
+}
+
+@media (max-width: 700px) {
+  .mainCards {
+    grid-template-columns: 200px;
+  }
 }
