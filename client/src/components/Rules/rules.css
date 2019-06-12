@@ -1,14 +1,4 @@
-.showMe{
-  width: 80%;
-  min-width: 320px;
-  line-height: 1.5;
-  font-family: Arial, Helvetica, sans-serif;
-  background-color: steelblue;
-  padding: 5px;
-  color: white;
-  margin: auto;
-  border: 3px black solid;
-  border-radius: 5px;
+.showAnimation{
   transform: scale(0);
   animation-name:pop;
   animation-duration: .5s;
@@ -19,6 +9,34 @@
 @keyframes pop{
   0% {transform:scale(0)}
   100% {transform: scale(1)}
+}
+
+@keyframes depop{
+  0% {transform:scale(1)}
+  100% {transform: scale(0)}
+}
+
+.rulesArea{
+  width: 80%;
+  min-width: 320px;
+  line-height: 1.5;
+  font-family: Arial, Helvetica, sans-serif;
+  background-color: steelblue;
+  padding: 5px;
+  color: white;
+  margin: auto;
+  border: 3px black solid;
+  border-radius: 5px;
+  display: none;
+  
+}
+
+.hideAnimation{
+  transform: scale(1);
+  animation-name:depop;
+  animation-duration: .5s;
+  animation-fill-mode: forwards;
+  animation-timing-function: linear;
 }
 
 .center{

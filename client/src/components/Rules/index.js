@@ -3,7 +3,7 @@ import "./rules.css"
 
 const Rules = (props) => {
   return (
-    <div className="showMe">
+    <div id="rulesArea" className="rulesArea">
       <h2 className="center">Rules of Yahtzee</h2>
       <h3>Playing the Game</h3>
       <p>

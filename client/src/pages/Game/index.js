@@ -9,6 +9,7 @@ class Game extends Component {
   state = {
     diceValue: [0, 0, 0, 0, 0],
     diceHold: [false, false, false, false, false],
+    roundCount: 13,
     rollCount: 3,
     showSave: false,
     scoring: [
@@ -46,7 +47,8 @@ class Game extends Component {
       "dice show-left",
       "dice show-right"
     ],
-    rules: false
+    rules: false,
+    endGame: false
 
   }
 
@@ -110,10 +112,15 @@ class Game extends Component {
       prevState.bonusYahtzee = false;
       prevState.showSave = false;
       prevState.rollCount = 3;
+      prevState.roundCount = prevState.roundCount - 1;
       prevState.diceHold = [false, false, false, false, false];
       prevState.diceValue = [0, 0, 0, 0, 0];
       if (prevState.firstYahtzee && !prevState.savedYahtzee) {
         prevState.savedYahtzee = true;
+      }
+      if (prevState.roundCount <= 0) {
+        console.log("end of game stuff");
+        prevState.endGame = true;
       }
       return prevState;
     })
@@ -409,14 +416,47 @@ class Game extends Component {
   }
 
   showRules = () => {
-    this.setState({ rules: !this.state.rules })
+    const rules = document.getElementById("rulesArea");
+    console.log(rules);
+    if (!this.state.rules) {
+      rules.style.display = "block";
+      rules.classList = "rulesArea showAnimation";
+      this.setState({ rules: true })
+    } else {
+      rules.classList = "rulesArea hideAnimation";
+      setTimeout(() => {
+        rules.style.display = "none";
+        this.setState({ rules: false })
+      }, 500);
+    }
+  }
+
+  newGame = () => {
+    this.setState((prevState) => {
+      prevState.roundCount = 13;
+      prevState.rollCount = 3;
+      prevState.diceValue = [0, 0, 0, 0, 0];
+      prevState.diceHold = [false, false, false, false, false];
+      prevState.bonusYahtzee = false;
+      prevState.firstYahtzee = false;
+      prevState.savedYahtzee = false;
+      prevState.previousPlace = null;
+      prevState.endGame = false;
+      prevState.rules = false;
+      prevState.scoring.forEach(one => {
+        one.x = 0;
+        one.score = 0;
+        one.saved = false;
+      })
+      return prevState;
+    })
   }
 
   render() {
     return (
       <div>
-        <button className="rulesBtn" onClick={this.showRules}>{this.state.rules ? "Close Rules":"Show Rules"}</button>
-        {this.state.rules ? <Rules /> : null}
+        <button className="rulesBtn" onClick={this.showRules}>{this.state.rules ? "Close Rules" : "Show Rules"}</button>
+        <Rules show={this.state.rules} />
         <div className="container">
           <div className="gameBox">
             <div className="diceBox">
@@ -432,8 +472,7 @@ class Game extends Component {
           </div>
           <div className="gameBtns">
             <h4 className="rollCounter">Rolls: {this.state.rollCount}</h4>
-
-            {this.state.rollCount > 0 ? <button className="gameBtn" onClick={this.rollDice}>Roll</button> :
+            {this.state.endGame ? <button className="gameBtn" onClick={this.newGame}>New Game</button> : this.state.rollCount > 0 ? <button className="gameBtn" onClick={this.rollDice}>Roll</button> :
               <button className="gameBtn offBtn" >Roll</button>}
             {this.state.showSave ? <button className="gameBtn" onClick={this.saveScore}>Save</button> :
               <button className="gameBtn offBtn" >Save</button>}
