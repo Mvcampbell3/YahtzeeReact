@@ -8,15 +8,21 @@ const UserSchema = new Schema({
     unique: true
   },
 
+  username: {
+    type: String,
+    required: true,
+    unique: true
+  },
+
   password: {
     type: String,
     required: true
   },
 
-  highscores: {
-    type: Array,
-    default: []
-  }
+  highscores: [{
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "HighScore"
+  }]
 })
 
 module.exports = User = mongoose.model("User", UserSchema)
