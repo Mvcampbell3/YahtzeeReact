@@ -1,8 +1,9 @@
 const router = require("express").Router();
 const userRoute = require("./userRoute");
+const highscoresRoute = require("./highscoresRoute");
 
-// When User goes to "/api/posts", use routes defined in postsRoute.js
 router.use("/user", userRoute);
+router.use("/highscore", highscoresRoute)
 
 
 module.exports = router;

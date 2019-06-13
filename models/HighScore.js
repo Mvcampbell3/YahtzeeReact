@@ -28,15 +28,13 @@ HighScoreSchema.pre("save", function(next) {
   }
 })
 
-HighScoreSchema.post("save", function(next){
-  User.findByIdAndUpdate(this.userID, {$push: {highscores:this._id}}, {new: true})
+HighScoreSchema.post("save", function() {
+  User.findByIdAndUpdate(this.userID, { $push: { highscores: this._id } }, { new: true })
     .then(result => {
       console.log(result);
-      next()
     })
     .catch(err => {
       console.log(err);
-      next(err);
     })
 })
 
