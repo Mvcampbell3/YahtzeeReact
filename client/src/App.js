@@ -7,17 +7,26 @@ import HomePage from "./pages/HomePage";
 import Game from "./pages/Game"
 import Scores from "./pages/Scores"
 import Lost from "./pages/Lost"
+import Login from "./pages/Login"
 
 
 class App extends Component {
+  state= {
+    user: false,
+    username: null
+  }
+
+
+
   render() {
     return (
       <Router>
         <Header />
         <Switch>
-          <Route path="/" exact render={props => <HomePage {...props} />} />
-          <Route path="/game" exact render={props => <Game {...props} />} />
-          <Route path="/scores" exact render={props => <Scores {...props} />} />
+          <Route path="/" exact render={props => <HomePage {...props} user={this.state.user} username={this.state.username} />} />
+          <Route path="/login" exact render={props => <Login {...props} user={this.state.user} username={this.state.username} />} />
+          <Route path="/game" exact render={props => <Game {...props} user={this.state.user} username={this.state.username} />} />
+          <Route path="/scores" exact render={props => <Scores {...props} user={this.state.user} username={this.state.username} />} />
           <Route component={Lost} />
         </Switch>
       </Router>
