@@ -1,0 +1,124 @@
+.outsideLogin{
+  height: calc(100vh - 56.8px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 50px;
+  /* justify-content: center; */
+  transition: background-color .2s
+}
+
+.blue{
+  background-color: lightblue;
+}
+
+.green{
+  background-color: lightgreen;
+}
+
+.outsideLogin h1{
+  margin-bottom: 1em;
+}
+
+.login {
+  width: 350px;
+  padding: 20px 5px;
+  background-color: white;
+  border: .5px black solid;
+  border-radius: 5px;
+}
+
+.signBox {
+  position: relative;
+}
+
+.inputGroup input{
+  border: none;
+  background-color: none;
+  padding: 7px;
+  font-size: 16px;
+  width: 100%;
+  border-bottom: 2.6px black solid;
+  outline: 0;
+}
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover, 
+input:-webkit-autofill:focus,
+textarea:-webkit-autofill,
+textarea:-webkit-autofill:hover,
+textarea:-webkit-autofill:focus,
+select:-webkit-autofill,
+select:-webkit-autofill:hover,
+select:-webkit-autofill:focus {
+  /* border: 1px solid green; */
+  -webkit-text-fill-color: black;
+  -webkit-box-shadow: 0 0 0px 1000px white inset;
+  box-shadow: 0 0 0px 1000px white inset;
+  transition: background-color 5000s ease-in-out 0s;
+}
+
+.inputGroup label {
+  display: block;
+  margin-bottom: 5px;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  font-size: 18px;
+  font-weight: 500;
+}
+
+.inputGroup {
+  padding: 10px;
+}
+
+#usernameInput {
+  position: absolute;
+  top: 80px;
+  width: 100%;
+}
+
+.userInputIn {
+  display: none;
+  transform: scale(0);
+  animation-name: popIn;
+  animation-duration: .3s;
+  animation-fill-mode: forwards;
+}
+
+.userInputOut{
+  transform: scale(1);
+  animation-name: popOut;
+  animation-duration: .3s;
+  animation-fill-mode: forwards;
+}
+
+@keyframes popIn {
+  0% {
+    transform: scale(0)
+  }
+  100% {
+    transform: scale(1)
+  }
+}
+
+@keyframes popOut {
+  0% {
+    transform: scale(1)
+  }
+  100% {
+    transform: scale(0)
+  }
+}
+
+#passwordInput {
+  position: relative;
+}
+
+.signSwitchBtn{
+  height: 30px;
+  position: relative;
+  top: 10px;
+  border: none;
+  background-color: white;
+  cursor: pointer;
+  color: steelblue;
+}

@@ -9,7 +9,7 @@ const HomePage = (props) => {
         src="https://images.pexels.com/photos/33968/pexels-photo.jpg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260" alt="dice"
       />
       <div className="mainCards">
-        <div className="card">
+        <Link to="/login" className="card">
           <div className="cardContent">
             <div className="cardFront">
               <h3 className="cardTitle">Login</h3>
@@ -20,7 +20,7 @@ const HomePage = (props) => {
               <p className="cardInfo">This is the back of the card</p>
             </div>
           </div>
-        </div>
+        </Link>
         <Link to="/game" className="card">
           <div className="cardContent">
             <div className="cardFront" id="game">
