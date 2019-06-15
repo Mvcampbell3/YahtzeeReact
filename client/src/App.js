@@ -11,12 +11,14 @@ import Login from "./pages/Login"
 
 
 class App extends Component {
-  state= {
+  state = {
     user: false,
     username: null
   }
 
-
+  changeUserStatus = (user, username) => {
+    this.setState({ user: user, username: username });
+  }
 
   render() {
     return (
@@ -24,7 +26,9 @@ class App extends Component {
         <Header />
         <Switch>
           <Route path="/" exact render={props => <HomePage {...props} user={this.state.user} username={this.state.username} />} />
-          <Route path="/login" exact render={props => <Login {...props} user={this.state.user} username={this.state.username} />} />
+          <Route path="/login" exact render={props =>
+            <Login {...props} user={this.state.user} username={this.state.username} changeUserStatus={this.changeUserStatus} />}
+          />
           <Route path="/game" exact render={props => <Game {...props} user={this.state.user} username={this.state.username} />} />
           <Route path="/scores" exact render={props => <Scores {...props} user={this.state.user} username={this.state.username} />} />
           <Route component={Lost} />

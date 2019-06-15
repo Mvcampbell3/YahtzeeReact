@@ -9,7 +9,7 @@ const Header = (props) => {
       <div className="headerLinks">
         <Link to="/">Home</Link>
         <Link to="/game">Game</Link>
-        <Link to="/score">Scores</Link>
+        <Link to="/scores">Scores</Link>
       </div>
     </header>
   );

@@ -1,4 +1,4 @@
-.outsideLogin{
+.outsideLogin {
   height: calc(100vh - 56.8px);
   display: flex;
   flex-direction: column;
@@ -8,19 +8,19 @@
   transition: background-color .2s
 }
 
-.outsideLogin h1{
+.outsideLogin h1 {
   font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 }
 
-.blue{
+.blue {
   background-color: lightblue;
 }
 
-.green{
+.green {
   background-color: lightgreen;
 }
 
-.outsideLogin h1{
+.outsideLogin h1 {
   margin-bottom: 1em;
 }
 
@@ -36,7 +36,7 @@
   position: relative;
 }
 
-.inputGroup input{
+.inputGroup input {
   border: none;
   background-color: none;
   padding: 7px;
@@ -46,15 +46,7 @@
   outline: 0;
 }
 
-input:-webkit-autofill,
-input:-webkit-autofill:hover, 
-input:-webkit-autofill:focus,
-textarea:-webkit-autofill,
-textarea:-webkit-autofill:hover,
-textarea:-webkit-autofill:focus,
-select:-webkit-autofill,
-select:-webkit-autofill:hover,
-select:-webkit-autofill:focus {
+input:-webkit-autofill, input:-webkit-autofill:hover, input:-webkit-autofill:focus, textarea:-webkit-autofill, textarea:-webkit-autofill:hover, textarea:-webkit-autofill:focus, select:-webkit-autofill, select:-webkit-autofill:hover, select:-webkit-autofill:focus {
   /* border: 1px solid green; */
   -webkit-text-fill-color: black;
   -webkit-box-shadow: 0 0 0px 1000px white inset;
@@ -88,7 +80,7 @@ select:-webkit-autofill:focus {
   animation-fill-mode: forwards;
 }
 
-.userInputOut{
+.userInputOut {
   transform: scale(1);
   animation-name: popOut;
   animation-duration: .3s;
@@ -117,10 +109,15 @@ select:-webkit-autofill:focus {
   position: relative;
 }
 
-.signSwitchBtn{
+.loginButtonHolder {
   height: 30px;
   position: relative;
   top: 10px;
+  display: flex;
+  justify-content: space-around;
+}
+
+.switchBtn {
   border: none;
   background-color: white;
   cursor: pointer;

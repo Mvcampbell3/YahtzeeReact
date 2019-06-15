@@ -12,7 +12,7 @@ const HomePage = (props) => {
         <Link to="/login" className="card">
           <div className="cardContent">
             <div className="cardFront">
-              <h3 className="cardTitle">Login</h3>
+              <h3 className="cardTitle">{props.user ? props.username : "Login"}</h3>
               <p className="cardInfo">Save your High Scores</p>
             </div>
             <div className="cardBack">
