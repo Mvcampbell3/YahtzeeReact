@@ -48,7 +48,8 @@ class Game extends Component {
       "dice show-right"
     ],
     rules: false,
-    endGame: false
+    endGame: false,
+    newGame: true
 
   }
 
@@ -120,7 +121,7 @@ class Game extends Component {
       }
       if (prevState.roundCount <= 0) {
         console.log("end of game stuff");
-        prevState.endGame = true;
+        prevState.newGame = true;
       }
       return prevState;
     })
@@ -433,6 +434,7 @@ class Game extends Component {
 
   newGame = () => {
     this.setState((prevState) => {
+      prevState.newGame = false;
       prevState.roundCount = 13;
       prevState.rollCount = 3;
       prevState.diceValue = [0, 0, 0, 0, 0];
@@ -459,20 +461,27 @@ class Game extends Component {
         <Rules show={this.state.rules} />
         <div className="container">
           <div className="gameBox">
-            <div className="diceBox">
-              {this.state.diceValue.map((dice, i) =>
-                <Die class={this.state.classes[dice]} key={i} />
-              )}
+            {/* Change this to the className of gameBox with animation in and out, opacity might be cool
+                Maybe even add the opacity changes to the divs inside so that the box is still there
+                Could even add a background pic to the box that we can cancel when we change class
+                This could be a pretty cool effect */}
+            {this.state.newGame ? null : <div>
+              <div className="diceBox">
+                {this.state.diceValue.map((dice, i) =>
+                  <Die class={this.state.classes[dice]} key={i} />
+                )}
+              </div>
+              <div className="holdsBox">
+                {this.state.diceHold.map((hold, i) =>
+                  <button value={i} key={i} className={this.state.diceHold[i] ? "unhold" : "hold"} onClick={e => this.holdButtonHandle(e)}>{this.state.diceHold[i] ? "Unhold" : "Hold"}</button>
+                )}
+              </div>
             </div>
-            <div className="holdsBox">
-              {this.state.diceHold.map((hold, i) =>
-                <button value={i} key={i} className={this.state.diceHold[i] ? "unhold" : "hold"} onClick={e => this.holdButtonHandle(e)}>{this.state.diceHold[i] ? "Unhold" : "Hold"}</button>
-              )}
-            </div>
+            }
           </div>
           <div className="gameBtns">
             <h4 className="rollCounter">Rolls: {this.state.rollCount}</h4>
-            {this.state.endGame ? <button className="gameBtn" onClick={this.newGame}>New Game</button> : this.state.rollCount > 0 ? <button className="gameBtn" onClick={this.rollDice}>Roll</button> :
+            {this.state.newGame ? <button className="gameBtn" onClick={this.newGame}>New Game</button> : this.state.rollCount > 0 ? <button className="gameBtn" onClick={this.rollDice}>Roll</button> :
               <button className="gameBtn offBtn" >Roll</button>}
             {this.state.showSave ? <button className="gameBtn" onClick={this.saveScore}>Save</button> :
               <button className="gameBtn offBtn" >Save</button>}

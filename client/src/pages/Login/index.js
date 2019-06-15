@@ -10,7 +10,7 @@ class Login extends Component {
       password: "",
       singup: false,
       running: false,
-      redirect:false,
+      redirect:false
     }
 
     handleInputChange = e => {
@@ -32,13 +32,14 @@ class Login extends Component {
           localStorage.setItem("token", token);
           console.log(result.status);
           if (result.status === 200) {
-            console.log("Yeah great success");
+            console.log("Yay great success");
             this.props.changeUserStatus(true, result.data.username);
             this.setState({redirect:true})
           }
         })
         .catch(err => {
-          console.log(err);
+          // console.log(err);
+          console.log("You did not succeed this time")
         })
     }
 
