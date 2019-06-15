@@ -8,6 +8,10 @@
   transition: background-color .2s
 }
 
+.outsideLogin h1{
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
 .blue{
   background-color: lightblue;
 }
