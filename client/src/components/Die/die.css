@@ -17,7 +17,7 @@
   height: 100%;
   position: relative;
   transform-style: preserve-3d;
-  transition: transform .25s;
+  transition: transform .175s;
   transition-timing-function: linear;
 }
 

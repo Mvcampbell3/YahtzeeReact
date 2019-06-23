@@ -6,6 +6,7 @@
 .gameBox {
   border: 1px black solid;
   margin: 1em auto;
+  position: relative;
 }
 
 .diceBox, .holdsBox {
@@ -28,6 +29,36 @@
 .diceBox {
   user-select: none;
 }
+
+/* Dice and Hold show/hide animations */
+
+.showBox{
+  opacity: 0;
+  animation-name: showBox;
+  animation-duration: 1s;
+  animation-fill-mode: forwards;
+  animation-timing-function: ease;
+}
+
+.hideBox{
+  opacity: 1;
+  animation-name: hideBox;
+  animation-duration: 1s;
+  animation-fill-mode: forwards;
+  animation-timing-function: ease;
+}
+
+@keyframes showBox{
+  0% {opacity: 0}
+  100% {opacity: 1}
+}
+
+@keyframes hideBox{
+  0% {opacity: 1}
+  100% {opacity: 0;}
+}
+
+/* End of animations */
 
 .gameBtns {
   display: grid;
@@ -71,6 +102,14 @@
   color: white;
   font-size: 18px;
   border: 1px black solid;
+}
+
+.blocker{
+  height: 109.2px;
+  width: 100%;
+  background-color: white;
+  position: absolute;
+  z-index: 10;
 }
 
 @media (max-width:600px) {

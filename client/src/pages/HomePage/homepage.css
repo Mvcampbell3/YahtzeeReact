@@ -36,7 +36,9 @@
   height: 200px;
   width: 200px;
   transition: transform 2s;
-  backface-visibility: hidden;
+  /* backface-visibility: hidden; */
+  /* I thought this used to work, but loaded up with back not showing until animation was finished
+     Turning of backface-visibility fixed the issue? What happened? */
   transform-style: preserve-3d;
 }
 

@@ -49,8 +49,9 @@ class Game extends Component {
     ],
     rules: false,
     endGame: false,
-    newGame: true
-
+    newGame: true,
+    rolling: false,
+    load: true
   }
 
   componentWillMount() {
@@ -89,6 +90,40 @@ class Game extends Component {
     }
   }
 
+  testingRollDice = () => {
+    if (this.state.rollCount > 0) {
+      this.clearUnsavedScores();
+      this.setState({ rolling: true });
+      const dice = this.state.diceValue;
+      const holds = this.state.diceHold;
+      let rollAmount = 5;
+      // Set this inside of a interval that runs around 5 times
+      let newDice = [];
+      const rollLoop = setInterval(() => {
+
+        if (rollAmount <= 0) {
+          clearInterval(rollLoop);
+          this.setState({ rollCount: this.state.rollCount - 1, rolling: false })
+        } else {
+          for (let i = 0; i < dice.length; i++) {
+            if (holds[i] !== true) {
+              const rdmNum = Math.floor((Math.random() * 6) + 1);
+              console.log(rdmNum);
+              newDice.push(rdmNum);
+            } else {
+              newDice.push(dice[i])
+            }
+          }
+          console.log(newDice);
+          // Can check for Yahtzee here
+          this.setState({ diceValue: newDice });
+          newDice = [];
+          rollAmount--;
+        }
+      }, 200)
+    }
+  }
+
   resetRound = () => {
     this.setState({ rollCount: 3, diceHold: [false, false, false, false, false], diceValue: [0, 0, 0, 0, 0] })
   }
@@ -113,6 +148,7 @@ class Game extends Component {
       prevState.bonusYahtzee = false;
       prevState.showSave = false;
       prevState.rollCount = 3;
+      // This is where roundcount is being minused
       prevState.roundCount = prevState.roundCount - 1;
       prevState.diceHold = [false, false, false, false, false];
       prevState.diceValue = [0, 0, 0, 0, 0];
@@ -267,6 +303,7 @@ class Game extends Component {
                 prevState.scoring[16].score = 100;
                 prevState.scoring[valueCheck[0].place].score = totalSum;
                 prevState.scoring[valueCheck[0].place].saved = true;
+                prevState.roundCount = prevState.roundCount - 1;
                 return prevState;
               })]
             Promise.all(promiseArray)
@@ -449,7 +486,10 @@ class Game extends Component {
         one.x = 0;
         one.score = 0;
         one.saved = false;
-      })
+      });
+      if (prevState.load = true) {
+        prevState.load = false
+      }
       return prevState;
     })
   }
@@ -465,23 +505,32 @@ class Game extends Component {
                 Maybe even add the opacity changes to the divs inside so that the box is still there
                 Could even add a background pic to the box that we can cancel when we change class
                 This could be a pretty cool effect */}
-            {this.state.newGame ? null : <div>
-              <div className="diceBox">
+
+            {/* {this.state.newGame ? null : */}
+
+            <div>
+              <div className={this.state.load ? "blocker": null}></div>
+              <div className={this.state.newGame ? "diceBox hideBox" : "diceBox showBox"}>
                 {this.state.diceValue.map((dice, i) =>
                   <Die class={this.state.classes[dice]} key={i} />
                 )}
               </div>
-              <div className="holdsBox">
+              <div className={this.state.newGame ? "holdsBox hideBox" : "holdsBox showBox"}>
                 {this.state.diceHold.map((hold, i) =>
-                  <button value={i} key={i} className={this.state.diceHold[i] ? "unhold" : "hold"} onClick={e => this.holdButtonHandle(e)}>{this.state.diceHold[i] ? "Unhold" : "Hold"}</button>
+                  <button value={i} key={i} className={this.state.diceHold[i] ? "unhold" : "hold"}
+                    onClick={this.state.rolling ? null : e => this.holdButtonHandle(e)}>
+
+                    {this.state.diceHold[i] ? "Unhold" : "Hold"}</button>
                 )}
               </div>
             </div>
-            }
+
+            {/* } */}
+
           </div>
           <div className="gameBtns">
             <h4 className="rollCounter">Rolls: {this.state.rollCount}</h4>
-            {this.state.newGame ? <button className="gameBtn" onClick={this.newGame}>New Game</button> : this.state.rollCount > 0 ? <button className="gameBtn" onClick={this.rollDice}>Roll</button> :
+            {this.state.newGame ? <button className="gameBtn" onClick={this.newGame}>New Game</button> : this.state.rollCount > 0 ? <button className="gameBtn" onClick={this.testingRollDice}>Roll</button> :
               <button className="gameBtn offBtn" >Roll</button>}
             {this.state.showSave ? <button className="gameBtn" onClick={this.saveScore}>Save</button> :
               <button className="gameBtn offBtn" >Save</button>}
