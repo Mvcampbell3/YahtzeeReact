@@ -487,7 +487,7 @@ class Game extends Component {
         one.score = 0;
         one.saved = false;
       });
-      if (prevState.load = true) {
+      if (prevState.load === true) {
         prevState.load = false
       }
       return prevState;

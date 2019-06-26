@@ -8,12 +8,34 @@ import Game from "./pages/Game"
 import Scores from "./pages/Scores"
 import Lost from "./pages/Lost"
 import Login from "./pages/Login"
+import API from "./utils/API";
 
 
 class App extends Component {
   state = {
     user: false,
     username: null
+  }
+
+  componentDidMount() {
+    this.checkUserLoad();
+  }
+
+  checkUserLoad = () => {
+    try {
+      const token = localStorage.getItem("token");
+      if (token) {
+        API.checkToken()
+          .then(result => {
+            this.setState({ user: true, username: result.data.username })
+          })
+          .catch(err => {
+            console.log(err)
+          })
+      }
+    } catch{
+      console.log("did not work")
+    }
   }
 
   changeUserStatus = (user, username) => {

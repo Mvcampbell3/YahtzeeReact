@@ -43,6 +43,17 @@ class Login extends Component {
         })
     }
 
+    signupUser = e => {
+      e.preventDefault();
+      API.signupUser(this.state.email, this.state.username, this.state.password)
+        .then(result => {
+          console.log(result);
+        })
+        .catch(err => {
+          console.log(err)
+        })
+    }
+
     changeUsernameInput = () => {
       this.setState({ running: true })
       const usernameInput = document.getElementById("usernameInput");
@@ -118,7 +129,7 @@ class Login extends Component {
               </div>
             </div>
             <div className="loginButtonHolder" id="loginButtonHolder">
-              <button className="loginBtn" onClick={this.state.signup ? null : (e) => this.loginUser(e)}>
+              <button className="loginBtn" onClick={this.state.signup ? (e) => this.signupUser(e) : (e) => this.loginUser(e)}>
                 {this.state.signup ? "Sign Up" : "Login"}
               </button>
               <button className="switchBtn" id="switchBtn" onClick={this.state.running ? null : this.changeUsernameInput}>{this.state.signup ? "Already a member?" : "Not signed up?"}</button>

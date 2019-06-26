@@ -1,13 +1,14 @@
 const router = require("express").Router();
 const db = require("../../models")
 const bcrypt = require("bcrypt")
-const jwt = require("jsonwebtoken")
+const jwt = require("jsonwebtoken");
+const checkAuth = require("../../middleware/checkAuth")
 
 router.get("/test", (req, res) => {
   res.json("working here at api/user/test");
 })
 
-router.get("/all", (req,res,next) => {
+router.get("/all", (req, res, next) => {
   db.User.find()
     .then(result => {
       console.log(result)
@@ -66,27 +67,39 @@ router.post("/login", (req, res, next) => {
 })
 
 router.post("/signup", (req, res, next) => {
-  // hash password first
-  bcrypt.hash(req.body.password, 10, (err, hash) => {
-    if (err) {
-      return res.status(500).json(err)
-    }
-    const newUser = new db.User({
-      username: req.body.username,
-      email: req.body.email,
-      password: hash
-    });
+  db.User.find({ email: req.body.email })
+    .then(alreadyUser => {
+      console.log(alreadyUser)
+      if (alreadyUser.length > 0) {
+        return res.status(422).json({ message: "Already a user by that email", success: false })
+      } else {
+        // hash password first
+        bcrypt.hash(req.body.password, 10, (err, hash) => {
+          if (err) {
+            return res.status(500).json(err)
+          }
+          const newUser = new db.User({
+            username: req.body.username,
+            email: req.body.email,
+            password: hash
+          });
 
-    newUser.save()
-      .then(result => {
-        console.log(result);
-        res.status(201).json({
-          message: "User Created",
-          success: true
+          newUser.save()
+            .then(result => {
+              console.log(result);
+              res.status(201).json({
+                message: "User Created",
+                success: true
+              })
+            })
+            .catch(err => res.status(500).json({ err }))
         })
-      })
-      .catch(err => res.status(500).json({err}))
-  })
+      }
+    })
+})
+
+router.get("/checktoken", checkAuth, (req, res, next) => {
+  res.status(200).json({ message: "Token checks out", username: req.user.username })
 })
 
 module.exports = router;
