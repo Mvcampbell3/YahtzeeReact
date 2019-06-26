@@ -1,19 +1,23 @@
 import React from 'react';
 import "./scores.css";
+import HighScore from "../../components/HighScore";
 
 const Scores = props => {
 
   return (
     <div>
-      <div>
-        {props.scores.map(each =>
-          <div key={each._id}>
-            <h2>{each.score}</h2>
-            <h4>{each.username}</h4>
-            <h4>{each.date}</h4>
+      {props.scores.length > 0 ?
+        <div className="highscoreBox">
+          <div className="highscore">
+            <h4>Username</h4>
+            <h4>Date</h4>
+            <h4>Score</h4>
           </div>
-        )}
-      </div>
+          {props.scores.map(each =>
+            <HighScore score={each.score} username={each.username} key={each._id} date={each.date} />
+          )}
+        </div> : null
+      }
     </div>
   );
 }
