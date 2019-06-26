@@ -24,10 +24,15 @@ class App extends Component {
   checkUserLoad = () => {
     try {
       const token = localStorage.getItem("token");
+      console.log(token)
       if (token) {
         API.checkToken()
           .then(result => {
-            this.setState({ user: true, username: result.data.username })
+            console.log(result.data.user)
+            if (result.data.user) {
+              this.setState({ user: result.data.user, username: result.data.username })
+
+            }
           })
           .catch(err => {
             console.log(err)

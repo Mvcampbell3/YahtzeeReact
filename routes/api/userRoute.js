@@ -99,7 +99,7 @@ router.post("/signup", (req, res, next) => {
 })
 
 router.get("/checktoken", checkAuth, (req, res, next) => {
-  res.status(200).json({ message: "Token checks out", username: req.user.username })
+  res.status(200).json({ message: "Token checks out", username: req.user.username, user: true })
 })
 
 module.exports = router;
