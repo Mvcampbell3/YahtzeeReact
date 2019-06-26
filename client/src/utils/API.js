@@ -15,5 +15,9 @@ export default {
         Authorization: "Bearer " + localStorage.getItem("token")
       }
     })
+  },
+
+  getHighScores() {
+    return Axios.get("/api/highscore/all");
   }
 }

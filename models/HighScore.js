@@ -1,6 +1,7 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 const User = require("./User")
+const moment = require("moment")
 
 const HighScoreSchema = new Schema({
   score: {
@@ -13,15 +14,20 @@ const HighScoreSchema = new Schema({
     required: true
   },
 
+  username: {
+    type: String,
+    required: true
+  },
+
   date: {
-    type: Date,
+    type: String,
   }
 })
 
 HighScoreSchema.pre("save", function(next) {
   console.log(this);
   if (!this.date) {
-    this.date = new Date();
+    this.date = moment().format("LLL");
     next();
   } else {
     next()

@@ -61,9 +61,13 @@ class Game extends Component {
   clearUnsavedScores = () => {
     const scoring = this.state.scoring;
     // Reset the scores that are not saved
+
+    // Might want to check one.x = 0 or something
+    // that did not totaly solve problem
     scoring.forEach(one => {
       if (one.saved === false && one.click === true && one.value !== "bonusYahtzee") {
         one.score = 0;
+        one.x = 0;
       }
     })
   }
@@ -148,7 +152,7 @@ class Game extends Component {
       prevState.bonusYahtzee = false;
       prevState.showSave = false;
       prevState.rollCount = 3;
-      // This is where roundcount is being minused
+      // This is where roundcount is being minus-ed
       prevState.roundCount = prevState.roundCount - 1;
       prevState.diceHold = [false, false, false, false, false];
       prevState.diceValue = [0, 0, 0, 0, 0];
@@ -501,13 +505,6 @@ class Game extends Component {
         <Rules show={this.state.rules} />
         <div className="container">
           <div className="gameBox">
-            {/* Change this to the className of gameBox with animation in and out, opacity might be cool
-                Maybe even add the opacity changes to the divs inside so that the box is still there
-                Could even add a background pic to the box that we can cancel when we change class
-                This could be a pretty cool effect */}
-
-            {/* {this.state.newGame ? null : */}
-
             <div>
               <div className={this.state.load ? "blocker": null}></div>
               <div className={this.state.newGame ? "diceBox hideBox" : "diceBox showBox"}>
@@ -524,9 +521,6 @@ class Game extends Component {
                 )}
               </div>
             </div>
-
-            {/* } */}
-
           </div>
           <div className="gameBtns">
             <h4 className="rollCounter">Rolls: {this.state.rollCount}</h4>

@@ -3,8 +3,10 @@ const routes = require("./routes")
 const PORT = process.env.PORT || 3001;
 const app = express();
 const mongoose = require("mongoose");
+const runSeed = require("./scripts/seed");
+const runRemoveAll = require("./scripts/remove");
 
-const saveThisForLater = "MONGODB_URI=mongodb://mvcampbell3:g8QiPkCgf9GcLhS@ds337377.mlab.com:37377/heroku_qhvnvz3h"
+const saveThisForLater = "MONGODB_URI=mongodb://mvcampbell3:g8QiPkCgf9GcLhS@ds337377.mlab.com:37377/heroku_qhvnvz3h";
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
@@ -22,11 +24,19 @@ app.use(routes)
 
 // Change DB name here
 const dbase = "yahtzee";
+const addSeed = false;
+const emptyDatabase = false;
 
 mongoose
   .connect(process.env.MONGODB_URI || `mongodb://localhost/${dbase}`, { useNewUrlParser: true })
   .then(() => {
-    console.log("mongoDB linked")
+    console.log("mongoDB linked");
+    if (addSeed) {
+      runSeed();
+    }
+    if (emptyDatabase) {
+      runRemoveAll();
+    }
   });
 
 

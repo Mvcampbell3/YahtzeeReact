@@ -14,17 +14,18 @@ import API from "./utils/API";
 class App extends Component {
   state = {
     user: false,
-    username: null
+    username: null,
+    highscores: []
   }
 
   componentDidMount() {
     this.checkUserLoad();
+    this.getHighScores();
   }
 
   checkUserLoad = () => {
     try {
       const token = localStorage.getItem("token");
-      console.log(token)
       if (token) {
         API.checkToken()
           .then(result => {
@@ -47,6 +48,17 @@ class App extends Component {
     this.setState({ user: user, username: username });
   }
 
+  getHighScores = () => {
+    API.getHighScores()
+      .then(result => {
+        console.log(result);
+        this.setState({ highscores: result.data })
+      })
+      .catch(err => {
+        console.log(err)
+      })
+  }
+
   render() {
     return (
       <Router>
@@ -57,7 +69,7 @@ class App extends Component {
             <Login {...props} user={this.state.user} username={this.state.username} changeUserStatus={this.changeUserStatus} />}
           />
           <Route path="/game" exact render={props => <Game {...props} user={this.state.user} username={this.state.username} />} />
-          <Route path="/scores" exact render={props => <Scores {...props} user={this.state.user} username={this.state.username} />} />
+          <Route path="/scores" exact render={props => <Scores {...props} user={this.state.user} username={this.state.username} scores={this.state.highscores} />} />
           <Route component={Lost} />
         </Switch>
       </Router>
