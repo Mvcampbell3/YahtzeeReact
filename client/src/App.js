@@ -15,12 +15,11 @@ class App extends Component {
   state = {
     user: false,
     username: null,
-    highscores: []
   }
 
   componentDidMount() {
     this.checkUserLoad();
-    this.getHighScores();
+    // this.getHighScores();
   }
 
   checkUserLoad = () => {
@@ -46,17 +45,6 @@ class App extends Component {
 
   changeUserStatus = (user, username) => {
     this.setState({ user: user, username: username });
-  }
-
-  getHighScores = () => {
-    API.getHighScores()
-      .then(result => {
-        console.log(result);
-        this.setState({ highscores: result.data })
-      })
-      .catch(err => {
-        console.log(err)
-      })
   }
 
   render() {

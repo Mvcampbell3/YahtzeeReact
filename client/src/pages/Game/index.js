@@ -4,6 +4,7 @@ import "./game.css";
 import ScoreBox from "../../components/ScoreBox"
 import Die from "../../components/Die"
 import Rules from "../../components/Rules"
+import API from '../../utils/API';
 
 class Game extends Component {
   state = {
@@ -48,10 +49,10 @@ class Game extends Component {
       "dice show-right"
     ],
     rules: false,
-    endGame: false,
     newGame: true,
     rolling: false,
-    load: true
+    load: true,
+    endGame: false
   }
 
   componentWillMount() {
@@ -162,6 +163,7 @@ class Game extends Component {
       if (prevState.roundCount <= 0) {
         console.log("end of game stuff");
         prevState.newGame = true;
+        prevState.endGame = true;
       }
       return prevState;
     })
@@ -498,15 +500,64 @@ class Game extends Component {
     })
   }
 
+  endGameOff = (e) => {
+    e.preventDefault();
+    console.log("clicked endgame")
+    this.setState({ endGame: false })
+  }
+
+  saveHighScore = () => {
+    if (localStorage.getItem("token") !== null) {
+      API.checkToken()
+        .then(result => {
+          console.log(result.data)
+          if (result.data.user === true) {
+            // Run save high score to db
+            API.saveHighScore(this.state.scoring[18].score)
+              .then(result => {
+                console.log(result)
+                this.setState({ endGame: false })
+              })
+              .catch(err => {
+                console.log(err)
+              })
+          } else {
+            // Set up redirect to login page and save score to app.js for later sending?
+          }
+        })
+        .catch(err => {
+          console.log(err)
+        })
+    }
+  }
+
   render() {
     return (
       <div>
+        {this.props.user ?
+          <div>
+            {
+              this.state.endGame ?
+                <div>
+                  <div className="bg"></div>
+                  <div className="endGameBox">
+                    <div className="endGameContent" >
+                      <h3>Congrats {this.props.username}!</h3>
+                      <h3>Your score was {this.state.scoring[18].score}</h3>
+                      <h3>Would you like to save the score?</h3>
+                      <button onClick={this.saveHighScore}>Yes</button>
+                      <button onClick={e => this.endGameOff(e)}>No</button>
+                    </div>
+                  </div>
+                </div> : null
+            }
+          </div> : null}
         <button className="rulesBtn" onClick={this.showRules}>{this.state.rules ? "Close Rules" : "Show Rules"}</button>
         <Rules show={this.state.rules} />
         <div className="container">
           <div className="gameBox">
             <div>
-              <div className={this.state.load ? "blocker": null}></div>
+              <div className={this.state.load ? "blocker" : null}></div>
               <div className={this.state.newGame ? "diceBox hideBox" : "diceBox showBox"}>
                 {this.state.diceValue.map((dice, i) =>
                   <Die class={this.state.classes[dice]} key={i} />

@@ -4,8 +4,9 @@ const checkAuth = require("../../middleware/checkAuth");
 
 router.get("/all", (req, res, next) => {
   db.HighScore.find()
+    .sort({score: -1})
     .then(result => {
-      console.log(result);
+      // console.log(result);
       res.status(200).json(result)
     })
     .catch(err => {
@@ -17,6 +18,7 @@ router.get("/all", (req, res, next) => {
 router.post("/new", checkAuth, (req, res, next) => {
   // console.log(req.user);
   // res.json(req.user)
+  console.log("got here")
   const newScore = new db.HighScore({
     score: req.body.score,
     userID: req.user.userID,

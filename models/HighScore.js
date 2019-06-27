@@ -5,7 +5,7 @@ const moment = require("moment")
 
 const HighScoreSchema = new Schema({
   score: {
-    type: String,
+    type: Number,
     required: true
   },
 
