@@ -47,14 +47,25 @@ class App extends Component {
     this.setState({ user: user, username: username });
   }
 
+  logoutUser = () => {
+    localStorage.removeItem("token");
+    this.setState({ user: false, username: null })
+  }
+
   render() {
     return (
       <Router>
         <Header />
         <Switch>
-          <Route path="/" exact render={props => <HomePage {...props} user={this.state.user} username={this.state.username} />} />
+          <Route path="/" exact render={props =>
+            <HomePage {...props} logoutUser={this.logoutUser} user={this.state.user} username={this.state.username} />}
+          />
           <Route path="/login" exact render={props =>
-            <Login {...props} user={this.state.user} username={this.state.username} changeUserStatus={this.changeUserStatus} />}
+            <Login {...props}
+              user={this.state.user}
+              username={this.state.username}
+              changeUserStatus={this.changeUserStatus}
+            />}
           />
           <Route path="/game" exact render={props => <Game {...props} user={this.state.user} username={this.state.username} />} />
           <Route path="/scores" exact render={props => <Scores {...props} user={this.state.user} username={this.state.username} scores={this.state.highscores} />} />

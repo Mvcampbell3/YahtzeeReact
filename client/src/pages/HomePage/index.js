@@ -46,6 +46,7 @@ const HomePage = (props) => {
           </div>
         </Link>
       </div>
+      {props.user ? <button className="switchBtn homeSwitch" onClick={props.logoutUser}>Logout</button> : null}
     </div>
   );
 }

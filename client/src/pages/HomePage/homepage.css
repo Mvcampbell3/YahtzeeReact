@@ -111,6 +111,12 @@
   z-index: 13;
 }
 
+.homeSwitch{
+  display: block;
+  width: fit-content;
+  margin: 20px auto 0 auto;
+}
+
 @media (max-width: 700px) {
   .mainCards {
     grid-template-columns: 200px;

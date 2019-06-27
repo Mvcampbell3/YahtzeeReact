@@ -69,8 +69,12 @@ class Game extends Component {
       if (one.saved === false && one.click === true && one.value !== "bonusYahtzee") {
         one.score = 0;
         one.x = 0;
-      }
-    })
+      };
+    });
+
+    // this.setState({ scoring })
+    // Need to set the state back I think somehow
+    // maybe not we will see, I think I fixed it down in the scoring section
   }
 
   rollDice = () => {
@@ -338,10 +342,10 @@ class Game extends Component {
         if (value !== "bonusYahtzee") {
           prevState.scoring[place].score = saveNum;
         }
-        prevState.scoring[place].x = 1;
         if (oldPlace !== null) {
           prevState.scoring[oldPlace].x = 0;
         }
+        prevState.scoring[place].x = 1;
         prevState.showSave = true;
         prevState.previousPlace = place;
         if (scoredYahtzee && this.state.savedYahtzee === false) {
