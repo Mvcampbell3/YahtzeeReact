@@ -80,28 +80,6 @@ class Game extends Component {
   rollDice = () => {
     if (this.state.rollCount > 0) {
       this.clearUnsavedScores();
-
-      const dice = this.state.diceValue;
-      const holds = this.state.diceHold;
-      const newDice = []
-      for (let i = 0; i < dice.length; i++) {
-        if (holds[i] !== true) {
-          const rdmNum = Math.floor((Math.random() * 6) + 1);
-          console.log(rdmNum);
-          newDice.push(rdmNum);
-        } else {
-          newDice.push(dice[i])
-        }
-      }
-      console.log(newDice);
-      // Can check for Yahtzee here
-      this.setState({ diceValue: newDice, rollCount: this.state.rollCount - 1 })
-    }
-  }
-
-  testingRollDice = () => {
-    if (this.state.rollCount > 0) {
-      this.clearUnsavedScores();
       this.setState({ rolling: true });
       const dice = this.state.diceValue;
       const holds = this.state.diceHold;
@@ -174,6 +152,7 @@ class Game extends Component {
   }
 
   testScore = (value, name, scoringSystem, place, saved) => {
+    let continueScore = true;
     console.log(value, name, scoringSystem, place, saved)
     this.clearUnsavedScores();
 
@@ -306,13 +285,16 @@ class Game extends Component {
             bonusYahtzee = true;
             console.log("saved");
           } else {
+            continueScore = false;
             console.log("unsaved");
             console.log(scoring[16])
             const promiseArray = [
               this.setState((prevState) => {
-                prevState.scoring[16].score = 100;
+                prevState.scoring[16].score += 100;
                 prevState.scoring[valueCheck[0].place].score = totalSum;
                 prevState.scoring[valueCheck[0].place].saved = true;
+                prevState.showSave = false;
+                prevState.scoring[16].x = 0;
                 prevState.roundCount = prevState.roundCount - 1;
                 return prevState;
               })]
@@ -321,7 +303,7 @@ class Game extends Component {
                 console.log("made it to the end of the promise")
                 console.log(scoring[16])
 
-                this.resetRound();
+                return this.resetRound();
               })
               .catch(err => console.log(err))
           }
@@ -336,37 +318,39 @@ class Game extends Component {
 
     }
     // Secret Sauce Number 1 !!
-    const oldPlace = this.state.previousPlace;
-    const promise2 = [
-      this.setState((prevState => {
-        if (value !== "bonusYahtzee") {
-          prevState.scoring[place].score = saveNum;
-        }
-        if (oldPlace !== null) {
-          prevState.scoring[oldPlace].x = 0;
-        }
-        prevState.scoring[place].x = 1;
-        prevState.showSave = true;
-        prevState.previousPlace = place;
-        if (scoredYahtzee && this.state.savedYahtzee === false) {
-          prevState.firstYahtzee = true
-        } else if (!scoredYahtzee && this.state.savedYahtzee === false) {
-          prevState.firstYahtzee = false
-        } else if (bonusYahtzee) {
-          prevState.bonusYahtzee = true
-          prevState.scoring[place].score += 100;
-        }
-        return prevState;
-      }))
-    ]
+    if (continueScore) {
+      console.log("past the bonus area")
+      const oldPlace = this.state.previousPlace;
+      const promise2 = [
+        this.setState((prevState => {
+          if (value !== "bonusYahtzee") {
+            prevState.showSave = true;
+            prevState.scoring[place].score = saveNum;
+          }
+          if (oldPlace !== null) {
+            prevState.scoring[oldPlace].x = 0;
+          }
+          prevState.scoring[place].x = 1;
+          prevState.previousPlace = place;
+          if (scoredYahtzee && this.state.savedYahtzee === false) {
+            prevState.firstYahtzee = true
+          } else if (!scoredYahtzee && this.state.savedYahtzee === false) {
+            prevState.firstYahtzee = false
+          } else if (bonusYahtzee) {
+            prevState.bonusYahtzee = true;
+            prevState.scoring[place].score += 100;
+          }
+          return prevState;
+        }))
+      ]
 
-    Promise.all(promise2)
-      .then(result => {
-        this.updateScores(scoring)
-      })
-      .catch(err => console.log(err))
+      Promise.all(promise2)
+        .then(result => {
+          this.updateScores(scoring)
+        })
+        .catch(err => console.log(err))
+    }
   }
-
   // The rules for bonus Yahtzee
 
   // 1. If there is no saved 50 score for yahtzee, then no bonus will be applied
@@ -421,6 +405,8 @@ class Game extends Component {
         if (value !== "bonusYahtzee") {
           prevState.previousPlace = place;
           prevState.scoring[place].score = saveNum;
+          prevState.scoring[place].x = 1;
+          prevState.showSave = true;
         }
         return prevState;
       }))
@@ -579,8 +565,17 @@ class Game extends Component {
           </div>
           <div className="gameBtns">
             <h4 className="rollCounter">Rolls: {this.state.rollCount}</h4>
-            {this.state.newGame ? <button className="gameBtn" onClick={this.newGame}>New Game</button> : this.state.rollCount > 0 ? <button className="gameBtn" onClick={this.testingRollDice}>Roll</button> :
-              <button className="gameBtn offBtn" >Roll</button>}
+            {this.state.newGame ?
+              <button className="gameBtn" onClick={this.newGame}>New Game</button>
+              :
+              this.state.rollCount > 0 ?
+                this.state.rolling ?
+                  <button className="gameBtn offBtn" >Roll</button>
+                  :
+                  <button className="gameBtn" onClick={this.rollDice}>Roll</button>
+                :
+                <button className="gameBtn offBtn" >Roll</button>}
+
             {this.state.showSave ? <button className="gameBtn" onClick={this.saveScore}>Save</button> :
               <button className="gameBtn offBtn" >Save</button>}
           </div>
