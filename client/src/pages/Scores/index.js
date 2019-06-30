@@ -15,11 +15,11 @@ class Scores extends Component {
   getHighScores = () => {
     API.getHighScores()
       .then(result => {
-        console.log(result);
+        // console.log(result);
         this.setState({ highScores: result.data })
       })
       .catch(err => {
-        console.log(err)
+        // console.log(err)
       })
   }
 

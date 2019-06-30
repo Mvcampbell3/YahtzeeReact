@@ -95,13 +95,13 @@ class Game extends Component {
           for (let i = 0; i < dice.length; i++) {
             if (holds[i] !== true) {
               const rdmNum = Math.floor((Math.random() * 6) + 1);
-              console.log(rdmNum);
+              // console.log(rdmNum);
               newDice.push(rdmNum);
             } else {
               newDice.push(dice[i])
             }
           }
-          console.log(newDice);
+          // console.log(newDice);
           // Can check for Yahtzee here
           this.setState({ diceValue: newDice });
           newDice = [];
@@ -116,11 +116,11 @@ class Game extends Component {
   }
 
   holdButtonHandle = e => {
-    console.log(e.target.value);
+    // console.log(e.target.value);
     const whichHold = e.target.value;
     const holds = this.state.diceHold;
     holds[whichHold] = !holds[whichHold];;
-    console.log(holds)
+    // console.log(holds)
     this.setState({ diceHold: holds })
   }
 
@@ -143,7 +143,7 @@ class Game extends Component {
         prevState.savedYahtzee = true;
       }
       if (prevState.roundCount <= 0) {
-        console.log("end of game stuff");
+        // console.log("end of game stuff");
         prevState.newGame = true;
         prevState.endGame = true;
       }
@@ -153,19 +153,19 @@ class Game extends Component {
 
   testScore = (value, name, scoringSystem, place, saved) => {
     let continueScore = true;
-    console.log(value, name, scoringSystem, place, saved)
+    // console.log(value, name, scoringSystem, place, saved)
     this.clearUnsavedScores();
 
     const scoring = this.state.scoring
 
 
     if (saved) {
-      console.log("can't do that")
+      // console.log("can't do that")
       return;
     }
 
     if (this.state.diceValue[0] === 0) {
-      console.log("roll the dice first")
+      // console.log("roll the dice first")
       return;
     }
 
@@ -173,14 +173,14 @@ class Game extends Component {
     let saveNum = 0;
     const dice = this.state.diceValue;
     const totalSum = dice.reduce((amt, tot) => amt + tot);
-    console.log(totalSum)
+    // console.log(totalSum)
     const ones = dice.filter(each => each === 1)
     const twos = dice.filter(each => each === 2)
     const threes = dice.filter(each => each === 3)
     const fours = dice.filter(each => each === 4)
     const fives = dice.filter(each => each === 5)
     const sixes = dice.filter(each => each === 6)
-    console.log(ones, twos, threes, fours, fives, sixes)
+    // console.log(ones, twos, threes, fours, fives, sixes)
     const numbers = [ones, twos, threes, fours, fives, sixes]
     let scoredYahtzee;
     let bonusYahtzee;
@@ -189,20 +189,20 @@ class Game extends Component {
     switch (scoringSystem) {
 
       case "number":
-        console.log("this is a number score");
+        // console.log("this is a number score");
         if (dice.indexOf(value) >= 0) {
           const numberValue = dice.filter(each => each === value).reduce((amt, tot) => amt + tot);
-          console.log(numberValue);
+          // console.log(numberValue);
           saveNum = numberValue;
           scoredYahtzee = false;
         } else {
-          console.log(`There are no ${value}'s`)
+          // console.log(`There are no ${value}'s`)
         }
         break;
 
       case "kind":
-        console.log("This is a kind score");
-        console.log(value);
+        // console.log("This is a kind score");
+        // console.log(value);
         value === "threeKind" ?
           numbers.forEach(one => {
             if (one.length >= 3) {
@@ -220,74 +220,74 @@ class Game extends Component {
         break;
 
       case "total":
-        console.log("this is a total score");
+        // console.log("this is a total score");
         saveNum = dice.reduce((amt, tot) => amt + tot);
         scoredYahtzee = false;
         break;
 
       case "fullHouse":
-        console.log("this is the full house");
+        // console.log("this is the full house");
         const triple = numbers.filter((array) => array.length === 3)
         const double = numbers.filter((array) => array.length === 2)
 
         if (triple.length > 0 && double.length > 0) {
-          console.log("fullhouse");
+          // console.log("fullhouse");
           saveNum = 25;
           scoredYahtzee = false;
         } else {
-          console.log("no fullhouse");
+          // console.log("no fullhouse");
         }
         break;
 
       case "straight":
-        console.log("this is a straight");
+        // console.log("this is a straight");
         if (value === 30) {
           if ((dice.includes(1) && dice.includes(2) && dice.includes(3) && dice.includes(4)) ||
             (dice.includes(2) && dice.includes(3) && dice.includes(4) && dice.includes(5)) ||
             (dice.includes(3) && dice.includes(4) && dice.includes(5) && dice.includes(6))) {
-            console.log("small staight");
+            // console.log("small staight");
             saveNum = value;
             scoredYahtzee = false;
           } else {
-            console.log("not a small staight")
+            // console.log("not a small staight")
           }
         } else {
           if ((dice.includes(1) && dice.includes(2) && dice.includes(3) && dice.includes(4) && dice.includes(5)) ||
             (dice.includes(2) && dice.includes(3) && dice.includes(4) && dice.includes(5) && dice.includes(6))) {
-            console.log("large staight");
+            // console.log("large staight");
             saveNum = value;
             scoredYahtzee = false;
           } else {
-            console.log("not a large staight")
+            // console.log("not a large staight")
           }
         }
         break;
 
       case "yahtzee":
-        console.log("this is the yahtzee");
+        // console.log("this is the yahtzee");
         const checkYahtzee = dice.filter(each => each === dice[0]);
         console.log(checkYahtzee.length)
         if (checkYahtzee.length === 5 && dice[0] !== 0) {
-          console.log("it's a yahtzee");
+          // console.log("it's a yahtzee");
           saveNum = 50;
           scoredYahtzee = true;
         }
         break;
 
       case "bonusYahtzee":
-        console.log(dice);
-        console.log(dice.filter(each => each === dice[0]))
+        // console.log(dice);
+        // console.log(dice.filter(each => each === dice[0]))
         if (!this.state.bonusYahtzee && this.state.savedYahtzee && dice.filter(each => each === dice[0]).length === 5) {
-          console.log("this is the bonus yahtzee")
+          // console.log("this is the bonus yahtzee")
           const valueCheck = scoring.filter(each => each.value === dice[0]);
-          console.log(valueCheck)
+          // console.log(valueCheck)
           if (valueCheck[0].saved) {
             bonusYahtzee = true;
-            console.log("saved");
+            // console.log("saved");
           } else {
             continueScore = false;
-            console.log("unsaved");
-            console.log(scoring[16])
+            // console.log("unsaved");
+            // console.log(scoring[16])
             const promiseArray = [
               this.setState((prevState) => {
                 prevState.scoring[16].score += 100;
@@ -300,15 +300,15 @@ class Game extends Component {
               })]
             Promise.all(promiseArray)
               .then(result => {
-                console.log("made it to the end of the promise")
-                console.log(scoring[16])
+                // console.log("made it to the end of the promise")
+                // console.log(scoring[16])
 
                 return this.resetRound();
               })
               .catch(err => console.log(err))
           }
         } else {
-          console.log("This is not a bonus yahtzee");
+          // console.log("This is not a bonus yahtzee");
           return
         }
 
@@ -319,7 +319,7 @@ class Game extends Component {
     }
     // Secret Sauce Number 1 !!
     if (continueScore) {
-      console.log("past the bonus area")
+      // console.log("past the bonus area")
       const oldPlace = this.state.previousPlace;
       const promise2 = [
         this.setState((prevState => {
@@ -367,17 +367,17 @@ class Game extends Component {
     // If bonus gets here, the value that is the YZ is already saved
     // Will not need to check it
     // console.log(value, name, scoringSystem, place, saved)
-    console.log("This is inside of bonusYahtzeeScoring");
+    // console.log("This is inside of bonusYahtzeeScoring");
     this.clearUnsavedScores();
     const dice = this.state.diceValue;
     const totalSum = dice.reduce((amt, tot) => amt + tot)
     // const scoring = this.state.scoring;
     let saveNum = 0;
     if (saved) {
-      console.log("Already a value there bonusYZ");
+      // console.log("Already a value there bonusYZ");
       return;
     }
-    console.log(scoringSystem)
+    // console.log(scoringSystem)
     switch (scoringSystem) {
       case "number":
         saveNum = 0;
@@ -395,7 +395,7 @@ class Game extends Component {
         saveNum = totalSum;
         break;
       case "bonusYahtzee":
-        console.log("You can't click this more than once a round")
+        // console.log("You can't click this more than once a round")
         break;
       default:
         console.log("scoringSystem switch in bonusYZ not working as expected");
@@ -429,7 +429,7 @@ class Game extends Component {
     const upperScoreTotal = upperScoreSub + bonus;
     const lowerScoreSub = scoring.filter(each => each.type === "lower").map(one => one.score).reduce((amt, tot) => amt + tot);
     const total = upperScoreTotal + lowerScoreSub;
-    console.log(upperScoreSub, lowerScoreSub)
+    // console.log(upperScoreSub, lowerScoreSub)
     this.setState((prevState) => {
       prevState.scoring[6].score = upperScoreSub;
       prevState.scoring[7].score = bonus;
@@ -451,7 +451,7 @@ class Game extends Component {
 
   showRules = () => {
     const rules = document.getElementById("rulesArea");
-    console.log(rules);
+    // console.log(rules);
     if (!this.state.rules) {
       rules.style.display = "block";
       rules.classList = "rulesArea showAnimation";
@@ -492,7 +492,7 @@ class Game extends Component {
 
   endGameOff = (e) => {
     e.preventDefault();
-    console.log("clicked endgame")
+    // console.log("clicked endgame")
     this.setState({ endGame: false })
   }
 
@@ -500,23 +500,23 @@ class Game extends Component {
     if (localStorage.getItem("token") !== null) {
       API.checkToken()
         .then(result => {
-          console.log(result.data)
+          // console.log(result.data)
           if (result.data.user === true) {
             // Run save high score to db
             API.saveHighScore(this.state.scoring[18].score)
               .then(result => {
-                console.log(result)
+                // console.log(result)
                 this.setState({ endGame: false })
               })
               .catch(err => {
-                console.log(err)
+                // console.log(err)
               })
           } else {
             // Set up redirect to login page and save score to app.js for later sending?
           }
         })
         .catch(err => {
-          console.log(err)
+          // console.log(err)
         })
     }
   }

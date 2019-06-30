@@ -31,7 +31,7 @@ class App extends Component {
       if (token) {
         API.checkToken()
           .then(result => {
-            console.log(result.data)
+            // console.log(result.data)
             if (result.data.user) {
               this.setState({ user: result.data.user, username: result.data.username, userID: result.data.userID })
             } else {
@@ -39,11 +39,11 @@ class App extends Component {
             }
           })
           .catch(err => {
-            console.log(err)
+            // console.log(err)
           })
       }
     } catch{
-      console.log("did not work")
+      // console.log("did not work")
     }
   }
 

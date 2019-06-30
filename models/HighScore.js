@@ -25,7 +25,7 @@ const HighScoreSchema = new Schema({
 })
 
 HighScoreSchema.pre("save", function(next) {
-  console.log(this);
+  // console.log(this);
   if (!this.date) {
     this.date = moment().format("LLL");
     next();
@@ -37,21 +37,21 @@ HighScoreSchema.pre("save", function(next) {
 HighScoreSchema.post("save", function() {
   User.findByIdAndUpdate(this.userID, { $push: { highscores: this._id } }, { new: true })
     .then(result => {
-      console.log(result);
+      // console.log(result);
     })
     .catch(err => {
-      console.log(err);
+      // console.log(err);
     })
 })
 
 HighScoreSchema.pre("remove", { query: true }, function(next) {
-  console.log(this)
+  // console.log(this)
   User.findByIdAndUpdate(this.userID, { $pull: { highscores: this._id } }, { new: true })
     .then(result => {
       next()
     })
     .catch(err => {
-      console.log(err);
+      // console.log(err);
       next(err)
     })
 })

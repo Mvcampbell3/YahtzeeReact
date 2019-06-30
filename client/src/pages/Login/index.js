@@ -38,7 +38,7 @@ class Login extends Component {
           }
         })
         .catch(err => {
-          console.log("You did not succeed this time")
+          // console.log("You did not succeed this time")
           alert("Login Unsuccessful");
         })
     } else {
@@ -66,7 +66,7 @@ class Login extends Component {
           // console.log(err);
         })
     } else {
-      console.log("please add email, username, and password")
+      // console.log("please add email, username, and password")
     }
   }
 

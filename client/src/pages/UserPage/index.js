@@ -20,7 +20,7 @@ class UserPage extends Component {
         this.setState({ scores: result.data })
       })
       .catch(err => {
-        console.log(err)
+        // console.log(err)
       })
   }
 
