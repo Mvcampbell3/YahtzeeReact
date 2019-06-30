@@ -38,7 +38,6 @@ class Login extends Component {
           }
         })
         .catch(err => {
-          // console.log(err);
           console.log("You did not succeed this time")
         })
     } else {
@@ -52,7 +51,6 @@ class Login extends Component {
       API.signupUser(this.state.email, this.state.username, this.state.password)
         .then(result => {
           console.log(result);
-          // this.setState({signup:false})
           if (result.data.err) {
             console.log(result.data.err);
             if (result.data.err.code === 11000) {
@@ -146,7 +144,7 @@ class Login extends Component {
             </div>
           </div>
           <div className="loginButtonHolder" id="loginButtonHolder">
-            <button className="loginBtn" onClick={this.state.signup ? (e) => this.signupUser(e) : (e) => this.loginUser(e)}>
+            <button className="gameBtn loginBtn" onClick={this.state.signup ? (e) => this.signupUser(e) : (e) => this.loginUser(e)}>
               {this.state.signup ? "Sign Up" : "Login"}
             </button>
             <button className="switchBtn" id="switchBtn" onClick={this.state.running ? null : this.changeUsernameInput}>{this.state.signup ? "Already a member?" : "Not signed up?"}</button>

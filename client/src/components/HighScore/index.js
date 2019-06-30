@@ -4,9 +4,10 @@ import "./highscore.css"
 const HighScore = (props) => {
   return (
     <div className="highscore">
-        <h4>{props.username}</h4>
-        <h4>{props.date}</h4>
-        <h4>{props.score}</h4>
+        <h5>{props.index}</h5>
+        <h5>{props.username}</h5>
+        <h5 className="dateHighScore">{props.date}</h5>
+        <h5>{props.score}</h5>
     </div>
   );
 }

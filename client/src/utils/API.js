@@ -21,6 +21,14 @@ export default {
     return Axios.get("/api/highscore/all");
   },
 
+  getUserHighscores() {
+    return Axios.get(`/api/highscore/userscores`, {
+      headers: {
+        Authorization: "Bearer " + localStorage.getItem("token")
+      }
+    })
+  },
+
   saveHighScore(score) {
     return Axios.post("/api/highscore/new", { score }, {
       headers: {

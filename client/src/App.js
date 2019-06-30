@@ -8,6 +8,8 @@ import Game from "./pages/Game"
 import Scores from "./pages/Scores"
 import Lost from "./pages/Lost"
 import Login from "./pages/Login"
+import UserPage from "./pages/UserPage"
+
 import API from "./utils/API";
 
 
@@ -15,6 +17,7 @@ class App extends Component {
   state = {
     user: false,
     username: null,
+    userID: null
   }
 
   componentDidMount() {
@@ -28,10 +31,11 @@ class App extends Component {
       if (token) {
         API.checkToken()
           .then(result => {
-            console.log(result.data.user)
+            console.log(result.data)
             if (result.data.user) {
-              this.setState({ user: result.data.user, username: result.data.username })
-
+              this.setState({ user: result.data.user, username: result.data.username, userID: result.data.userID })
+            } else {
+              localStorage.removeItem("token")
             }
           })
           .catch(err => {
@@ -60,6 +64,10 @@ class App extends Component {
           <Route path="/" exact render={props =>
             <HomePage {...props} logoutUser={this.logoutUser} user={this.state.user} username={this.state.username} />}
           />
+          <Route path="/userpage" exact render={props =>
+            <UserPage user={this.state.user} username={this.state.username} userID={this.state.userID} />}
+          />
+          }
           <Route path="/login" exact render={props =>
             <Login {...props}
               user={this.state.user}

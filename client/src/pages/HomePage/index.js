@@ -9,15 +9,16 @@ const HomePage = (props) => {
         src="https://images.pexels.com/photos/33968/pexels-photo.jpg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260" alt="dice"
       />
       <div className="mainCards">
-        <Link to="/login" className="card">
+        <Link to={props.user ? "/userpage": "/login"} className="card">
           <div className="cardContent">
-            <div className="cardFront">
+            <div className="cardFront" id="loginFront">
+              {props.user? <h2 className="cardTitle">Welcome</h2>:null}
               <h3 className="cardTitle">{props.user ? props.username : "Login"}</h3>
-              <p className="cardInfo">Save your High Scores</p>
+              <p className="cardInfo">{props.user ? null : "Save Your Scores"}</p>
             </div>
-            <div className="cardBack">
-              <h3 className="cardTitle">Back of the card</h3>
-              <p className="cardInfo">This is the back of the card</p>
+            <div className="cardBack" id="loginBack">
+              <h3 className="cardTitle">{props.user ? "See Your Scores": "Need to Sign Up?"}</h3>
+              <p className="cardInfo">{props.user ? null:"You can do that too!"}</p>
             </div>
           </div>
         </Link>
@@ -28,8 +29,7 @@ const HomePage = (props) => {
               <p className="cardInfo">Are you ready to play?</p>
             </div>
             <div className="cardBack" id="gameBack">
-              <h3 className="cardTitle">Back of the card</h3>
-              <p className="cardInfo">This is the back of the card</p>
+              <h3 className="cardTitle">Yahtzee</h3>
             </div>
           </div>
         </Link>
@@ -40,8 +40,8 @@ const HomePage = (props) => {
               <p className="cardInfo">View the High Scores List</p>
             </div>
             <div className="cardBack" id="scoresBack">
-              <h3 className="cardTitle">Back of the card</h3>
-              <p className="cardInfo">This is the back of the card</p>
+              <h3 className="cardTitle">Top Scores</h3>
+              <p className="cardInfo">From all users</p>
             </div>
           </div>
         </Link>

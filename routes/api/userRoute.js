@@ -38,7 +38,7 @@ router.post("/login", (req, res, next) => {
               userID: user._id,
               highscores: user.highscores
             },
-            process.env.JWT_KEY, { expiresIn: "1h" }, (err, token) => {
+            process.env.JWT_KEY, { expiresIn: "3h" }, (err, token) => {
               if (err) {
                 return res.status(401).json({
                   message: "Auth failed"
@@ -71,7 +71,7 @@ router.post("/signup", (req, res, next) => {
     .then(alreadyUser => {
       console.log(alreadyUser)
       if (alreadyUser.length > 0) {
-        return res.status(422).json({ message: "Already a user by that email", success: false })
+        return res.status(200).json({ err: {code: 11000},message: "Already a user by that email", success: false })
       } else {
         // hash password first
         bcrypt.hash(req.body.password, 10, (err, hash) => {
@@ -99,7 +99,9 @@ router.post("/signup", (req, res, next) => {
 })
 
 router.get("/checktoken", checkAuth, (req, res, next) => {
-  res.status(200).json({ message: "Token checks out", username: req.user.username, user: true })
+  res.status(200).json({ message: "Token checks out", username: req.user.username, user: true, userID: req.user.userID })
 })
+
+
 
 module.exports = router;

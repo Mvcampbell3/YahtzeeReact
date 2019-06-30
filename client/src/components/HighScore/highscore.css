@@ -1,7 +1,20 @@
-.highscore{
-  display: flex;
-  justify-content: space-between;
+.highscore {
+  display: grid;
   padding: 10px 10px 4px 10px;
   border-bottom: 1px darkred solid;
   margin-bottom: 10px;
+  grid-template-columns: 1fr 2fr 2fr 1fr;
+  /* place-items: center; */
+  justify-content: center;
+  align-items: baseline;
+}
+
+.highscore h5{
+  text-align: center;
+}
+
+@media (max-width: 800px) {
+  .dateHighScore {
+    font-size: 9px;
+  }
 }
