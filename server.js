@@ -25,7 +25,7 @@ app.use(routes)
 // Change DB name here
 const dbase = "yahtzee";
 const addSeed = false;
-const emptyDatabase = false;
+const emptyDatabase = true;
 
 mongoose
   .connect(process.env.MONGODB_URI || `mongodb://localhost/${dbase}`, { useNewUrlParser: true })
