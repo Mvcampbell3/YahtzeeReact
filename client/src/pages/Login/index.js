@@ -26,19 +26,20 @@ class Login extends Component {
     if (this.state.email.trim() !== "" && this.state.password.trim() !== "") {
       API.loginUser(this.state.email, this.state.password)
         .then(result => {
-          console.log(result.data);
+          // console.log(result.data);
           const token = result.data.token;
-          console.log(token);
+          // console.log(token);
           localStorage.setItem("token", token);
-          console.log(result.status);
+          // console.log(result.status);
           if (result.status === 200) {
-            console.log("Yay great success");
+            // console.log("Yay great success");
             this.props.changeUserStatus(true, result.data.username);
             this.setState({ redirect: true })
           }
         })
         .catch(err => {
-          console.log(err)
+          console.log("You did not succeed this time")
+          alert("Login Unsuccessful");
         })
     } else {
       console.log("please add email and password")
@@ -50,9 +51,9 @@ class Login extends Component {
     if (this.state.email.trim() !== "" && this.state.password.trim() !== "" && this.state.username.trim() !== "") {
       API.signupUser(this.state.email, this.state.username, this.state.password)
         .then(result => {
-          console.log(result);
+          // console.log(result);
           if (result.data.err) {
-            console.log(result.data.err);
+            // console.log(result.data.err);
             if (result.data.err.code === 11000) {
               return alert("Must be a unique username and email")
             }
@@ -62,7 +63,7 @@ class Login extends Component {
           }
         })
         .catch(err => {
-          console.log(err);
+          // console.log(err);
         })
     } else {
       console.log("please add email, username, and password")
@@ -94,7 +95,7 @@ class Login extends Component {
         }, 5)
       }, 50)
     } else {
-      console.log("this is the switch from false to true");
+      // console.log("this is the switch from false to true");
       let pos = 0;
       const timer = setInterval(() => {
         if (pos >= 80) {
