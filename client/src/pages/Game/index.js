@@ -535,8 +535,10 @@ class Game extends Component {
                       <h3>Congrats {this.props.username}!</h3>
                       <h3>Your score was {this.state.scoring[18].score}</h3>
                       <h3>Would you like to save the score?</h3>
-                      <button onClick={this.saveHighScore}>Yes</button>
-                      <button onClick={e => this.endGameOff(e)}>No</button>
+                      <div className="endgameBtnHolder">
+                        <button className="gameBtn" onClick={this.saveHighScore}>Yes</button>
+                        <button className="gameBtn" onClick={e => this.endGameOff(e)}>No</button>
+                      </div>
                     </div>
                   </div>
                 </div> : null

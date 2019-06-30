@@ -80,6 +80,18 @@
   transition: all, .5s;
 }
 
+.gameBtn:active{
+  box-shadow: none;
+  transition: box-shadow .25s;
+}
+
+.endgameBtnHolder{
+  width: 90%;
+  display: flex;
+  margin: auto;
+  justify-content: space-around;
+}
+
 .offBtn {
   background-color: grey;
   color: #333;
