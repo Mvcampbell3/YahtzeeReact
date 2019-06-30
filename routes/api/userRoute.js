@@ -92,7 +92,7 @@ router.post("/signup", (req, res, next) => {
                 success: true
               })
             })
-            .catch(err => res.status(500).json({ err }))
+            .catch(err => res.status(200).json({ err }))
         })
       }
     })

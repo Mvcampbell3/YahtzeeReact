@@ -23,37 +23,52 @@ class Login extends Component {
 
   loginUser = e => {
     e.preventDefault();
-
-    API.loginUser(this.state.email, this.state.password)
-      .then(result => {
-        console.log(result.data);
-        const token = result.data.token;
-        console.log(token);
-        localStorage.setItem("token", token);
-        console.log(result.status);
-        if (result.status === 200) {
-          console.log("Yay great success");
-          this.props.changeUserStatus(true, result.data.username);
-          this.setState({ redirect: true })
-        }
-      })
-      .catch(err => {
-        // console.log(err);
-        console.log("You did not succeed this time")
-      })
+    if (this.state.email.trim() !== "" && this.state.password.trim() !== "") {
+      API.loginUser(this.state.email, this.state.password)
+        .then(result => {
+          console.log(result.data);
+          const token = result.data.token;
+          console.log(token);
+          localStorage.setItem("token", token);
+          console.log(result.status);
+          if (result.status === 200) {
+            console.log("Yay great success");
+            this.props.changeUserStatus(true, result.data.username);
+            this.setState({ redirect: true })
+          }
+        })
+        .catch(err => {
+          // console.log(err);
+          console.log("You did not succeed this time")
+        })
+    } else {
+      console.log("please add email and password")
+    }
   }
 
   signupUser = e => {
     e.preventDefault();
-    API.signupUser(this.state.email, this.state.username, this.state.password)
-      .then(result => {
-        console.log(result);
-        // this.setState({signup:false})
-        this.changeUsernameInput();
-      })
-      .catch(err => {
-        console.log(err)
-      })
+    if (this.state.email.trim() !== "" && this.state.password.trim() !== "" && this.state.username.trim() !== "") {
+      API.signupUser(this.state.email, this.state.username, this.state.password)
+        .then(result => {
+          console.log(result);
+          // this.setState({signup:false})
+          if (result.data.err) {
+            console.log(result.data.err);
+            if (result.data.err.code === 11000) {
+              return alert("Must be a unique username and email")
+            }
+            alert(result.data.err.message)
+          } else {
+            this.changeUsernameInput();
+          }
+        })
+        .catch(err => {
+          console.log(err);
+        })
+    } else {
+      console.log("please add email, username, and password")
+    }
   }
 
   changeUsernameInput = () => {
