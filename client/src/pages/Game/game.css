@@ -7,6 +7,7 @@
   margin: 1em auto;
   position: relative;
   background-color: rgb(0, 158, 0);
+  background-color: #444;
   border-radius: 5px;
   padding: 5px 0px;
 }
@@ -76,7 +77,7 @@
 .gameBtn {
   border: none;
   border-radius: 5px;
-  background-color: rgb(0, 158, 0);
+  background-color: steelblue;
   color: white;
   padding: 4px 12px;
   font-size: 16px;
@@ -109,6 +110,7 @@
   grid-gap: 5px;
   padding: 5px 10px;
   background-color: rgba(0, 158, 0, 0.795);
+  background-color: #444;
   border-radius: 5px;
   color: white;
 }
@@ -118,7 +120,7 @@
   margin: .5em auto;
   display: block;
   border-radius: 5px;
-  background-color: rgb(0, 158, 0);
+  background-color: steelblue;
   color: white;
   font-size: 18px;
   border: none;
@@ -127,7 +129,7 @@
 .blocker{
   height: 119px;
   width: 100%;
-  background-color: rgb(0, 158, 0);
+  background-color: #444;
   border-radius: 5px;
   top: 0px;
   position: absolute;

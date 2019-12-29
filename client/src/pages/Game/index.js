@@ -525,7 +525,7 @@ class Game extends Component {
   render() {
     return (
       <div>
-        <Header color={'rgb(0, 158, 0)'}/>
+        <Header color={'#444'}/>
         {this.props.user ?
           <div>
             {
