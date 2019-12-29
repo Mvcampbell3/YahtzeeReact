@@ -6,11 +6,19 @@ const Header = (props) => {
   return (
     <header>
       <h1>Yahtzee</h1>
-      <div className="headerLinks">
-        <Link to="/">Home</Link>
-        <Link to="/game">Game</Link>
-        <Link to="/scores">Scores</Link>
-      </div>
+      <nav>
+        <ul>
+          <li>
+            <Link to='/'>Home</Link>
+          </li>
+          <li>
+            <Link to='/game'>Game</Link>
+          </li>
+          <li>
+            <Link to='/scores'>Scores</Link>
+          </li>
+        </ul>
+      </nav>
     </header>
   );
 }
