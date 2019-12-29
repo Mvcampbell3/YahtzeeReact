@@ -73,47 +73,10 @@ class Login extends Component {
 
   changeUsernameInput = () => {
     this.setState({ running: true })
-    const usernameInput = document.getElementById("usernameInput");
-    const passwordInput = document.getElementById("passwordInput");
-    const login = document.getElementById("login");
-    const loginButtonHolder = document.getElementById("loginButtonHolder");
     if (this.state.signup) {
-      usernameInput.classList = "inputGroup userInputOut"
-      setTimeout(() => {
-        let pos = 80;
-        const timer = setInterval(() => {
-          if (pos <= 0) {
-            clearInterval(timer);
-            usernameInput.style.display = "none";
-            usernameInput.classList = "inputGroup userInputIn";
-            this.setState({ signup: false, running: false })
-          } else {
-            pos--;
-            passwordInput.style.top = pos + "px";
-            loginButtonHolder.style.top = pos + 10 + "px";
-            login.style.height = pos + 231 + "px";
-          }
-        }, 5)
-      }, 50)
+      this.setState({ signup: false, running: false });
     } else {
-      // console.log("this is the switch from false to true");
-      let pos = 0;
-      const timer = setInterval(() => {
-        if (pos >= 80) {
-          clearInterval(timer);
-          passwordInput.style.top = "80px";
-          this.setState({ signup: true, running: false });
-
-        } else {
-          pos++;
-          passwordInput.style.top = pos + "px";
-          loginButtonHolder.style.top = pos + +10 + "px";
-          login.style.height = pos + 231 + "px";
-          if (pos === 50) {
-            usernameInput.style.display = "block"
-          }
-        }
-      }, 5)
+      this.setState({ signup: true, running: false })
     }
 
   }
@@ -128,7 +91,7 @@ class Login extends Component {
     return (
       <>
         <Header />
-        <div className={this.state.signup ? "outsideLogin green" : "outsideLogin blue"}>
+        <div className={this.state.signup ? "outsideLogin" : "outsideLogin"}>
           {this.renderRedirect()}
           <h1>{this.state.signup ? "Sign Up" : "Login"}</h1>
 
@@ -138,17 +101,18 @@ class Login extends Component {
                 <label>Email</label>
                 <input type="text" name="email" value={this.state.email} onChange={e => this.handleInputChange(e)} />
               </div>
-              <div className="inputGroup userInputIn" id="usernameInput">
+              {this.state.signup ? <div className="inputGroup userInputIn" id="usernameInput">
                 <label>Username</label>
                 <input type="text" name="username" value={this.state.username} onChange={e => this.handleInputChange(e)} />
-              </div>
+              </div> : null}
+
               <div className="inputGroup" id="passwordInput">
                 <label>Password</label>
                 <input type="password" name="password" value={this.state.password} onChange={e => this.handleInputChange(e)} />
               </div>
             </div>
             <div className="loginButtonHolder" id="loginButtonHolder">
-              <button className="gameBtn loginBtn" onClick={this.state.signup ? (e) => this.signupUser(e) : (e) => this.loginUser(e)}>
+              <button className="loginBtn" onClick={this.state.signup ? (e) => this.signupUser(e) : (e) => this.loginUser(e)}>
                 {this.state.signup ? "Sign Up" : "Login"}
               </button>
               <button className="switchBtn" id="switchBtn" onClick={this.state.running ? null : this.changeUsernameInput}>{this.state.signup ? "Already a member?" : "Not signed up?"}</button>

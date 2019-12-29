@@ -1,35 +1,26 @@
 .outsideLogin {
-  height: calc(100vh - 56.8px);
+  height: calc(100vh - 57px);
   display: flex;
   flex-direction: column;
   align-items: center;
   padding: 50px;
-  /* justify-content: center; */
-  transition: background-color .2s
 }
 
 .outsideLogin h1 {
   font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-}
-
-.blue {
-  background-color: lightblue;
-}
-
-.green {
-  background-color: rgb(210, 255, 253);
-}
-
-.outsideLogin h1 {
   margin-bottom: 1em;
+  color: seagreen;
+  letter-spacing: 1.5px;
+  text-decoration: underline;
 }
 
 .login {
-  width: 350px;
-  padding: 20px 5px;
+  width: 50%;
+  min-width: 350px;
+  padding: 20px;
   background-color: white;
-  border: .5px black solid;
-  border-radius: 5px;
+  border-radius: 15px;
+  background-color: seagreen;
 }
 
 .signBox {
@@ -38,16 +29,15 @@
 
 .inputGroup input {
   border: none;
-  background-color: none;
+  background-color: seagreen;
   padding: 7px;
-  font-size: 16px;
+  font-size: 18px;
   width: 100%;
-  border-bottom: 2.6px black solid;
+  border-bottom: 2.6px white solid;
   outline: 0;
 }
 
 input:-webkit-autofill, input:-webkit-autofill:hover, input:-webkit-autofill:focus, textarea:-webkit-autofill, textarea:-webkit-autofill:hover, textarea:-webkit-autofill:focus, select:-webkit-autofill, select:-webkit-autofill:hover, select:-webkit-autofill:focus {
-  /* border: 1px solid green; */
   -webkit-text-fill-color: black;
   -webkit-box-shadow: 0 0 0px 1000px white inset;
   box-shadow: 0 0 0px 1000px white inset;
@@ -60,66 +50,42 @@ input:-webkit-autofill, input:-webkit-autofill:hover, input:-webkit-autofill:foc
   font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
   font-size: 18px;
   font-weight: 500;
+  color: white;
 }
 
 .inputGroup {
   padding: 10px;
 }
 
-#usernameInput {
-  position: absolute;
-  top: 80px;
-  width: 100%;
-}
-
-.userInputIn {
-  display: none;
-  transform: scale(0);
-  animation-name: popIn;
-  animation-duration: .3s;
-  animation-fill-mode: forwards;
-}
-
-.userInputOut {
-  transform: scale(1);
-  animation-name: popOut;
-  animation-duration: .3s;
-  animation-fill-mode: forwards;
-}
-
-@keyframes popIn {
-  0% {
-    transform: scale(0)
-  }
-  100% {
-    transform: scale(1)
-  }
-}
-
-@keyframes popOut {
-  0% {
-    transform: scale(1)
-  }
-  100% {
-    transform: scale(0)
-  }
-}
-
-#passwordInput {
-  position: relative;
-}
-
 .loginButtonHolder {
-  height: 30px;
+  height: 50px;
   position: relative;
   top: 10px;
-  display: flex;
+  display: grid;
+  width: 100%;
+  grid-template-columns: auto auto;
+  place-items: center center;
   justify-content: space-around;
 }
 
 .switchBtn {
   border: none;
-  background-color: white;
+  background-color: seagreen;
   cursor: pointer;
-  color: steelblue;
+  color: white;
+  text-decoration: underline;
+}
+
+.loginBtn{
+  padding: 10px 18px;
+  background-color: white;
+  color: black;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+}
+
+.loginBtn:hover{
+  background-color: #ddd;
+  color: white;
 }
