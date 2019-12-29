@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import API from "../../utils/API"
 
-import HighScore from "../../components/HighScore"
+import HighScore from "../../components/HighScore";
+import Header from '../../components/Header';
 
 class UserPage extends Component {
 
@@ -27,6 +28,7 @@ class UserPage extends Component {
   render() {
     return (
       <div>
+        <Header />
         <h1 className="textCenter">{`${this.props.username}'s Highscores`}</h1>
         {this.state.scores.length > 0 ?
           <div className="highscoreBox">
