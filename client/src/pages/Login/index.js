@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import "./login.css";
 import API from "../../utils/API";
 import { Redirect } from "react-router-dom";
+import Header from '../../components/Header';
 
 class Login extends Component {
   state = {
@@ -125,33 +126,36 @@ class Login extends Component {
 
   render() {
     return (
-      <div className={this.state.signup ? "outsideLogin green" : "outsideLogin blue"}>
-        {this.renderRedirect()}
-        <h1>{this.state.signup ? "Sign Up" : "Login"}</h1>
+      <>
+        <Header />
+        <div className={this.state.signup ? "outsideLogin green" : "outsideLogin blue"}>
+          {this.renderRedirect()}
+          <h1>{this.state.signup ? "Sign Up" : "Login"}</h1>
 
-        <div className="login" id="login">
-          <div className="signBox">
-            <div className="inputGroup">
-              <label>Email</label>
-              <input type="text" name="email" value={this.state.email} onChange={e => this.handleInputChange(e)} />
+          <div className="login" id="login">
+            <div className="signBox">
+              <div className="inputGroup">
+                <label>Email</label>
+                <input type="text" name="email" value={this.state.email} onChange={e => this.handleInputChange(e)} />
+              </div>
+              <div className="inputGroup userInputIn" id="usernameInput">
+                <label>Username</label>
+                <input type="text" name="username" value={this.state.username} onChange={e => this.handleInputChange(e)} />
+              </div>
+              <div className="inputGroup" id="passwordInput">
+                <label>Password</label>
+                <input type="password" name="password" value={this.state.password} onChange={e => this.handleInputChange(e)} />
+              </div>
             </div>
-            <div className="inputGroup userInputIn" id="usernameInput">
-              <label>Username</label>
-              <input type="text" name="username" value={this.state.username} onChange={e => this.handleInputChange(e)} />
+            <div className="loginButtonHolder" id="loginButtonHolder">
+              <button className="gameBtn loginBtn" onClick={this.state.signup ? (e) => this.signupUser(e) : (e) => this.loginUser(e)}>
+                {this.state.signup ? "Sign Up" : "Login"}
+              </button>
+              <button className="switchBtn" id="switchBtn" onClick={this.state.running ? null : this.changeUsernameInput}>{this.state.signup ? "Already a member?" : "Not signed up?"}</button>
             </div>
-            <div className="inputGroup" id="passwordInput">
-              <label>Password</label>
-              <input type="password" name="password" value={this.state.password} onChange={e => this.handleInputChange(e)} />
-            </div>
-          </div>
-          <div className="loginButtonHolder" id="loginButtonHolder">
-            <button className="gameBtn loginBtn" onClick={this.state.signup ? (e) => this.signupUser(e) : (e) => this.loginUser(e)}>
-              {this.state.signup ? "Sign Up" : "Login"}
-            </button>
-            <button className="switchBtn" id="switchBtn" onClick={this.state.running ? null : this.changeUsernameInput}>{this.state.signup ? "Already a member?" : "Not signed up?"}</button>
           </div>
         </div>
-      </div>
+      </>
     );
   }
 }

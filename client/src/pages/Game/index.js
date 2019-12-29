@@ -5,6 +5,7 @@ import ScoreBox from "../../components/ScoreBox"
 import Die from "../../components/Die"
 import Rules from "../../components/Rules"
 import API from '../../utils/API';
+import Header from '../../components/Header'
 
 class Game extends Component {
   state = {
@@ -524,6 +525,7 @@ class Game extends Component {
   render() {
     return (
       <div>
+        <Header />
         {this.props.user ?
           <div>
             {

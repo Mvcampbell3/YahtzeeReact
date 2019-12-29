@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import "./scores.css";
 import API from "../../utils/API"
 import HighScore from "../../components/HighScore";
+import Header from '../../components/Header';
 
 class Scores extends Component {
   state = {
@@ -26,6 +27,7 @@ class Scores extends Component {
   render() {
     return (
       <div>
+        <Header />
         {this.props.user ? 
         <h1 className="textCenter">Highscores</h1> : null }
         {this.state.highScores.length > 0 ?
