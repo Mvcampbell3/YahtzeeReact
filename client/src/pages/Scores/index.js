@@ -27,7 +27,7 @@ class Scores extends Component {
   render() {
     return (
       <div>
-        <Header />
+        <Header color={'rgb(255, 102, 0)'}/>
         {this.props.user ? 
         <h1 className="textCenter">Highscores</h1> : null }
         {this.state.highScores.length > 0 ?

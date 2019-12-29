@@ -90,7 +90,7 @@ class Login extends Component {
   render() {
     return (
       <>
-        <Header />
+        <Header color={'seagreen'} />
         <div className={this.state.signup ? "outsideLogin" : "outsideLogin"}>
           {this.renderRedirect()}
           <h1>{this.state.signup ? "Sign Up" : "Login"}</h1>

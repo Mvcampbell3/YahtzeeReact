@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 
 const Header = (props) => {
   return (
-    <header>
+    <header style={{backgroundColor: props.color}}>
       <h1>Yahtzee</h1>
       <nav>
         <ul>
