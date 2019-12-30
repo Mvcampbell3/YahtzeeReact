@@ -28,6 +28,10 @@
   border-radius: 5px;
 }
 
+.unhold{
+  background-color: white;
+}
+
 .unhold {
   background-color: rgb(173, 1, 1);
   color: white;
