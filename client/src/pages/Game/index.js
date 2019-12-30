@@ -562,7 +562,7 @@ class Game extends Component {
                   <button value={i} key={i} className={this.state.diceHold[i] ? "unhold" : "hold"}
                     onClick={this.state.rolling ? null : e => this.holdButtonHandle(e)}>
 
-                    {this.state.diceHold[i] ? "Unhold" : "Hold"}</button>
+                    </button>
                 )}
               </div>
             </div>

@@ -1,10 +1,11 @@
 .container {
   width: 600px;
   margin: auto;
+  user-select: none;
 }
 
 .gameBox {
-  margin: 1em auto;
+  margin: 1em auto .5em auto;
   position: relative;
   background-color: rgb(0, 158, 0);
   background-color: #444;
@@ -22,12 +23,13 @@
 
 .hold, .unhold {
   width: 70px;
+  height: 12px;
   border: 1px black solid;
   border-radius: 5px;
 }
 
 .unhold {
-  background-color: darkred;
+  background-color: rgb(173, 1, 1);
   color: white;
 }
 
@@ -69,7 +71,7 @@
   display: grid;
   width: 100%;
   grid-template-columns: 1fr 1fr 1fr;
-  margin-bottom: 1em;
+  margin-bottom: .5em;
   place-items: center;
   font-family: Arial, Helvetica, sans-serif;
 }
@@ -79,7 +81,7 @@
   border-radius: 5px;
   background-color: steelblue;
   color: white;
-  padding: 4px 12px;
+  padding: 5px 22px;
   font-size: 16px;
   box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.322);
   transition: all, .5s;
@@ -127,7 +129,7 @@
 }
 
 .blocker{
-  height: 119px;
+  height: 112px;
   width: 100%;
   background-color: #444;
   border-radius: 5px;
@@ -184,6 +186,10 @@
   }
 
   .blocker{
-    height: 96px;
+    height: 92px;
+  }
+
+  .gameBtn{
+    font-size: 14px
   }
 }
