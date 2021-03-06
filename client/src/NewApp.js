@@ -1,13 +1,22 @@
 import React from "react";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 
 import Test from "./newFrontend/Test";
 
+import LandingPage from "./newFrontend/pages/LandingPage";
+
 const App = () => {
     return (
-        <div className="container">
-            <h1>This is the new App.js</h1>
-            <Test />
-        </div>
+        <Router>
+            <Switch>
+                <Route exact path="/">
+                    <LandingPage />
+                </Route>
+                <Route exact path="/test">
+                    <Test />
+                </Route>
+            </Switch>
+        </Router>
     );
 };
 
