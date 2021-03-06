@@ -16,7 +16,7 @@ class Scores extends Component {
   getHighScores = () => {
     API.getHighScores()
       .then(result => {
-        // console.log(result);
+        console.log(result);
         this.setState({ highScores: result.data })
       })
       .catch(err => {
@@ -41,7 +41,7 @@ class Scores extends Component {
             {this.state.highScores.map((each, index) =>
               <HighScore score={each.score} username={each.username} key={index} date={each.date} index={index + 1} />
             )}
-          </div> : null
+          </div> : <h1>There are not any high scores</h1>
         }
       </div>
     );

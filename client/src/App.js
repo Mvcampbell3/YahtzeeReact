@@ -72,7 +72,6 @@ class App extends Component {
           <Route path="/userpage" exact render={props =>
             <UserPage user={this.state.user} username={this.state.username} userID={this.state.userID} />}
           />
-          }
           <Route path="/login" exact render={props =>
             <Login {...props}
               user={this.state.user}

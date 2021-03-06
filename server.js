@@ -6,8 +6,6 @@ const mongoose = require("mongoose");
 const runSeed = require("./scripts/seed");
 const runRemoveAll = require("./scripts/remove");
 
-const saveThisForLater = "MONGODB_URI=mongodb://mvcampbell3:g8QiPkCgf9GcLhS@ds337377.mlab.com:37377/heroku_qhvnvz3h";
-
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
@@ -37,7 +35,10 @@ mongoose
     if (emptyDatabase) {
       runRemoveAll();
     }
-  });
+  })
+  .catch(err => {
+    console.log(err)
+  })
 
 
 app.listen(PORT, function() {
