@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import API from "../../utils/API"
+import API from "../../../utils/API"
 
 import HighScore from "../../components/HighScore";
 import Header from '../../components/Header';

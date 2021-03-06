@@ -1,13 +1,13 @@
 import React from 'react';
 import "./die.css"
 
-import dice1 from "../../images/1.jpg"
-import dice2 from "../../images/2.jpg"
-import dice3 from "../../images/3.jpg"
-import dice4 from "../../images/4.jpg"
-import dice5 from "../../images/5.jpg"
-import dice6 from "../../images/6.jpg"
-import blank from "../../images/Blankdie.jpg"
+import dice1 from "../../../images/1.jpg"
+import dice2 from "../../../images/2.jpg"
+import dice3 from "../../../images/3.jpg"
+import dice4 from "../../../images/4.jpg"
+import dice5 from "../../../images/5.jpg"
+import dice6 from "../../../images/6.jpg"
+import blank from "../../../images/Blankdie.jpg"
 
 const Die = (props) => {
   return (

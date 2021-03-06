@@ -2,12 +2,12 @@ import React, { Component } from "react";
 import "./App.css";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 
-import HomePage from "./pages/HomePage";
-import Game from "./pages/Game"
-import Scores from "./pages/Scores"
-import Lost from "./pages/Lost"
-import Login from "./pages/Login"
-import UserPage from "./pages/UserPage"
+import HomePage from "./oldFrontend/pages/HomePage";
+import Game from "./oldFrontend/pages/Game"
+import Scores from "./oldFrontend/pages/Scores"
+import Lost from "./oldFrontend/pages/Lost"
+import Login from "./oldFrontend/pages/Login"
+import UserPage from "./oldFrontend/pages/UserPage"
 
 import API from "./utils/API";
 

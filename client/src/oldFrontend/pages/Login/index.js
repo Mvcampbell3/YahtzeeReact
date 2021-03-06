@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import "./login.css";
-import API from "../../utils/API";
+import API from "../../../utils/API";
 import { Redirect } from "react-router-dom";
 import Header from '../../components/Header';
 
