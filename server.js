@@ -26,7 +26,7 @@ const addSeed = false;
 const emptyDatabase = false;
 
 mongoose
-  .connect(process.env.MONGODB_URI || `mongodb://localhost/${dbase}`, { useNewUrlParser: true })
+  .connect(process.env.MONGODB_URI || `mongodb://localhost/${dbase}`, { useNewUrlParser: true, useCreateIndex: true })
   .then(() => {
     console.log("mongoDB linked");
     if (addSeed) {

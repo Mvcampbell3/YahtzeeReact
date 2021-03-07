@@ -4,6 +4,7 @@ import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Test from "./newFrontend/Test";
 
 import LandingPage from "./newFrontend/pages/LandingPage";
+import LoginPage from "./newFrontend/pages/LoginPage";
 
 const App = () => {
     return (
@@ -14,6 +15,9 @@ const App = () => {
                 </Route>
                 <Route exact path="/test">
                     <Test />
+                </Route>
+                <Route exact path="/login">
+                    <LoginPage />
                 </Route>
             </Switch>
         </Router>
