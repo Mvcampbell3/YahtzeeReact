@@ -1,3 +1,8 @@
 import LoginPage from './LoginPage';
+import LoginPageWrapper from './LoginPageWrapper';
 
-export default LoginPage;
+export {
+    LoginPage
+};
+
+export default LoginPageWrapper;

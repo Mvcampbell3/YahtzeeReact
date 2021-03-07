@@ -1,10 +1,21 @@
-import React from 'react';
-import './Input.scss';
+import React from "react";
+import "./Input.scss";
 
 const TextInput = (props) => {
-    return ( 
-        <h1>This is a text Input</h1>
-     );
-}
- 
+    const { label, type, value, setValue, autoComplete } = props;
+    return (
+        <div className="input-group">
+            <label htmlFor="" className="label">
+                {label}
+            </label>
+            <input
+                type={type}
+                value={value}
+                onChange={(e) => setValue(e.target.value)}
+                autoComplete={autoComplete}
+            />
+        </div>
+    );
+};
+
 export default TextInput;
