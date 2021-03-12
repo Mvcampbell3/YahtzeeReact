@@ -1,0 +1,79 @@
+@import './utils/scss/config.scss';
+
+*{
+    margin: 0;
+    padding:0;
+    box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+body{
+    min-height: 100vh;
+    background-color: #fff;
+}
+
+.container{
+    width: 100%;
+    padding: 1em;
+
+    &.flex-center-simple{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .flex-item{
+        &.width-50 {
+            width: 50vw;
+            min-width: 300px;
+        }
+
+        &.max-width-600 {
+            max-width: 600px;
+        }
+
+        &.max-width-500 {
+            max-width: 500px;
+        }
+    }
+}
+
+.bg-color-main {
+    background-color: $main-background-color;
+}
+
+.bg-color-empty {
+    background-color: $empty-background-color;
+}
+
+.bg-color-red{
+    background-color: $red-background-color;
+}
+
+.bg-color-dark{
+    background-color: $dark-background-color;
+}
+
+.bg-color-off{
+    background-color: $off-background-color;
+}
+
+.background-main {
+    background: $background-main;
+}
+
+.background-off {
+    background: $background-off;
+}
+
+.background-dark {
+    background: $background-dark
+}
+
+.background-red {
+    background: $background-red
+}
+
+.box-shadow-main{
+    box-shadow: 0px 2px 2px 2px rgba(51, 51, 51, 0.212);
+}

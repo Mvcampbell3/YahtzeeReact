@@ -1,0 +1,16 @@
+.input-group{
+    padding: 1em;
+
+    .input{
+        font-size: 16px;
+        display: block;
+        padding: 1.25em .5em;
+        border-radius: .25em;
+        border: 1px #333 solid;
+        width: 100%;
+    }
+
+    .input:focus{
+        outline: 0;
+    }
+}

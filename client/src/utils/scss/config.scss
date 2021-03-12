@@ -1,0 +1,34 @@
+$main-background-color: #e3f2fd;
+$empty-background-color: #fafafa;
+$red-background-color: #db5461;
+$dark-background-color: #686963;
+$off-background-color: #8aa29e;
+
+// linear gradient backgrounds
+$background-main: linear-gradient(
+    135deg,
+    lighten($main-background-color, 1%),
+    $main-background-color,
+    darken($main-background-color, 3%)
+);
+
+$background-off: linear-gradient(
+    135deg,
+    lighten($off-background-color, 1%),
+    $off-background-color,
+    darken($off-background-color, 3%)
+);
+
+$background-dark: linear-gradient(
+    135deg,
+    lighten($dark-background-color, 1%),
+    $dark-background-color,
+    darken($dark-background-color, 3%)
+);
+
+$background-red: linear-gradient(
+    135deg,
+    lighten($red-background-color, 1%),
+    $red-background-color,
+    darken($red-background-color, 3%)
+);

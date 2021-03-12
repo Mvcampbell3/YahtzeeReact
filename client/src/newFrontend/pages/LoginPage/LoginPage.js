@@ -32,8 +32,8 @@ const LoginPage = (props) => {
     }
 
     return (
-        <div className="container">
-            <form onSubmit={handleSubmit}>
+        <div className="container flex-center-simple">
+            <form className="form background-main box-shadow-main flex-item width-50 max-width-500" onSubmit={handleSubmit}>
                 <TextInput
                     {...createTextInputProps("email", "Email", email, setEmail, 'email')}
                 />
