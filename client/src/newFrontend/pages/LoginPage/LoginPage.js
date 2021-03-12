@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import "./LoginPage.scss";
 
 import { TextInput } from "../../components/Input";
+import Button from '../../components/Button';
 
 const LoginPage = (props) => {
     // const {
@@ -17,44 +18,66 @@ const LoginPage = (props) => {
     const [inputUsername, setInputUsername] = useState("");
     const [password, setPassword] = useState("");
 
-    const createTextInputProps = (type, label, value, setValue, autoComplete) => {
+    const createTextInputProps = (
+        type,
+        label,
+        value,
+        setValue,
+        autoComplete,
+    ) => {
         return {
             type,
             label,
             value,
             setValue,
-            autoComplete
+            autoComplete,
         };
     };
 
     const handleSubmit = (e) => {
         e.preventDefault();
-    }
+    };
 
     return (
         <div className="container flex-center-simple">
-            <form className="form background-main box-shadow-main flex-item width-50 max-width-500" onSubmit={handleSubmit}>
-                <TextInput
-                    {...createTextInputProps("email", "Email", email, setEmail, 'email')}
-                />
-                <TextInput
-                    {...createTextInputProps(
-                        "text",
-                        "Username",
-                        inputUsername,
-                        setInputUsername,
-                        'none'
-                    )}
-                />
-                <TextInput
-                    {...createTextInputProps(
-                        "password",
-                        "Password",
-                        password,
-                        setPassword,
-                        'new-password'
-                    )}
-                />
+            <form
+                className="form flex-item width-50 max-width-500"
+                onSubmit={handleSubmit}
+            >
+                <div className="form-section background-main box-shadow-main">
+                    <TextInput
+                        {...createTextInputProps(
+                            "email",
+                            "Email",
+                            email,
+                            setEmail,
+                            "email",
+                        )}
+                    />
+                    <TextInput
+                        {...createTextInputProps(
+                            "text",
+                            "Username",
+                            inputUsername,
+                            setInputUsername,
+                            "none",
+                        )}
+                    />
+                    <TextInput
+                        {...createTextInputProps(
+                            "password",
+                            "Password",
+                            password,
+                            setPassword,
+                            "new-password",
+                        )}
+                    />
+                </div>
+
+                <div className="form-section background-main box-shadow-main">
+                        <Button>Signup</Button>
+                        <Button>Submit</Button>
+                </div>
             </form>
         </div>
     );

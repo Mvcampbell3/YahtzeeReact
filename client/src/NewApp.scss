@@ -1,28 +1,28 @@
-@import './utils/scss/config.scss';
+@import "./utils/scss/config.scss";
 
-*{
+* {
     margin: 0;
-    padding:0;
+    padding: 0;
     box-sizing: border-box;
     font-family: Arial, Helvetica, sans-serif;
 }
 
-body{
+body {
     min-height: 100vh;
     background-color: #fff;
 }
 
-.container{
+.container {
     width: 100%;
     padding: 1em;
 
-    &.flex-center-simple{
+    &.flex-center-simple {
         display: flex;
         align-items: center;
         justify-content: center;
     }
 
-    .flex-item{
+    .flex-item {
         &.width-50 {
             width: 50vw;
             min-width: 300px;
@@ -46,15 +46,15 @@ body{
     background-color: $empty-background-color;
 }
 
-.bg-color-red{
+.bg-color-red {
     background-color: $red-background-color;
 }
 
-.bg-color-dark{
+.bg-color-dark {
     background-color: $dark-background-color;
 }
 
-.bg-color-off{
+.bg-color-off {
     background-color: $off-background-color;
 }
 
@@ -67,13 +67,19 @@ body{
 }
 
 .background-dark {
-    background: $background-dark
+    background: $background-dark;
 }
 
 .background-red {
-    background: $background-red
+    background: $background-red;
 }
 
-.box-shadow-main{
+.box-shadow-main {
     box-shadow: 0px 2px 2px 2px rgba(51, 51, 51, 0.212);
+}
+
+.form-section {
+    padding: 1em;
+    border-radius: 0.25em;
+    margin-bottom: 1em;
 }
