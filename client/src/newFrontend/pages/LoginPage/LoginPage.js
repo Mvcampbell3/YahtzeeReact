@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import "./LoginPage.scss";
 
 import { TextInput } from "../../components/Input";
-import Button from '../../components/Button';
+import Button from "../../components/Button";
 
 const LoginPage = (props) => {
     // const {
@@ -24,6 +24,8 @@ const LoginPage = (props) => {
         value,
         setValue,
         autoComplete,
+        validate,
+        validationType,
     ) => {
         return {
             type,
@@ -31,6 +33,8 @@ const LoginPage = (props) => {
             value,
             setValue,
             autoComplete,
+            validate,
+            validationType,
         };
     };
 
@@ -52,6 +56,7 @@ const LoginPage = (props) => {
                             email,
                             setEmail,
                             "email",
+                            true,
                         )}
                     />
                     <TextInput
@@ -61,6 +66,7 @@ const LoginPage = (props) => {
                             inputUsername,
                             setInputUsername,
                             "none",
+                            false,
                         )}
                     />
                     <TextInput
@@ -70,13 +76,13 @@ const LoginPage = (props) => {
                             password,
                             setPassword,
                             "new-password",
+                            true,
                         )}
                     />
                 </div>
-
                 <div className="form-section background-main box-shadow-main">
-                        <Button>Signup</Button>
-                        <Button>Submit</Button>
+                    <Button>Signup</Button>
+                    <Button>Submit</Button>
                 </div>
             </form>
         </div>
