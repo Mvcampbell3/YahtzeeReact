@@ -15,6 +15,11 @@ export const checkState = (state) => {
     return state;
 };
 
+export const getUserSettings = (state) => {
+    const { userSettings } = state;
+    return { userSettings };
+};
+
 export const getGameSettings = (state) => {
     const { gameSettings } = state;
     return { gameSettings };

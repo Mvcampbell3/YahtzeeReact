@@ -1,5 +1,7 @@
 ### What to do next time on Yahtzee React...
 
+
+## Dice Value and Rolling
 We are going to want to set up a dice object for each die in the game, we are also going to want to have
 them saved through redux
 
@@ -12,3 +14,6 @@ dice1: {
 } ...
 
 and then the roll dice action will check each dice for their hold value before setting it to a random number
+
+## User Interactions
+Need to have some way to reset the password...

@@ -2,7 +2,7 @@ import React from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { LoginPage } from "./";
-
+import { getUserSettings } from "../../../redux/reducers";
 import { createUser, loginUser, logoutUser } from "../../../redux/actions";
 
 const LoginPageWrapper = (props) => {
@@ -10,9 +10,12 @@ const LoginPageWrapper = (props) => {
 };
 
 const mapStateToProps = (state) => {
+    const {
+        userSettings: { user, username },
+    } = getUserSettings(state);
     return {
-        user: state.user,
-        username: state.username,
+        user,
+        username,
     };
 };
 
