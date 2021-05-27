@@ -1,10 +1,11 @@
 import React from "react";
 import { BrowserRouter as Router, Route, Switch, Link } from "react-router-dom";
 import './NewApp.scss';
-import Test from "./newFrontend/Test";
 
 import LandingPage from "./newFrontend/pages/LandingPage";
 import LoginPageWrapper from "./newFrontend/pages/LoginPage";
+import GamePageWrapper from "./newFrontend/pages/GamePage";
+
 
 const Header = () => {
     return (
@@ -13,7 +14,7 @@ const Header = () => {
                 <Link to='/'>Home</Link>
             </li>
             <li className="nav-item">
-                <Link to='/test'>Test</Link>
+                <Link to='/game'>Game</Link>
             </li>
             <li className="nav-item">
                 <Link to='/login'>Login</Link>
@@ -30,8 +31,8 @@ const App = () => {
                 <Route exact path="/">
                     <LandingPage />
                 </Route>
-                <Route exact path="/test">
-                    <Test />
+                <Route exact path="/game">
+                    <GamePageWrapper />
                 </Route>
                 <Route exact path="/login">
                     <LoginPageWrapper />
