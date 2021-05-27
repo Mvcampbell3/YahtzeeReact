@@ -1,24 +1,28 @@
-import initialState from "../../initialState";
-import {
-    CREATE_USER,
-    LOGIN_USER,
-    LOGOUT_USER,
-} from "../constants/action_types";
+import { combineReducers } from "redux";
 
-const rootReducer = (state = initialState, action) => {
-    switch (action.type) {
-        case LOGIN_USER:
-        case CREATE_USER:
-            return {
-                ...state,
-                user: action.payload.user,
-                username: action.payload.username,
-            };
-        case LOGOUT_USER:
-            return { ...state, user: false, username: "" };
-        default:
-            return state;
-    }
+import userSettings from "./userSettings";
+import gameSettings from "./gameSettings";
+const reducers = {
+    userSettings,
+    gameSettings,
 };
 
-export default rootReducer;
+const app = combineReducers(reducers);
+export default app;
+
+// Selectors
+export const checkState = (state) => {
+    return state;
+};
+
+export const getGameSettings = (state) => {
+    const { gameSettings } = state;
+    return { gameSettings };
+};
+
+export const getDiceValue = (state) => {
+    const {
+        gameSettings: { diceHold, diceValue },
+    } = getGameSettings(state);
+    return { diceValue, diceHold };
+};
