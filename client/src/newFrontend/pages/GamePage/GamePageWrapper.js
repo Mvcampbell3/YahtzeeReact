@@ -1,15 +1,19 @@
 import { connect } from "react-redux";
+import { bindActionCreators } from "redux";
 import GamePage from "./GamePage";
-import { checkState, getDiceValue } from "../../../redux/reducers";
+import { getDiceValue } from "../../../redux/reducers";
+import { rollDice } from "../../../redux/actions";
 
 const mapStateToProps = (state) => {
-    var test = checkState(state);
-    console.log(test);
     const { diceValue, diceHold } = getDiceValue(state);
-    console.log(diceValue);
     return {
         diceValue,
+        diceHold,
     };
 };
 
-export default connect(mapStateToProps)(GamePage);
+const mapDispatchToProps = (dispatch) => {
+    return bindActionCreators({ rollDice }, dispatch);
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(GamePage);

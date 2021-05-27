@@ -1,7 +1,7 @@
 import React from "react";
 import Dice from "./Dice";
-const GamePage = ({ diceValue }) => {
-    console.log(diceValue);
+import "./GamePage.scss";
+const GamePage = ({ diceValue, rollDice }) => {
     return (
         <div className="container">
             {/* Some Game Options */}
@@ -26,7 +26,7 @@ const GamePage = ({ diceValue }) => {
             </div>
 
             <div className="dice-action-holder">
-                <button>roll</button>
+                <button onClick={rollDice}>roll</button>
                 <button>save</button>
             </div>
 
