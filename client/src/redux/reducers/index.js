@@ -28,6 +28,11 @@ export const getGameSettings = (state) => {
     return { gameSettings };
 };
 
+export const getDiceSettings = (state) => {
+    const { diceSettings } = state;
+    return { diceSettings };
+};
+
 export const getDiceValue = (state) => {
     const {
         gameSettings: { diceHold, diceValue },

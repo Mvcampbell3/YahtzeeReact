@@ -1,3 +1,6 @@
-import Dice from './Dice';
+import Dice from "./Dice";
+import DiceWrapper from "./DiceWrapper";
 
-export default Dice;
+export { Dice };
+
+export default DiceWrapper;

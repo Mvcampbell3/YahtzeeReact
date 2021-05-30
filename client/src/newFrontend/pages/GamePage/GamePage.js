@@ -1,38 +1,49 @@
 import React from "react";
-import Dice from "./Dice";
+import DiceWrapper from "./Dice";
 import "./GamePage.scss";
-const GamePage = ({ diceValue, rollDice }) => {
+const GamePage = ({ diceArray, rollDice }) => {
     return (
-        <div className="container">
-            {/* Some Game Options */}
-            <h2>Would you like to play a game?</h2>
-            <div className="game-action-holder">
-                <button>New Game</button>
+        <div className="container flex-center-simple">
+            <div className="main-game">
+                {/* Some Game Options */}
+
+                <h2>Would you like to play a game?</h2>
+
                 {/* Start Game / New */}
-            </div>
-            {/* Dice Box */}
-            <div className="dice-holder">
-                {diceValue.map((dice, i) => (
-                    <Dice key={i} value={dice} />
-                ))}
-            </div>
-            {/* Dice Hold Buttons */}
-            <div className="dice-hold-holder">
-                <div className="dice-hold"></div>
-                <div className="dice-hold"></div>
-                <div className="dice-hold"></div>
-                <div className="dice-hold"></div>
-                <div className="dice-hold"></div>
-            </div>
 
-            <div className="dice-action-holder">
-                <button onClick={rollDice}>roll</button>
-                <button>save</button>
+                <div className="game-action-holder">
+                    <button>New Game</button>
+                </div>
+
+                {/* Dice Box */}
+
+                <div className="dice-holder">
+                    {diceArray.map((dice, i) => (
+                        <DiceWrapper key={i} dice={dice} />
+                    ))}
+                </div>
+
+                {/* Dice Hold Buttons */}
+
+                <div className="dice-hold-holder">
+                    <div className="dice-hold"></div>
+                    <div className="dice-hold"></div>
+                    <div className="dice-hold"></div>
+                    <div className="dice-hold"></div>
+                    <div className="dice-hold"></div>
+                </div>
+
+                {/* Game Actions */}
+
+                <div className="dice-action-holder">
+                    <button onClick={rollDice}>roll</button>
+                    <button>save</button>
+                </div>
+
+                {/* Roll Save-Score */}
+
+                {/* Score Board */}
             </div>
-
-            {/* Roll Save-Score */}
-
-            {/* Score Board */}
         </div>
     );
 };
