@@ -1,9 +1,38 @@
+import { DiceTypes } from "../ENUMS";
 const initialState = {};
 
 export const userSettings = {
-  user: false,
-  username: "",
-}
+    user: false,
+    username: "",
+};
+
+export const diceSettings = {
+    die_1: {
+        value: 0,
+        hold: false,
+        type: DiceTypes.DIE_ONE,
+    },
+    die_2: {
+        value: 0,
+        hold: false,
+        type: DiceTypes.DIE_TWO,
+    },
+    die_3: {
+        value: 0,
+        hold: false,
+        type: DiceTypes.DIE_THREE,
+    },
+    die_4: {
+        value: 0,
+        hold: false,
+        type: DiceTypes.DIE_FOUR,
+    },
+    die_5: {
+        value: 0,
+        hold: false,
+        type: DiceTypes.DIE_FIVE,
+    },
+};
 
 export const gameSettings = {
     diceValue: [0, 0, 0, 0, 0],

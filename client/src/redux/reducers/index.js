@@ -2,9 +2,12 @@ import { combineReducers } from "redux";
 
 import userSettings from "./userSettings";
 import gameSettings from "./gameSettings";
+import diceSettings from "./diceSettings";
+
 const reducers = {
     userSettings,
     gameSettings,
+    diceSettings,
 };
 
 const app = combineReducers(reducers);
