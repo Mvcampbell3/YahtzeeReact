@@ -1,23 +1,22 @@
-import {
-    CREATE_USER,
-    LOGIN_USER,
-    LOGOUT_USER,
-    ROLL_DICE,
-} from "../constants/action_types";
+import * as types from "../constants/action_types";
 
 // User Actions
 export const createUser = (payload) => {
-    return { type: CREATE_USER, payload };
+    return { type: types.CREATE_USER, payload };
 };
 
 export const loginUser = (payload) => {
-    return { type: LOGIN_USER, payload };
+    return { type: types.LOGIN_USER, payload };
 };
 
 export const logoutUser = (payload) => {
-    return { type: LOGOUT_USER, payload };
+    return { type: types.LOGOUT_USER, payload };
 };
 
-export const rollDice = (payload) => {
-    return { type: ROLL_DICE, payload };
+export const rollDice = () => {
+    return { type: types.ROLL_DICE };
+};
+
+export const holdDice = (payload) => {
+    return { type: types.HOLD_DICE, payload };
 };

@@ -23,16 +23,6 @@ const GamePage = ({ diceArray, rollDice }) => {
                     ))}
                 </div>
 
-                {/* Dice Hold Buttons */}
-
-                <div className="dice-hold-holder">
-                    <div className="dice-hold"></div>
-                    <div className="dice-hold"></div>
-                    <div className="dice-hold"></div>
-                    <div className="dice-hold"></div>
-                    <div className="dice-hold"></div>
-                </div>
-
                 {/* Game Actions */}
 
                 <div className="dice-action-holder">

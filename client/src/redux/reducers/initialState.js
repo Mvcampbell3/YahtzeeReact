@@ -12,35 +12,40 @@ export const diceSettings = {
             value: 0,
             hold: false,
             type: DiceTypes.DIE_ONE,
+            place: 0,
         },
         {
             value: 0,
             hold: false,
             type: DiceTypes.DIE_TWO,
+            place: 1,
         },
         {
             value: 0,
             hold: false,
             type: DiceTypes.DIE_THREE,
+            place: 2,
         },
         {
             value: 0,
             hold: false,
             type: DiceTypes.DIE_FOUR,
+            place: 3,
         },
         {
             value: 0,
             hold: false,
             type: DiceTypes.DIE_FIVE,
+            place: 4,
         },
     ],
+    roundCount: 13,
+    rollCount: 3,
+    rolling: false,
 };
 
 export const gameSettings = {
-    diceValue: [0, 0, 0, 0, 0],
-    diceHold: [false, false, false, false, false],
-    roundCount: 13,
-    rollCount: 3,
+    
     showSave: false,
     scoring: [
         {
@@ -288,7 +293,6 @@ export const gameSettings = {
     ],
     rules: false,
     newGame: true,
-    rolling: false,
     load: true,
     endGame: false,
 };

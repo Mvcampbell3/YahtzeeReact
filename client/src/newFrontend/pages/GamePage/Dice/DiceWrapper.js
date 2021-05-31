@@ -1,5 +1,7 @@
 import { connect } from "react-redux";
+import { bindActionCreators } from "redux";
 import Dice from "./Dice";
+import { holdDice } from "../../../../redux/actions";
 
 const mapStateToProps = (state, ownProps) => {
     const {
@@ -8,4 +10,7 @@ const mapStateToProps = (state, ownProps) => {
     return { hold, value, type };
 };
 
-export default connect(mapStateToProps)(Dice);
+const mapDispatchToProps = (dispatch) => {
+    return bindActionCreators({ holdDice }, dispatch);
+};
+export default connect(mapStateToProps, mapDispatchToProps)(Dice);
