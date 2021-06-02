@@ -20,3 +20,7 @@ export const rollDice = () => {
 export const holdDice = (payload) => {
     return { type: types.HOLD_DICE, payload };
 };
+
+export const resetDice = () => {
+    return { type: types.RESET_DICE };
+};
