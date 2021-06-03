@@ -42,10 +42,11 @@ export const diceSettings = {
     roundCount: 13,
     rollCount: 3,
     rolling: false,
+    hasYahtzee: false,
+    savedYahtzee: false,
 };
 
 export const gameSettings = {
-    
     showSave: false,
     scoring: [
         {

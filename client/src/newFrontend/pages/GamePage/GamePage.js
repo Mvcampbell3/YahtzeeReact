@@ -1,7 +1,7 @@
 import React from "react";
 import DiceWrapper from "./Dice";
 import "./GamePage.scss";
-const GamePage = ({ diceArray, rollDice }) => {
+const GamePage = ({ diceArray, rollDice, resetDice }) => {
     return (
         <div className="container flex-center-simple">
             <div className="main-game">
@@ -27,6 +27,7 @@ const GamePage = ({ diceArray, rollDice }) => {
 
                 <div className="dice-action-holder">
                     <button onClick={rollDice}>roll</button>
+                    <button onClick={resetDice}>reset</button>
                     <button>save</button>
                 </div>
 
