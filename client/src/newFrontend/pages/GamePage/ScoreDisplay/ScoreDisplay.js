@@ -1,10 +1,12 @@
 import React from "react";
 import "./ScoreDisplay.scss";
 
-const ScoreDisplay = ({ score }) => {
+const ScoreDisplay = ({ score, diceArray, checkScore }) => {
+    console.log(diceArray);
     return (
         <div className="score-display-container">
             <button
+                onClick={() => checkScore(score, diceArray)}
                 className={`scoring-button ${score.saved && "saved"}`}
             ></button>
             <span className="score-name">{score.name}</span>
@@ -13,9 +15,17 @@ const ScoreDisplay = ({ score }) => {
     );
 };
 
-const TestDisplay = ({ score }) => {
+const TestDisplay = ({ score, diceArray, checkScore }) => {
     return (
-        <>{score.type === "upper" ? <ScoreDisplay score={score} /> : null}</>
+        <>
+            {score.type === "upper" ? (
+                <ScoreDisplay
+                    score={score}
+                    diceArray={diceArray}
+                    checkScore={checkScore}
+                />
+            ) : null}
+        </>
     );
 };
 

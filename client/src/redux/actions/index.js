@@ -24,3 +24,7 @@ export const holdDice = (payload) => {
 export const resetDice = () => {
     return { type: types.RESET_DICE };
 };
+
+export const checkScore = (score, diceArray) => {
+    return { type: types.CHECK_SCORE, payload: { score, diceArray } };
+};

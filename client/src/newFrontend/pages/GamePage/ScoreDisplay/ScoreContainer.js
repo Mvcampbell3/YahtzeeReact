@@ -1,11 +1,11 @@
 import React from "react";
-import { ScoreDisplay } from "./";
+import { ScoreDisplayWrapper } from "./";
 
 const ScoreContainer = ({ scoring }) => {
     return (
         <div className="score-container">
             {scoring.map((score, i) => (
-                <ScoreDisplay score={score} key={i} />
+                <ScoreDisplayWrapper score={score} key={i} />
             ))}
         </div>
     );
