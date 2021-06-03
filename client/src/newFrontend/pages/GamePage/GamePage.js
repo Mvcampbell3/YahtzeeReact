@@ -1,7 +1,8 @@
 import React from "react";
 import DiceWrapper from "./Dice";
+import ScoreContainerWrapper from "./ScoreDisplay";
 import "./GamePage.scss";
-const GamePage = ({ diceArray, rollDice, resetDice }) => {
+const GamePage = ({ diceArray, rollDice, resetDice, scoring }) => {
     return (
         <div className="container flex-center-simple">
             <div className="main-game">
@@ -34,6 +35,7 @@ const GamePage = ({ diceArray, rollDice, resetDice }) => {
                 {/* Roll Save-Score */}
 
                 {/* Score Board */}
+                <ScoreContainerWrapper />
             </div>
         </div>
     );
