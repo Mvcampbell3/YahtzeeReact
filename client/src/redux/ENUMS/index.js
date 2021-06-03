@@ -1,3 +1,4 @@
-import * as DiceTypes from "./diceID";
+import * as DiceTypes from "./diceTypes";
+import * as ScoreTypes from "./scoreTypes";
 
-export { DiceTypes };
+export { DiceTypes, ScoreTypes };
