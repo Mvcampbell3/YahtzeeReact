@@ -2,7 +2,6 @@ import React from "react";
 import "./ScoreDisplay.scss";
 
 const ScoreDisplay = ({ score, diceArray, checkScore }) => {
-    console.log(diceArray);
     return (
         <div className="score-display-container">
             <button

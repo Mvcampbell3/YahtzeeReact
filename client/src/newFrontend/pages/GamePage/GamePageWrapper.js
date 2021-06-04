@@ -5,8 +5,6 @@ import { getDiceSettings } from "../../../redux/reducers";
 import { rollDice, resetDice } from "../../../redux/actions";
 
 const mapStateToProps = (state) => {
-    console.log(state);
-
     const {
         diceSettings: { diceArray, rollCount },
     } = getDiceSettings(state);

@@ -1,4 +1,4 @@
-import { DiceTypes } from "../ENUMS";
+import { DiceTypes, ScoreTypes } from "../ENUMS";
 const initialState = {};
 
 export const userSettings = {
@@ -59,7 +59,9 @@ export const gameSettings = {
             click: true,
             value: 1,
             name: "Ones",
+            testingScore: false,
             scoreSystem: "number",
+            scoreType: ScoreTypes.ONES,
         },
         {
             x: 0,
@@ -71,7 +73,9 @@ export const gameSettings = {
             click: true,
             value: 2,
             name: "Twos",
+            testingScore: false,
             scoreSystem: "number",
+            scoreType: ScoreTypes.TWOS,
         },
         {
             x: 0,
@@ -83,7 +87,9 @@ export const gameSettings = {
             click: true,
             value: 3,
             name: "Threes",
+            testingScore: false,
             scoreSystem: "number",
+            scoreType: ScoreTypes.THREES,
         },
         {
             x: 0,
@@ -95,7 +101,9 @@ export const gameSettings = {
             click: true,
             value: 4,
             name: "Fours",
+            testingScore: false,
             scoreSystem: "number",
+            scoreType: ScoreTypes.FOURS,
         },
         {
             x: 0,
@@ -107,7 +115,9 @@ export const gameSettings = {
             click: true,
             value: 5,
             name: "Fives",
+            testingScore: false,
             scoreSystem: "number",
+            scoreType: ScoreTypes.FIVES,
         },
         {
             x: 0,
@@ -119,7 +129,9 @@ export const gameSettings = {
             click: true,
             value: 6,
             name: "Sixes",
+            testingScore: false,
             scoreSystem: "number",
+            scoreType: ScoreTypes.SIXES,
         },
         {
             x: 0,
@@ -131,7 +143,9 @@ export const gameSettings = {
             click: false,
             value: "upperSubTotal",
             name: "Upper Sub Total",
+            testingScore: false,
             scoreSystem: "totalPart",
+            scoreType: ScoreTypes.UPPER_SUB_TOTAL,
         },
         {
             x: 0,
@@ -143,7 +157,9 @@ export const gameSettings = {
             click: false,
             value: "upperBonus",
             name: "Bonus",
+            testingScore: false,
             scoreSystem: "35",
+            scoreType: ScoreTypes.UPPER_BONUS,
         },
         {
             x: 0,
@@ -155,7 +171,9 @@ export const gameSettings = {
             click: false,
             value: "upperTotal",
             name: "Upper Total",
+            testingScore: false,
             scoreSystem: "totalPart",
+            scoreType: ScoreTypes.UPPER_TOTAL,
         },
         {
             x: 0,
@@ -167,7 +185,9 @@ export const gameSettings = {
             click: true,
             value: "threeKind",
             name: "Three of a kind",
+            testingScore: false,
             scoreSystem: "kind",
+            scoreType: ScoreTypes.THREE_OF_KIND,
         },
         {
             x: 0,
@@ -179,7 +199,9 @@ export const gameSettings = {
             click: true,
             value: "fourKind",
             name: "Four of a kind",
+            testingScore: false,
             scoreSystem: "kind",
+            scoreType: ScoreTypes.FOUR_OF_KIND,
         },
         {
             x: 0,
@@ -191,7 +213,9 @@ export const gameSettings = {
             click: true,
             value: "fullHouse",
             name: "Full House",
+            testingScore: false,
             scoreSystem: "fullHouse",
+            scoreType: ScoreTypes.FULL_HOUSE,
         },
         {
             x: 0,
@@ -203,7 +227,9 @@ export const gameSettings = {
             click: true,
             value: 30,
             name: "Small Straight",
+            testingScore: false,
             scoreSystem: "straight",
+            scoreType: ScoreTypes.SMALL_STRAIGHT,
         },
         {
             x: 0,
@@ -215,7 +241,9 @@ export const gameSettings = {
             click: true,
             value: 40,
             name: "Large Straight",
+            testingScore: false,
             scoreSystem: "straight",
+            scoreType: ScoreTypes.LARGE_STRAIGHT,
         },
         {
             x: 0,
@@ -227,7 +255,9 @@ export const gameSettings = {
             click: true,
             value: 50,
             name: "Yahtzee",
+            testingScore: false,
             scoreSystem: "yahtzee",
+            scoreTypes: ScoreTypes.YAHTZEE,
         },
         {
             x: 0,
@@ -239,7 +269,9 @@ export const gameSettings = {
             click: true,
             value: "chance",
             name: "Chance",
+            testingScore: false,
             scoreSystem: "total",
+            scoreType: ScoreTypes.CHANCE,
         },
         {
             x: 0,
@@ -251,7 +283,9 @@ export const gameSettings = {
             click: true,
             value: "bonusYahtzee",
             name: "Bonus Yahtzee",
+            testingScore: false,
             scoreSystem: "bonusYahtzee",
+            scoreType: ScoreTypes.BONUS_YAHTZEE,
         },
         {
             x: 0,
@@ -263,7 +297,9 @@ export const gameSettings = {
             click: false,
             value: "lowerTotal",
             name: "Lower Total",
+            testingScore: false,
             scoreSystem: "totalPart",
+            scoreType: ScoreTypes.LOWER_TOTAL,
         },
         {
             x: 0,
@@ -275,7 +311,9 @@ export const gameSettings = {
             click: false,
             value: "total",
             name: "Total Score",
+            testingScore: false,
             scoreSystem: "totalAll",
+            scoreType: ScoreTypes.TOTAL,
         },
     ],
     bonusYahtzee: false,

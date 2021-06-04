@@ -5,7 +5,6 @@ import { getGameSettings } from "../../../../redux/reducers";
 const mapStateToProps = (state) => {
     const { gameSettings } = getGameSettings(state);
     const { scoring } = gameSettings;
-    console.log(scoring);
     return { scoring };
 };
 
