@@ -2,7 +2,12 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import GamePage from "./GamePage";
 import { getDiceSettings } from "../../../redux/reducers";
-import { rollDice, resetDice } from "../../../redux/actions";
+import {
+    rollDice,
+    resetDice,
+    resetTestScores,
+    saveScore,
+} from "../../../redux/actions";
 
 const mapStateToProps = (state) => {
     const {
@@ -16,7 +21,10 @@ const mapStateToProps = (state) => {
 };
 
 const mapDispatchToProps = (dispatch) => {
-    return bindActionCreators({ rollDice, resetDice }, dispatch);
+    return bindActionCreators(
+        { rollDice, resetDice, resetTestScores, saveScore },
+        dispatch,
+    );
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(GamePage);

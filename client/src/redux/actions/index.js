@@ -28,3 +28,11 @@ export const resetDice = () => {
 export const checkScore = (score, diceArray) => {
     return { type: types.CHECK_SCORE, payload: { score, diceArray } };
 };
+
+export const resetTestScores = () => {
+    return { type: types.RESET_TEST_SCORE };
+};
+
+export const saveScore = () => {
+    return { type: types.SAVE_SCORE };
+};

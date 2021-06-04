@@ -2,7 +2,17 @@ import React from "react";
 import DiceWrapper from "./Dice";
 import ScoreContainerWrapper from "./ScoreDisplay";
 import "./GamePage.scss";
-const GamePage = ({ diceArray, rollDice, resetDice, scoring }) => {
+const GamePage = ({
+    diceArray,
+    rollDice,
+    resetDice,
+    resetTestScores,
+    saveScore,
+}) => {
+    const handleReset = () => {
+        resetDice();
+        resetTestScores();
+    };
     return (
         <div className="container flex-center-simple">
             <div className="main-game">
@@ -28,8 +38,8 @@ const GamePage = ({ diceArray, rollDice, resetDice, scoring }) => {
 
                 <div className="dice-action-holder">
                     <button onClick={rollDice}>roll</button>
-                    <button onClick={resetDice}>reset</button>
-                    <button>save</button>
+                    <button onClick={handleReset}>reset</button>
+                    <button onClick={saveScore}>save</button>
                 </div>
 
                 {/* Roll Save-Score */}

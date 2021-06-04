@@ -10,3 +10,5 @@ export const RESET_DICE = "RESET_DICE";
 
 // Scoring Actions
 export const CHECK_SCORE = "CHECK_SCORE";
+export const RESET_TEST_SCORE = "RESET_TEST_SCORE";
+export const SAVE_SCORE = "SAVE_SCORE";

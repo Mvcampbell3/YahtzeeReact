@@ -2,10 +2,19 @@ import React from "react";
 import "./ScoreDisplay.scss";
 
 const ScoreDisplay = ({ score, diceArray, checkScore }) => {
+    const handleClick = (score, diceArray) => {
+        console.log("cliked");
+        console.log(score);
+        if (!score.saved) {
+            checkScore(score, diceArray);
+        } else {
+            console.log("score already saved");
+        }
+    };
     return (
         <div className="score-display-container">
             <button
-                onClick={() => checkScore(score, diceArray)}
+                onClick={() => handleClick(score, diceArray)}
                 className={`scoring-button ${score.saved && "saved"}`}
             ></button>
             <span className="score-name">{score.name}</span>
