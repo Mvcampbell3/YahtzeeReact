@@ -13,6 +13,11 @@ const GamePage = ({
         resetDice();
         resetTestScores();
     };
+    const handleSave = () => {
+        saveScore();
+        resetDice();
+    };
+
     return (
         <div className="container flex-center-simple">
             <div className="main-game">
@@ -39,7 +44,7 @@ const GamePage = ({
                 <div className="dice-action-holder">
                     <button onClick={rollDice}>roll</button>
                     <button onClick={handleReset}>reset</button>
-                    <button onClick={saveScore}>save</button>
+                    <button onClick={handleSave}>save</button>
                 </div>
 
                 {/* Roll Save-Score */}

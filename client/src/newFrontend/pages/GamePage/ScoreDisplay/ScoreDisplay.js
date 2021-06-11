@@ -3,8 +3,6 @@ import "./ScoreDisplay.scss";
 
 const ScoreDisplay = ({ score, diceArray, checkScore }) => {
     const handleClick = (score, diceArray) => {
-        console.log("cliked");
-        console.log(score);
         if (!score.saved) {
             checkScore(score, diceArray);
         } else {
@@ -23,18 +21,4 @@ const ScoreDisplay = ({ score, diceArray, checkScore }) => {
     );
 };
 
-const TestDisplay = ({ score, diceArray, checkScore }) => {
-    return (
-        <>
-            {score.type === "upper" ? (
-                <ScoreDisplay
-                    score={score}
-                    diceArray={diceArray}
-                    checkScore={checkScore}
-                />
-            ) : null}
-        </>
-    );
-};
-
-export default TestDisplay;
+export default ScoreDisplay;
