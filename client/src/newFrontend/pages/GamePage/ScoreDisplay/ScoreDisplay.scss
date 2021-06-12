@@ -1,14 +1,22 @@
-.score-display-container{
+.score-display-container {
     width: 200px;
     display: flex;
     justify-content: space-between;
     align-items: center;
 
-    .scoring-button{
+    .scoring-button {
         width: 20px;
         height: 20px;
         background-color: green;
         border: 0;
         cursor: pointer;
+
+        &.saved {
+            background-color: red;
+        }
+
+        &.testing {
+            background-color: yellow;
+        }
     }
 }

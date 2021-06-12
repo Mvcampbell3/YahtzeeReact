@@ -23,7 +23,8 @@ const rollDice = (state) => {
         return {
             ...state,
             diceArray: newDiceArray,
-            rollCount: newRollCount,
+            // comment out rollCount to stop decrement on roll
+            // rollCount: newRollCount,
             hasYahtzee: isYahtzee,
         };
     }

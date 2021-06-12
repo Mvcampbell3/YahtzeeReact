@@ -22,8 +22,9 @@ const evalScore = (state, payload) => {
         case ScoreTypes.THREE_OF_KIND:
             return numberOfKind(state, payload, 3);
         case ScoreTypes.FOUR_OF_KIND:
-            console.log("four of kind");
             return numberOfKind(state, payload, 4);
+        case ScoreTypes.FULL_HOUSE:
+            return fullHouse(state, payload);
         default:
             console.log(score);
             return state;
@@ -89,10 +90,6 @@ const numberArrayFormatter = (diceArray) => {
     return numberMap;
 };
 
-// When clicking a different score, it does not reset of kind score to zero
-// When click a not-valid score, the original test score does not revert to zero
-// Root of problem is need to remove test scores value && reset testing bool even if fails check
-
 const numberOfKind = (state, payload, target) => {
     const { diceArray } = payload;
     const numberMap = numberArrayFormatter(diceArray);
@@ -102,17 +99,41 @@ const numberOfKind = (state, payload, target) => {
             isValidOfKind = true;
         }
     }
-    if (isValidOfKind) {
-        const numberValue = diceArray
-            .map((dice) => dice.value)
-            .reduce((amt, tot) => amt + tot);
-        return {
-            ...state,
-            scoring: updateScoringArray(state, payload, numberValue),
-        };
+    const numberValue = diceArray
+        .map((dice) => dice.value)
+        .reduce((amt, tot) => amt + tot);
+
+    return {
+        ...state,
+        scoring: updateScoringArray(
+            state,
+            payload,
+            isValidOfKind ? numberValue : 0,
+        ),
+    };
+};
+
+const fullHouse = (state, payload) => {
+    const { diceArray } = payload;
+    const numberMap = numberArrayFormatter(diceArray);
+    let hasThreeOfKind = false;
+    let hasPair = false;
+    for (let key in numberMap) {
+        if (numberMap[key].length === 3) {
+            hasThreeOfKind = true;
+        }
+        if (numberMap[key].length === 2) {
+            hasPair = true;
+        }
     }
-    // this will not updateScoringArray ..
-    return state;
+    return {
+        state,
+        scoring: updateScoringArray(
+            state,
+            payload,
+            hasPair && hasThreeOfKind ? 25 : 0,
+        ),
+    };
 };
 
 const updateScoringArray = (state, payload, numberValue) => {

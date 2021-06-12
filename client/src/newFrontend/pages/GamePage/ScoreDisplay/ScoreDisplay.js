@@ -13,7 +13,9 @@ const ScoreDisplay = ({ score, diceArray, checkScore }) => {
         <div className="score-display-container">
             <button
                 onClick={() => handleClick(score, diceArray)}
-                className={`scoring-button ${score.saved && "saved"}`}
+                className={`scoring-button ${score.saved && "saved"} ${
+                    score.testingScore && "testing"
+                }`}
             ></button>
             <span className="score-name">{score.name}</span>
             <span className="score-value">{score.score}</span>
