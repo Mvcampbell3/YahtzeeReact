@@ -4,19 +4,15 @@ import "./LoginPage.scss";
 
 import { TextInput } from "../../components/Input";
 import Button from "../../components/Button";
+import { signupUserAPI, loginUserAPI } from "../../../utils/API";
 
 const LoginPage = (props) => {
-    // const {
-    //     user,
-    //     username,
-    //     createUser,
-    //     loginUser,
-    //     logoutUser
-    // } = props;
+    const { user, username, createUser, loginUser } = props;
 
     const [email, setEmail] = useState("");
     const [inputUsername, setInputUsername] = useState("");
     const [password, setPassword] = useState("");
+    const [actionLogin, setActionLogin] = useState(true);
 
     const createTextInputProps = (
         type,
@@ -40,6 +36,34 @@ const LoginPage = (props) => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
+        console.log(email, inputUsername, password);
+        actionLogin ? handleLogin() : handleSignUp();
+    };
+
+    const handleLogin = () => {
+        loginUserAPI(email, password)
+            .then((result) => {
+                console.log(result);
+            })
+            .catch((err) => {
+                console.log(err);
+            });
+    };
+
+    const handleSignUp = () => {
+        signupUserAPI(email, inputUsername, password)
+            .then((result) => {
+                console.log(result);
+            })
+            .catch((err) => {
+                console.log(err);
+            });
+    };
+
+    const handleToggleLogin = (e) => {
+        e.preventDefault();
+        console.log("toggle login");
+        setActionLogin(!actionLogin);
     };
 
     return (
@@ -59,16 +83,19 @@ const LoginPage = (props) => {
                             true,
                         )}
                     />
-                    <TextInput
-                        {...createTextInputProps(
-                            "text",
-                            "Username",
-                            inputUsername,
-                            setInputUsername,
-                            "none",
-                            false,
-                        )}
-                    />
+                    {!actionLogin && (
+                        <TextInput
+                            {...createTextInputProps(
+                                "text",
+                                "Username",
+                                inputUsername,
+                                setInputUsername,
+                                "none",
+                                false,
+                            )}
+                        />
+                    )}
+
                     <TextInput
                         {...createTextInputProps(
                             "password",
@@ -80,9 +107,16 @@ const LoginPage = (props) => {
                         )}
                     />
                 </div>
-                <div className="form-section background-main box-shadow-main">
-                    <Button>Signup</Button>
-                    <Button>Submit</Button>
+                <div className="form-section background-main box-shadow-main form-actions">
+                    <Button classes={["login"]}>Submit</Button>
+                    <Button
+                        classes={["login"]}
+                        handleClick={(e) => handleToggleLogin(e)}
+                    >
+                        {actionLogin
+                            ? "Not a member yet?"
+                            : "Already a member?"}
+                    </Button>
                 </div>
             </form>
         </div>

@@ -1,0 +1,11 @@
+button {
+    padding: 0.5em;
+    cursor: pointer;
+
+    &.login {
+        background-color: white;
+        border: 0;
+        border-radius: 4px;
+        font-size: 20px;
+    }
+}
