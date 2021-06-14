@@ -21,8 +21,10 @@ const TextInput = (props) => {
         setValue,
         autoComplete,
         validate = false,
+        validationType,
+        icon,
     } = props;
-
+    console.log(validationType);
     const [hasErrors, setHasErrors] = useState([]);
 
     const handleValidate = (e) => {
@@ -60,14 +62,23 @@ const TextInput = (props) => {
             <label htmlFor="" className="label">
                 {label}
             </label>
-            <input
-                className={`input input-${type}`}
-                type={type}
-                value={value}
-                onBlur={(e) => handleValidate(e)}
-                onChange={(e) => setValue(e.target.value)}
-                autoComplete={autoComplete}
-            />
+            <div className="input-container">
+                {icon && (
+                    <div className="input-group__icon">
+                        <i className={icon}></i>
+                    </div>
+                )}
+
+                <input
+                    className={`input input-${type}`}
+                    type={type}
+                    value={value}
+                    onBlur={(e) => handleValidate(e)}
+                    onChange={(e) => setValue(e.target.value)}
+                    autoComplete={autoComplete}
+                />
+            </div>
+
             {hasErrors.length > 0 &&
                 hasErrors.map((err, i) => (
                     <TextInputError key={i} error={{ message: err }} />

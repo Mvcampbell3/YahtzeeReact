@@ -11,14 +11,31 @@
         position: relative;
         font-size: 16px;
         display: block;
-        padding: 1.25em 0.5em;
-        border-radius: 0.25em;
-        border: 1px #333 solid;
+        // padding: 1.25em 0.5em 1.25em 3em;
+        padding: .25em;
         width: 100%;
+        border: 0;
     }
 
     .input:focus {
         outline: 0;
+    }
+
+    &__icon {
+        font-size: 25px;
+        position: absolute;
+        z-index: 20;
+        top: calc(50% - 17px);
+        left: 12px;
+        color: #888;
+    }
+
+    .input-container {
+        display: flex;
+        position: relative;
+        padding: 1em .5em 1em 3em;
+        background-color: white;
+        border-radius: 4px;
     }
 }
 
@@ -29,8 +46,6 @@
     text-align: center;
     margin-top: 4px;
 }
-        
-
 
 // &:focus {
 //     outline: 0;

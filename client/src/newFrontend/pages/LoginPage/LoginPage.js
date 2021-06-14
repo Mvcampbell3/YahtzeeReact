@@ -22,6 +22,7 @@ const LoginPage = (props) => {
         autoComplete,
         validate,
         validationType,
+        icon = "",
     ) => {
         return {
             type,
@@ -31,6 +32,7 @@ const LoginPage = (props) => {
             autoComplete,
             validate,
             validationType,
+            icon,
         };
     };
 
@@ -81,8 +83,11 @@ const LoginPage = (props) => {
                             setEmail,
                             "email",
                             true,
+                            "email",
+                            "far fa-envelope",
                         )}
                     />
+
                     {!actionLogin && (
                         <TextInput
                             {...createTextInputProps(
@@ -92,6 +97,8 @@ const LoginPage = (props) => {
                                 setInputUsername,
                                 "none",
                                 false,
+                                "",
+                                "far fa-user",
                             )}
                         />
                     )}
@@ -104,11 +111,12 @@ const LoginPage = (props) => {
                             setPassword,
                             "new-password",
                             true,
+                            "password",
+                            "fas fa-lock",
                         )}
                     />
                 </div>
                 <div className="form-section background-main box-shadow-main form-actions">
-                    <Button classes={["login"]}>Submit</Button>
                     <Button
                         classes={["login"]}
                         handleClick={(e) => handleToggleLogin(e)}
@@ -116,6 +124,9 @@ const LoginPage = (props) => {
                         {actionLogin
                             ? "Not a member yet?"
                             : "Already a member?"}
+                    </Button>
+                    <Button classes={["login"]}>
+                        {actionLogin ? "Login" : "Sign Up"}
                     </Button>
                 </div>
             </form>

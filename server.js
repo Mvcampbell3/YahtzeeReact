@@ -22,7 +22,8 @@ if (process.env.NODE_ENV === "production") {
 const dbase = "yahtzee";
 
 mongoose
-    .connect(process.env.MONGODB_URI || `mongodb://localhost/${dbase}`, {
+    // .connect(process.env.MONGODB_URI || `mongodb://localhost/${dbase}`, {
+    .connect(`mongodb://localhost/${dbase}`, {
         useNewUrlParser: true,
         useCreateIndex: true,
         useUnifiedTopology: true,
