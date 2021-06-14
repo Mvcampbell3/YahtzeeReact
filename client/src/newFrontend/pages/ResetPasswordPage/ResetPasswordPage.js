@@ -5,6 +5,8 @@ import { TextInput } from "../../components/Input";
 import Button from "../../components/Button";
 
 const ResetPasswordPage = (props) => {
+    const [displayPinInput] = useState(true);
+    const [pinInput, setPinInput] = useState("");
     const [firstPassword, setFirstPassword] = useState("");
     const [secondPassword, setSecondPassword] = useState("");
     const [sendLoginPage, setSendLoginPage] = useState(false);
@@ -12,6 +14,10 @@ const ResetPasswordPage = (props) => {
     const handleBack = () => {
         setSendLoginPage(true);
     };
+
+    const handleSetPassword = () => {};
+
+    const handleCheckPin = () => {};
 
     return (
         <div className="reset-password-container">
@@ -40,6 +46,7 @@ const ResetPasswordPage = (props) => {
             />
             <div className="form-action">
                 <Button handleClick={handleBack}>Back</Button>
+                <Button handleClick={handleSetPassword}>Submit Password</Button>
             </div>
         </div>
     );
