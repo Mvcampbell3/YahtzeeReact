@@ -16,3 +16,12 @@ export const validateEmail = (email) => {
 export const validatePassword = (password) => {
     return password.length >= 6 ? true : false;
 };
+
+export const validateConfirmPassword = (firstPassword, secondPassword) => {
+    const validLength = validatePassword(firstPassword);
+    const passMatch = firstPassword === secondPassword;
+    if (validLength && passMatch) {
+        return true;
+    }
+    return false;
+};

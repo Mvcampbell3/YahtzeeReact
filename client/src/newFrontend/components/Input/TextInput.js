@@ -23,16 +23,17 @@ const TextInput = (props) => {
         validate = false,
         validationType,
         icon,
+        confirmString,
     } = props;
     console.log(validationType);
     const [hasErrors, setHasErrors] = useState([]);
 
     const handleValidate = (e) => {
         e.preventDefault();
-        console.log(type, validate);
+        console.log(type, validate, validationType);
         if (!validate) return;
         console.log("validating... ", type);
-        switch (type) {
+        switch (validationType) {
             case "email":
                 if (!validators.validateEmail(value)) {
                     console.log("We have an email error");
@@ -52,8 +53,17 @@ const TextInput = (props) => {
                     setHasErrors([]);
                 }
                 break;
+            case "confirm-password":
+                if (!validators.validateConfirmPassword(value, confirmString)) {
+                    setHasErrors([
+                        "Passwords must match and be at least 6 characters long",
+                    ]);
+                } else {
+                    setHasErrors([]);
+                }
+                break;
             default:
-                console.log(`${type} validation not yet set up`);
+                console.log(`${validationType} validation not yet set up`);
         }
     };
 
@@ -88,11 +98,15 @@ const TextInput = (props) => {
 };
 
 TextInput.propTypes = {
-    type: PropTypes.string.isRequired,
     label: PropTypes.string.isRequired,
+    type: PropTypes.string.isRequired,
+    value: PropTypes.string.isRequired,
     setValue: PropTypes.func.isRequired,
     autoComplete: PropTypes.string.isRequired,
-    value: PropTypes.string.isRequired,
+    validate: PropTypes.bool.isRequired,
+    validationType: PropTypes.string,
+    icon: PropTypes.string,
+    confirmString: PropTypes.string,
 };
 
 export default TextInput;

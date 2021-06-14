@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Redirect } from "react-router-dom";
 import PropTypes from "prop-types";
 import "./LoginPage.scss";
 
@@ -18,6 +19,7 @@ const LoginPage = (props) => {
     const [password, setPassword] = useState("");
     const [actionLogin, setActionLogin] = useState(true);
     const [actionForgot, setActionForgot] = useState(false);
+    const [sendToResetPage, setSendToResetPage] = useState(false);
 
     const createTextInputProps = (
         type,
@@ -84,6 +86,7 @@ const LoginPage = (props) => {
             sendResetEmailAPI(email)
                 .then((result) => {
                     console.log(result);
+                    setSendToResetPage(true);
                 })
                 .catch((err) => {
                     console.log(err);
@@ -93,6 +96,7 @@ const LoginPage = (props) => {
 
     return (
         <div className="container flex-center-simple">
+            {sendToResetPage && <Redirect to="/reset" />}
             {actionForgot ? (
                 <div className="forgot-container">
                     <p>Do you want to reset your password?</p>
