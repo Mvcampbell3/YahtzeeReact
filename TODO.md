@@ -2,8 +2,8 @@
 
 ## Dice Value and Rolling
 
-We are going to want to have rolling reset all the scores that are not saved and testingScore true
+Continue with evaluating scores: Full House, Straights
 
 ## User Interactions
 
-Need to have some way to reset the password...
+Evaluate user pin input from email, db check against stored pin
