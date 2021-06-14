@@ -9,34 +9,53 @@ router.get("/test", (req, res) => {
     res.json("working here at api/user/test");
 });
 
-router.get("/sendemail", (req, res) => {
-    console.log(process.env.EMAIL_FROM);
+router.post("/sendemail", (req, res) => {
+    const { email } = req.body;
 
-    const ranNum = Math.floor(Math.random() * 900000 + 100000);
-
-    const transporter = nodemailer.createTransport({
-        service: "outlook",
-        auth: {
-            user: process.env.EMAIL_FROM,
-            pass: process.env.EMAIL_PASS,
-        },
-    });
-
-    const mailOptions = {
-        from: process.env.EMAIL_FROM,
-        to: "",
-        subject: "Sending Email using Node.js",
-        text: "Pin to reset your password: " + ranNum,
-    };
-
-    transporter.sendMail(mailOptions, (err, info) => {
-        if (err) {
-            res.json({ err });
-        } else {
-            console.log(info);
-            res.json({ info });
-        }
-    });
+    db.User.findOne({ email })
+        .then((user) => {
+            if (user) {
+                const ranNum = Math.floor(Math.random() * 900000 + 100000);
+                const transporter = nodemailer.createTransport({
+                    service: "outlook",
+                    auth: {
+                        user: process.env.EMAIL_FROM,
+                        pass: process.env.EMAIL_PASS,
+                    },
+                });
+                const mailOptions = {
+                    from: process.env.EMAIL_FROM,
+                    to: email,
+                    subject: "Reset your Yahtzee React password",
+                    html: `<h1 style="text-align:center;">Would you like to reset your password?</h1> <p style="text-align:center;">Here is your pin: ${ranNum}</p>`,
+                };
+                db.User.updateOne({
+                    resetPasswordRequested: true,
+                    resetPasswordPin: ranNum,
+                })
+                    .then(() => {
+                        transporter.sendMail(mailOptions, (err, info) => {
+                            if (err) {
+                                return res.json({ err, emailSent: false });
+                            } else {
+                                console.log(info);
+                                return res.json({ info, emailSent: true });
+                            }
+                        });
+                    })
+                    .catch((err) => {
+                        console.log("user failed to update correctly");
+                        console.log(err);
+                        return res.json({ err, emailSent: false });
+                    });
+            } else {
+                return res.json({ ok: true, emailSent: false });
+            }
+        })
+        .catch((err) => {
+            console.log(err);
+            res.json(err);
+        });
 });
 
 router.get("/all", (req, res, next) => {

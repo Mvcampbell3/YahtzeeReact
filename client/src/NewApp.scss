@@ -1,10 +1,10 @@
 @import "./utils/scss/config.scss";
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap");
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: 'Poppins', sans-serif;
+    font-family: "Poppins", sans-serif;
 }
 
 body {
@@ -82,4 +82,13 @@ body {
     padding: 1em;
     border-radius: 0.25em;
     margin-bottom: 1em;
+}
+
+.text-center {
+    text-align: center;
+}
+
+.action-text {
+    text-decoration: underline;
+    cursor: pointer;
 }

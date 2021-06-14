@@ -4,7 +4,11 @@ import "./LoginPage.scss";
 
 import { TextInput } from "../../components/Input";
 import Button from "../../components/Button";
-import { signupUserAPI, loginUserAPI } from "../../../utils/API";
+import {
+    signupUserAPI,
+    loginUserAPI,
+    sendResetEmailAPI,
+} from "../../../utils/API";
 
 const LoginPage = (props) => {
     const { user, username, createUser, loginUser } = props;
@@ -13,6 +17,7 @@ const LoginPage = (props) => {
     const [inputUsername, setInputUsername] = useState("");
     const [password, setPassword] = useState("");
     const [actionLogin, setActionLogin] = useState(true);
+    const [actionForgot, setActionForgot] = useState(false);
 
     const createTextInputProps = (
         type,
@@ -62,74 +67,138 @@ const LoginPage = (props) => {
             });
     };
 
+    const handleForgot = (e) => {
+        e.preventDefault();
+        console.log("forgot clicked");
+        setActionForgot(!actionForgot);
+    };
+
     const handleToggleLogin = (e) => {
         e.preventDefault();
         console.log("toggle login");
         setActionLogin(!actionLogin);
     };
 
+    const handleSendReset = () => {
+        if (email) {
+            sendResetEmailAPI(email)
+                .then((result) => {
+                    console.log(result);
+                })
+                .catch((err) => {
+                    console.log(err);
+                });
+        }
+    };
+
     return (
         <div className="container flex-center-simple">
-            <form
-                className="form flex-item width-50 max-width-500"
-                onSubmit={handleSubmit}
-            >
-                <div className="form-section background-main box-shadow-main">
-                    <TextInput
-                        {...createTextInputProps(
-                            "email",
-                            "Email",
-                            email,
-                            setEmail,
-                            "email",
-                            true,
-                            "email",
-                            "far fa-envelope",
-                        )}
-                    />
-
-                    {!actionLogin && (
+            {actionForgot ? (
+                <div className="forgot-container">
+                    <p>Do you want to reset your password?</p>
+                    <p>
+                        Please enter your email, if you have an account, a reset
+                        password email will be sent to that your address
+                    </p>
+                    <div className="form-section background-main box-shadow-main">
                         <TextInput
                             {...createTextInputProps(
-                                "text",
-                                "Username",
-                                inputUsername,
-                                setInputUsername,
-                                "none",
-                                false,
-                                "",
-                                "far fa-user",
+                                "email",
+                                "Email",
+                                email,
+                                setEmail,
+                                "email",
+                                true,
+                                "email",
+                                "far fa-envelope",
                             )}
                         />
-                    )}
+                    </div>
+                    <div className="form-section background-main box-shadow-main form-actions">
+                        <Button
+                            classes={["login"]}
+                            handleClick={(e) => handleForgot(e)}
+                        >
+                            Back
+                        </Button>
+                        <Button
+                            classes={["login"]}
+                            handleClick={handleSendReset}
+                        >
+                            Send Email
+                        </Button>
+                    </div>
+                </div>
+            ) : (
+                <form
+                    className="form flex-item width-50 max-width-500"
+                    onSubmit={handleSubmit}
+                >
+                    <div className="form-section background-main box-shadow-main">
+                        <TextInput
+                            {...createTextInputProps(
+                                "email",
+                                "Email",
+                                email,
+                                setEmail,
+                                "email",
+                                true,
+                                "email",
+                                "far fa-envelope",
+                            )}
+                        />
 
-                    <TextInput
-                        {...createTextInputProps(
-                            "password",
-                            "Password",
-                            password,
-                            setPassword,
-                            "new-password",
-                            true,
-                            "password",
-                            "fas fa-lock",
+                        {!actionLogin && (
+                            <TextInput
+                                {...createTextInputProps(
+                                    "text",
+                                    "Username",
+                                    inputUsername,
+                                    setInputUsername,
+                                    "none",
+                                    false,
+                                    "",
+                                    "far fa-user",
+                                )}
+                            />
                         )}
-                    />
-                </div>
-                <div className="form-section background-main box-shadow-main form-actions">
-                    <Button
-                        classes={["login"]}
-                        handleClick={(e) => handleToggleLogin(e)}
-                    >
-                        {actionLogin
-                            ? "Not a member yet?"
-                            : "Already a member?"}
-                    </Button>
-                    <Button classes={["login"]}>
-                        {actionLogin ? "Login" : "Sign Up"}
-                    </Button>
-                </div>
-            </form>
+
+                        <TextInput
+                            {...createTextInputProps(
+                                "password",
+                                "Password",
+                                password,
+                                setPassword,
+                                "new-password",
+                                true,
+                                "password",
+                                "fas fa-lock",
+                            )}
+                        />
+                        {actionLogin && (
+                            <p
+                                className="text-center action-text"
+                                onClick={(e) => handleForgot(e)}
+                            >
+                                Need help with your password?
+                            </p>
+                        )}
+                    </div>
+                    <div className="form-section background-main box-shadow-main form-actions">
+                        <Button
+                            classes={["login"]}
+                            handleClick={(e) => handleToggleLogin(e)}
+                        >
+                            {actionLogin
+                                ? "Not a member yet?"
+                                : "Already a member?"}
+                        </Button>
+                        <Button classes={["login"]}>
+                            {actionLogin ? "Login" : "Sign Up"}
+                        </Button>
+                    </div>
+                </form>
+            )}
         </div>
     );
 };

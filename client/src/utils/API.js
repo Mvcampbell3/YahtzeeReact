@@ -8,6 +8,11 @@ export const signupUserAPI = (email, username, password) => {
     return Axios.post("/api/user/signup", { email, username, password });
 };
 
+export const sendResetEmailAPI = (email) => {
+    console.log(email);
+    return Axios.post("/api/user/sendEmail", { email });
+};
+
 export const checkTokenAPI = () => {
     return Axios.get("/api/user/checktoken", {
         headers: {
