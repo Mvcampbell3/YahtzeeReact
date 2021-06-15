@@ -29,10 +29,13 @@ router.post("/sendemail", (req, res) => {
                     subject: "Reset your Yahtzee React password",
                     html: `<h1 style="text-align:center;">Would you like to reset your password?</h1> <p style="text-align:center;">Here is your pin: ${ranNum}</p>`,
                 };
-                db.User.updateOne({
-                    resetPasswordRequested: true,
-                    resetPasswordPin: ranNum,
-                })
+                db.User.updateOne(
+                    { email },
+                    {
+                        resetPasswordRequested: true,
+                        resetPasswordPin: ranNum,
+                    },
+                )
                     .then(() => {
                         transporter.sendMail(mailOptions, (err, info) => {
                             if (err) {
@@ -175,7 +178,22 @@ router.post("/checkpin", (req, res) => {
                     resetPasswordRequested &&
                     Number(pin) === resetPasswordPin
                 ) {
-                    res.json({ ok: true, updatePass: true });
+                    // Correct Pin
+                    db.User.updateOne(
+                        { email },
+                        {
+                            resetPasswordPin: 0,
+                            resetPasswordRequested: false,
+                            resetPasswordPass: true,
+                        },
+                    )
+                        .then(() => {
+                            res.json({ ok: true, updatePass: true });
+                        })
+                        .catch((err) => {
+                            console.log(err);
+                            res.json(err);
+                        });
                 } else {
                     res.json({ ok: true, updatePass: false });
                 }
@@ -185,6 +203,38 @@ router.post("/checkpin", (req, res) => {
         })
         .catch((err) => {
             res.json({ err });
+        });
+});
+
+router.post("/resetpassword", (req, res) => {
+    const { newPassword, email } = req.body;
+    db.User.findOne({ email })
+        .then((user) => {
+            if (user && user.resetPasswordPass) {
+                bcrypt.hash(newPassword, 10, (err, hash) => {
+                    if (err) {
+                        return res.json(err);
+                    }
+                    db.User.updateOne(
+                        { email },
+                        { password: hash, resetPasswordPass: false },
+                    )
+                        .then((updatedUser) => {
+                            console.log(updatedUser);
+                            res.json({ ok: true, updatedPass: true });
+                        })
+                        .catch((err) => {
+                            console.log(err);
+                            res.json({ err });
+                        });
+                });
+            } else {
+                res.json({ ok: true, user: false });
+            }
+        })
+        .catch((err) => {
+            console.log(err);
+            res.json(err);
         });
 });
 

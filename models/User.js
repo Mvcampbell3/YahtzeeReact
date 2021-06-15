@@ -35,6 +35,11 @@ const UserSchema = new Schema({
         type: Number,
         default: 0,
     },
+
+    resetPasswordPass: {
+        type: Boolean,
+        default: false,
+    },
 });
 
 const validatorEmail = function (value) {

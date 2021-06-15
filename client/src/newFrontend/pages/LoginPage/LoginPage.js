@@ -101,8 +101,8 @@ const LoginPage = (props) => {
                 <div className="forgot-container">
                     <p>Do you want to reset your password?</p>
                     <p>
-                        Please enter your email, if you have an account, a reset
-                        password email will be sent to that your address
+                        Please enter your email and if you have an account with
+                        us, a reset password email will be sent to your address
                     </p>
                     <div className="form-section background-main box-shadow-main">
                         <TextInput

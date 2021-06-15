@@ -13,6 +13,13 @@ export const sendResetEmailAPI = (email) => {
     return Axios.post("/api/user/sendEmail", { email });
 };
 
+export const resetPasswordAPI = (password, email) => {
+    return Axios.post("/api/user/resetpassword", {
+        newPassword: password,
+        email,
+    });
+};
+
 export const sendPinAPI = (pin, email) => {
     return Axios.post("/api/user/checkpin", { pin, email });
 };

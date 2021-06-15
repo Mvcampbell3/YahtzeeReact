@@ -4,7 +4,7 @@ import "./ResetPasswordPage.scss";
 import { TextInput } from "../../components/Input";
 import Button from "../../components/Button";
 import { PinInput } from ".";
-import { sendPinAPI } from "../../../utils/API";
+import { sendPinAPI, resetPasswordAPI } from "../../../utils/API";
 
 const ResetPasswordPage = (props) => {
     const [displayPinInput, setDisplayPinInput] = useState(true);
@@ -16,21 +16,28 @@ const ResetPasswordPage = (props) => {
     const handleBack = () => {
         setSendLoginPage(true);
     };
-    console.log(pin);
-
-    const handleSetPassword = () => {};
-
     const { email } = useParams();
 
     const handleCheckPin = () => {
         if (pin.length === 6) {
-            console.log("we can send the pin to BE");
             sendPinAPI(pin, email)
                 .then((result) => {
-                    console.log(result);
                     if (result.data.updatePass) {
                         setDisplayPinInput(false);
                     }
+                })
+                .catch((err) => {
+                    console.log(err);
+                });
+        }
+    };
+
+    const handleSendNewPassword = () => {
+        if (firstPassword === secondPassword) {
+            // send password to BE
+            resetPasswordAPI(firstPassword, email)
+                .then((result) => {
+                    console.log(result);
                 })
                 .catch((err) => {
                     console.log(err);
@@ -55,7 +62,7 @@ const ResetPasswordPage = (props) => {
                         </div>
                     </div>
                 ) : (
-                    <div className="reset-password-container container flex-center-simple">
+                    <div className="reset-password-container container flex-center-simple flex-column">
                         <h1 className="text-center">Reset Password</h1>
                         <TextInput
                             label="New Password"
@@ -80,7 +87,7 @@ const ResetPasswordPage = (props) => {
                         />
                         <div className="form-action">
                             <Button handleClick={handleBack}>Back</Button>
-                            <Button handleClick={handleSetPassword}>
+                            <Button handleClick={handleSendNewPassword}>
                                 Submit Password
                             </Button>
                         </div>
