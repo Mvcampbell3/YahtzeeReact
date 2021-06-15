@@ -41,8 +41,11 @@ const App = () => {
                 <Route exact path="/login">
                     <LoginPageWrapper />
                 </Route>
-                <Route exact path="/reset">
+                <Route path="/reset/:email">
                     <ResetPasswordPageWrapper />
+                </Route>
+                <Route path="*">
+                    <h1>This is the lost page</h1>
                 </Route>
             </Switch>
         </Router>

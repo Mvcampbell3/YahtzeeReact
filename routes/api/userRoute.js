@@ -164,4 +164,28 @@ router.get("/checktoken", checkAuth, (req, res, next) => {
     });
 });
 
+router.post("/checkpin", (req, res) => {
+    const { pin, email } = req.body;
+    db.User.findOne({ email })
+        .then((user) => {
+            if (user) {
+                console.log(user);
+                const { resetPasswordRequested, resetPasswordPin } = user;
+                if (
+                    resetPasswordRequested &&
+                    Number(pin) === resetPasswordPin
+                ) {
+                    res.json({ ok: true, updatePass: true });
+                } else {
+                    res.json({ ok: true, updatePass: false });
+                }
+            } else {
+                res.json({ user: false });
+            }
+        })
+        .catch((err) => {
+            res.json({ err });
+        });
+});
+
 module.exports = router;

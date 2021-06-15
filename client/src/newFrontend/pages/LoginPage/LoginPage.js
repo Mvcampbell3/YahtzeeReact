@@ -12,7 +12,7 @@ import {
 } from "../../../utils/API";
 
 const LoginPage = (props) => {
-    const { user, username, createUser, loginUser } = props;
+    // const { user, username, createUser, loginUser } = props;
 
     const [email, setEmail] = useState("");
     const [inputUsername, setInputUsername] = useState("");
@@ -96,7 +96,7 @@ const LoginPage = (props) => {
 
     return (
         <div className="container flex-center-simple">
-            {sendToResetPage && <Redirect to="/reset" />}
+            {sendToResetPage && <Redirect to={`/reset/${email}`} />}
             {actionForgot ? (
                 <div className="forgot-container">
                     <p>Do you want to reset your password?</p>

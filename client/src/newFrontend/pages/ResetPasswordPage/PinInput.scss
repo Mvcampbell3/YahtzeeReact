@@ -1,0 +1,13 @@
+.pin-input-container {
+    input {
+
+        font-size: 24px;
+        padding: .5em 1em;
+        width: 160px;
+        letter-spacing: 2.5px;
+
+        &:focus {
+            outline: 0;
+        }
+    }
+}

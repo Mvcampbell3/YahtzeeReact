@@ -13,6 +13,10 @@ export const sendResetEmailAPI = (email) => {
     return Axios.post("/api/user/sendEmail", { email });
 };
 
+export const sendPinAPI = (pin, email) => {
+    return Axios.post("/api/user/checkpin", { pin, email });
+};
+
 export const checkTokenAPI = () => {
     return Axios.get("/api/user/checktoken", {
         headers: {
