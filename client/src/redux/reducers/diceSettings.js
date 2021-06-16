@@ -11,7 +11,7 @@ const rollDice = (state) => {
         diceArray.forEach((dice) => {
             let value;
             if (!dice.hold) {
-                const ranNum = Math.floor(Math.random() * 5 + 1);
+                const ranNum = Math.floor(Math.random() * 6 + 1);
                 value = ranNum;
             } else {
                 value = dice.value;

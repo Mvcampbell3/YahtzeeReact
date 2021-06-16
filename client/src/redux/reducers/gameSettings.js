@@ -11,6 +11,8 @@ import { ScoreTypes } from "../ENUMS";
 // If we can return helper functions, it would be a pretty solid solution
 const evalScore = (state, payload) => {
     const { score } = payload;
+    console.log(ScoreTypes.YAHTZEE);
+    console.log(score.scoreType);
     switch (score.scoreType) {
         case ScoreTypes.ONES:
         case ScoreTypes.TWOS:
@@ -25,7 +27,14 @@ const evalScore = (state, payload) => {
             return numberOfKind(state, payload, 4);
         case ScoreTypes.FULL_HOUSE:
             return fullHouse(state, payload);
+        case ScoreTypes.SMALL_STRAIGHT:
+            return straight(state, payload, "small");
+        case ScoreTypes.LARGE_STRAIGHT:
+            return straight(state, payload, "large");
+        case ScoreTypes.YAHTZEE:
+            return yahtzee(state, payload);
         default:
+            console.log("default");
             console.log(score);
             return state;
     }
@@ -127,11 +136,41 @@ const fullHouse = (state, payload) => {
         }
     }
     return {
-        state,
+        ...state,
         scoring: updateScoringArray(
             state,
             payload,
             hasPair && hasThreeOfKind ? 25 : 0,
+        ),
+    };
+};
+
+const straight = (state, payload, size) => {
+    const { diceArray } = payload;
+    const diceArrayValues = diceArray.map((dice) => dice.value);
+    let isStraight = checkScore.checkStraight(diceArrayValues, size);
+    return {
+        ...state,
+        scoring: updateScoringArray(
+            state,
+            payload,
+            isStraight ? (size === "small" ? 30 : 40) : 0,
+        ),
+    };
+};
+
+const yahtzee = (state, payload) => {
+    const { diceArray } = payload;
+    const diceArrayValues = diceArray.map((dice) => dice.value);
+    console.log(diceArrayValues);
+    return {
+        ...state,
+        scoring: updateScoringArray(
+            state,
+            payload,
+            diceArrayValues.filter((val) => diceArrayValues[0]).length === 5
+                ? 50
+                : 0,
         ),
     };
 };

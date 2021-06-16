@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import "./PinInput.scss";
 const PinInput = ({ pin, setPin, ...props }) => {
     const handleChange = (e) => {

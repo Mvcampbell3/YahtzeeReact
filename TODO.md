@@ -2,7 +2,7 @@
 
 ## Dice Value and Rolling
 
-Continue with evaluating scores: Full House, Straights
+Continue with evaluating scores: Straights
 
 ## User Interactions
 

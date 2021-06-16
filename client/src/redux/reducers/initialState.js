@@ -9,31 +9,31 @@ export const userSettings = {
 export const diceSettings = {
     diceArray: [
         {
-            value: 0,
+            value: 3,
             hold: false,
             type: DiceTypes.DIE_ONE,
             place: 0,
         },
         {
-            value: 0,
+            value: 3,
             hold: false,
             type: DiceTypes.DIE_TWO,
             place: 1,
         },
         {
-            value: 0,
+            value: 3,
             hold: false,
             type: DiceTypes.DIE_THREE,
             place: 2,
         },
         {
-            value: 0,
+            value: 3,
             hold: false,
             type: DiceTypes.DIE_FOUR,
             place: 3,
         },
         {
-            value: 0,
+            value: 3,
             hold: false,
             type: DiceTypes.DIE_FIVE,
             place: 4,
@@ -257,7 +257,7 @@ export const gameSettings = {
             name: "Yahtzee",
             testingScore: false,
             scoreSystem: "yahtzee",
-            scoreTypes: ScoreTypes.YAHTZEE,
+            scoreType: ScoreTypes.YAHTZEE,
         },
         {
             x: 0,
