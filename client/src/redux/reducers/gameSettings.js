@@ -11,8 +11,6 @@ import { ScoreTypes } from "../ENUMS";
 // If we can return helper functions, it would be a pretty solid solution
 const evalScore = (state, payload) => {
     const { score } = payload;
-    console.log(ScoreTypes.YAHTZEE);
-    console.log(score.scoreType);
     switch (score.scoreType) {
         case ScoreTypes.ONES:
         case ScoreTypes.TWOS:
@@ -33,6 +31,8 @@ const evalScore = (state, payload) => {
             return straight(state, payload, "large");
         case ScoreTypes.YAHTZEE:
             return yahtzee(state, payload);
+        case ScoreTypes.CHANCE:
+            return chance(state, payload);
         default:
             console.log("default");
             console.log(score);
@@ -173,6 +173,14 @@ const yahtzee = (state, payload) => {
                 : 0,
         ),
     };
+};
+
+const chance = (state, payload) => {
+    const { diceArray } = payload;
+    const diceArrayValues = diceArray.map((dice) => dice.value);
+    const total = diceArrayValues.reduce((amt, tot) => amt + tot);
+    console.log(total);
+    return { ...state, scoring: updateScoringArray(state, payload, total) };
 };
 
 const updateScoringArray = (state, payload, numberValue) => {
