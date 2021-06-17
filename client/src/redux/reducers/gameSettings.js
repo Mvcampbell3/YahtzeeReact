@@ -41,7 +41,6 @@ const evalScore = (state, payload) => {
 };
 
 const resetTestScores = (state) => {
-    console.log("resetting test scores");
     const { scoring } = state;
     const newScoringArray = scoring.map((score) => {
         return {
@@ -57,7 +56,6 @@ const resetTestScores = (state) => {
 };
 
 const saveScore = (state) => {
-    console.log("saving score");
     const { scoring } = state;
 
     const testingScoreLength = scoring
@@ -65,7 +63,6 @@ const saveScore = (state) => {
         .filter((test) => test === true).length;
 
     if (testingScoreLength !== 1) {
-        console.log("does not have a valid testingScore number");
         return state;
     }
 
@@ -162,7 +159,6 @@ const straight = (state, payload, size) => {
 const yahtzee = (state, payload) => {
     const { diceArray } = payload;
     const diceArrayValues = diceArray.map((dice) => dice.value);
-    console.log(diceArrayValues);
     return {
         ...state,
         scoring: updateScoringArray(
@@ -179,7 +175,6 @@ const chance = (state, payload) => {
     const { diceArray } = payload;
     const diceArrayValues = diceArray.map((dice) => dice.value);
     const total = diceArrayValues.reduce((amt, tot) => amt + tot);
-    console.log(total);
     return { ...state, scoring: updateScoringArray(state, payload, total) };
 };
 
@@ -190,6 +185,8 @@ const updateScoringArray = (state, payload, numberValue) => {
     const { scoring } = state;
 
     const newScoringArray = scoring.map((scoreItem) => {
+        console.log(scoreItem);
+
         if (scoreItem.scoreType !== score.scoreType) {
             return {
                 ...scoreItem,
@@ -204,7 +201,50 @@ const updateScoringArray = (state, payload, numberValue) => {
         };
     });
 
-    return newScoringArray;
+    const upperSubTotal = newScoringArray
+        .filter((scoreItem) => scoreItem.type === "upper")
+        .map((scoreItem) => scoreItem.score)
+        .reduce((amt, tot) => amt + tot);
+
+    console.log({ upperSubTotal });
+
+    const lowerSubTotal = newScoringArray
+        .filter((scoreItem) => scoreItem.type === "lower")
+        .map((scoreItem) => scoreItem.score)
+        .reduce((amt, tot) => amt + tot);
+
+    console.log({ lowerSubTotal });
+
+    const totalScoringArray = newScoringArray.map((scoreItem) => {
+        switch (scoreItem.scoreType) {
+            case ScoreTypes.UPPER_SUB_TOTAL:
+                return { ...scoreItem, score: upperSubTotal };
+            case ScoreTypes.LOWER_TOTAL:
+                return { ...scoreItem, score: lowerSubTotal };
+            case ScoreTypes.UPPER_BONUS:
+                return { ...scoreItem, score: upperSubTotal >= 63 ? 35 : 0 };
+            case ScoreTypes.UPPER_TOTAL:
+                return {
+                    ...scoreItem,
+                    score:
+                        upperSubTotal >= 63
+                            ? upperSubTotal + 35
+                            : upperSubTotal,
+                };
+            case ScoreTypes.TOTAL:
+                return {
+                    ...scoreItem,
+                    score:
+                        upperSubTotal >= 63
+                            ? upperSubTotal + lowerSubTotal + 35
+                            : upperSubTotal + lowerSubTotal,
+                };
+            default:
+                return scoreItem;
+        }
+    });
+
+    return totalScoringArray;
 };
 
 const gameSettings = (state = initialState, action) => {
