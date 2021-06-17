@@ -76,6 +76,15 @@ const saveScore = (state) => {
     return { ...state, scoring: newScoringArray };
 };
 
+const numberArrayFormatter = (diceArray) => {
+    const numberMap = { 1: [], 2: [], 3: [], 4: [], 5: [], 6: [] };
+    for (let key in numberMap) {
+        const numArray = diceArray.filter((dice) => dice.value === Number(key));
+        numberMap[key] = numArray;
+    }
+    return numberMap;
+};
+
 // Eval Score Return State Functions
 const numberEval = (state, payload) => {
     const { score, diceArray } = payload;
@@ -85,15 +94,6 @@ const numberEval = (state, payload) => {
         ...state,
         scoring: newScoringArray,
     };
-};
-
-const numberArrayFormatter = (diceArray) => {
-    const numberMap = { 1: [], 2: [], 3: [], 4: [], 5: [], 6: [] };
-    for (let key in numberMap) {
-        const numArray = diceArray.filter((dice) => dice.value === Number(key));
-        numberMap[key] = numArray;
-    }
-    return numberMap;
 };
 
 const numberOfKind = (state, payload, target) => {
@@ -185,8 +185,6 @@ const updateScoringArray = (state, payload, numberValue) => {
     const { scoring } = state;
 
     const newScoringArray = scoring.map((scoreItem) => {
-        console.log(scoreItem);
-
         if (scoreItem.scoreType !== score.scoreType) {
             return {
                 ...scoreItem,
@@ -201,19 +199,19 @@ const updateScoringArray = (state, payload, numberValue) => {
         };
     });
 
+    return updateTotalArray(newScoringArray);
+};
+
+const updateTotalArray = (newScoringArray) => {
     const upperSubTotal = newScoringArray
         .filter((scoreItem) => scoreItem.type === "upper")
         .map((scoreItem) => scoreItem.score)
         .reduce((amt, tot) => amt + tot);
 
-    console.log({ upperSubTotal });
-
     const lowerSubTotal = newScoringArray
         .filter((scoreItem) => scoreItem.type === "lower")
         .map((scoreItem) => scoreItem.score)
         .reduce((amt, tot) => amt + tot);
-
-    console.log({ lowerSubTotal });
 
     const totalScoringArray = newScoringArray.map((scoreItem) => {
         switch (scoreItem.scoreType) {
