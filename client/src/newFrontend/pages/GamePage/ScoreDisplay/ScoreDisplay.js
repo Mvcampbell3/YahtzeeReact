@@ -11,12 +11,15 @@ const ScoreDisplay = ({ score, diceArray, checkScore }) => {
     };
     return (
         <div className="score-display-container">
-            <button
-                onClick={() => handleClick(score, diceArray)}
-                className={`scoring-button ${score.saved && "saved"} ${
-                    score.testingScore && "testing"
-                }`}
-            ></button>
+            {score.scoreType !== "TOTAL" && (
+                <button
+                    onClick={() => handleClick(score, diceArray)}
+                    className={`scoring-button ${score.saved && "saved"} ${
+                        score.testingScore && "testing"
+                    }`}
+                ></button>
+            )}
+
             <span className="score-name">{score.name}</span>
             <span className="score-value">{score.score}</span>
         </div>

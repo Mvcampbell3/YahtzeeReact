@@ -4,9 +4,11 @@ import { ScoreDisplayWrapper } from "./";
 const ScoreContainer = ({ scoring }) => {
     return (
         <div className="score-container">
-            {scoring.map((score, i) => (
-                <ScoreDisplayWrapper score={score} key={i} />
-            ))}
+            {scoring
+                .sort((a, b) => a.order - b.order)
+                .map((score, i) => {
+                    return <ScoreDisplayWrapper score={score} key={i} />;
+                })}
         </div>
     );
 };
