@@ -1,6 +1,6 @@
-import React from "react";
-// commented out while dev on game
+import React, { useEffect, useState } from "react";
 
+import { useLocation } from "react-router";
 import { BrowserRouter as Router, Route, Switch, Link } from "react-router-dom";
 import {
     LoginPageWrapper,
@@ -12,18 +12,32 @@ import {
 import "./NewApp.scss";
 
 const Header = () => {
+    const location = useLocation();
+    const { pathname } = location;
+    const [displayHeader, setDisplayHeader] = useState(false);
+
+    useEffect(() => {
+        setDisplayHeader(() => {
+            return pathname !== "/";
+        });
+    }, [pathname]);
+
     return (
-        <ul className="nav">
-            <li className="nav-item">
-                <Link to="/">Home</Link>
-            </li>
-            <li className="nav-item">
-                <Link to="/game">Game</Link>
-            </li>
-            <li className="nav-item">
-                <Link to="/login">Login</Link>
-            </li>
-        </ul>
+        <>
+            {displayHeader && (
+                <ul className="nav">
+                    <li className="nav-item">
+                        <Link to="/">Home</Link>
+                    </li>
+                    <li className="nav-item">
+                        <Link to="/game">Game</Link>
+                    </li>
+                    <li className="nav-item">
+                        <Link to="/login">Login</Link>
+                    </li>
+                </ul>
+            )}
+        </>
     );
 };
 

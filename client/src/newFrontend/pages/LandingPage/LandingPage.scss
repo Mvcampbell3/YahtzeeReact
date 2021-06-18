@@ -1,0 +1,50 @@
+.landing-page-container {
+    min-height: 100vh;
+    display: flex;
+    background-color: #000;
+
+    .dice-picture-panel {
+        position: relative;
+        min-height: 100vh;
+        width: 50vw;
+
+        .dice-shadow-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            height: 100%;
+            width: 100%;
+            background: linear-gradient(90deg, rgba(0, 0, 0, 0) 0%,rgba(0, 0, 0, 0) 50%, rgba(0, 0, 0, 1) 95%), url("../../../images/dicePic.jpeg");
+            background-position: center center;
+            background-size: cover;
+        }
+    }
+
+    .landing-page-panel {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 50vw;
+
+        .page-actions {
+            .action a{
+                font-size: 30px;
+                margin-bottom: 1em;
+                padding: .25em;
+                width: fit-content;
+                cursor: pointer;
+                border-radius: 2px;
+                color: white;
+                text-decoration: none;
+                display: block;
+
+                &:hover {
+                    background-color: white;
+                    color: black;
+                }
+            }
+        }
+    }
+}
