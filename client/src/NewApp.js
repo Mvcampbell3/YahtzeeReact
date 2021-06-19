@@ -1,6 +1,5 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 
-import { useLocation } from "react-router";
 import { BrowserRouter as Router, Route, Switch, Link } from "react-router-dom";
 import {
     LoginPageWrapper,
@@ -9,37 +8,9 @@ import {
     ResetPasswordPageWrapper,
 } from "./newFrontend/pages";
 
+import Header from "./newFrontend/components/Header";
+
 import "./NewApp.scss";
-
-const Header = () => {
-    const location = useLocation();
-    const { pathname } = location;
-    const [displayHeader, setDisplayHeader] = useState(false);
-
-    useEffect(() => {
-        setDisplayHeader(() => {
-            return pathname !== "/";
-        });
-    }, [pathname]);
-
-    return (
-        <>
-            {displayHeader && (
-                <ul className="nav">
-                    <li className="nav-item">
-                        <Link to="/">Home</Link>
-                    </li>
-                    <li className="nav-item">
-                        <Link to="/game">Game</Link>
-                    </li>
-                    <li className="nav-item">
-                        <Link to="/login">Login</Link>
-                    </li>
-                </ul>
-            )}
-        </>
-    );
-};
 
 const App = () => {
     return (
